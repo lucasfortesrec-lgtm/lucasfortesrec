@@ -109,42 +109,86 @@ function Index() {
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden pt-16">
-        <img src={heroImg} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,transparent_0%,var(--background)_85%)]" />
+      <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden pt-24 md:pt-16">
+        {/* Mobile background */}
+        <img src={heroImg} alt="" className="md:hidden absolute inset-0 h-full w-full object-cover opacity-25" />
+        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 py-16">
-          <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-[0.4em] text-gold mb-8">
-            <span className="h-px w-10 bg-gold" />
-            Produção Audiovisual
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20 grid md:grid-cols-[1.05fr_1fr] gap-10 md:gap-14 items-center">
+          <div>
+            <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-[0.4em] text-gold mb-8">
+              <span className="h-px w-10 bg-gold" />
+              Produção Audiovisual
+            </div>
+            <h1 className="font-display text-4xl sm:text-6xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight font-bold text-balance">
+              LUCAS FORTES
+              <span className="block text-muted-foreground font-light text-2xl sm:text-3xl md:text-3xl lg:text-4xl mt-4 mb-3 tracking-normal">
+                Filmes que
+              </span>
+              <span className="block text-gold italic">VALORIZAM MARCAS.</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+              Produção profissional para empresas, profissionais e marcas.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a
+                href="#portfolio"
+                className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-7 py-4 text-sm font-semibold hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
+              >
+                Ver Portfólio <ArrowUpRight className="size-4" />
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 backdrop-blur-md px-7 py-4 text-sm font-medium hover:bg-accent hover:-translate-y-0.5 transition-all"
+              >
+                <MessageCircle className="size-4" />
+                Solicitar Orçamento
+              </a>
+            </div>
+
+            {/* Trust strip */}
+            <div className="mt-14 hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+              <div>
+                <div className="font-display text-2xl text-foreground font-semibold tracking-normal normal-case">6+</div>
+                <div className="mt-1">Anos de estrada</div>
+              </div>
+              <div className="h-8 w-px bg-border" />
+              <div>
+                <div className="font-display text-2xl text-foreground font-semibold tracking-normal normal-case">80+</div>
+                <div className="mt-1">Projetos entregues</div>
+              </div>
+              <div className="h-8 w-px bg-border" />
+              <div>
+                <div className="font-display text-2xl text-gold font-semibold tracking-normal normal-case">4K</div>
+                <div className="mt-1">Cinema padrão</div>
+              </div>
+            </div>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight font-bold max-w-5xl text-balance">
-            LUCAS FORTES
-            <span className="block text-muted-foreground font-light text-2xl sm:text-3xl md:text-4xl mt-4 mb-4 tracking-normal">
-              Filmes que
-            </span>
-            <span className="block text-gold italic">VALORIZAM MARCAS.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-base md:text-xl text-muted-foreground leading-relaxed">
-            Produção profissional para empresas, profissionais e marcas.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#portfolio"
-              className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-7 py-4 text-sm font-semibold hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
-            >
-              Ver Portfólio <ArrowUpRight className="size-4" />
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 backdrop-blur-md px-7 py-4 text-sm font-medium hover:bg-accent hover:-translate-y-0.5 transition-all"
-            >
-              <MessageCircle className="size-4" />
-              Solicitar Orçamento
-            </a>
+
+          {/* Portrait */}
+          <div className="hidden md:block relative">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-[var(--shadow-elegant)]">
+              <img
+                src={heroImg}
+                alt="Lucas Fortes filmando com câmera cinema"
+                width={1920}
+                height={1280}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3">
+                <div className="rounded-full bg-background/70 backdrop-blur-md border border-border px-4 py-2 text-[10px] uppercase tracking-[0.3em]">
+                  <span className="text-gold">●</span> No set
+                </div>
+                <div className="rounded-full bg-background/70 backdrop-blur-md border border-border px-4 py-2 text-[10px] uppercase tracking-[0.3em]">
+                  Florianópolis · BR
+                </div>
+              </div>
+            </div>
+            {/* Decorative glow */}
+            <div className="absolute -z-10 -inset-6 rounded-[2rem] bg-gold/10 blur-3xl" />
           </div>
         </div>
       </section>
