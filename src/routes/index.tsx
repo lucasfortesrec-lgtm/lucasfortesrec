@@ -5,23 +5,17 @@ import {
   ArrowUpRight,
   X,
   Instagram,
-  Linkedin,
-  Youtube,
   MessageCircle,
-  Building2,
-  UserRound,
-  HeartHandshake,
-  PenLine,
   Camera,
-  Clapperboard,
   Sparkles,
+  UserRound,
+  Wand2,
+  Share2,
+  Palette,
+  Mail,
+  Phone,
+  ChevronRight,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
@@ -34,101 +28,46 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Category = "Marcas" | "Profissionais" | "Casamentos";
+type Category = "Gastronomia" | "Profissionais Liberais" | "Automotivo";
 
 type Work = {
   title: string;
   category: Category;
-  categoryLabel: string;
-  year: string;
   image: string;
   video: string;
 };
 
-const WHATSAPP_URL = "https://wa.me/5511999999999";
+const WHATSAPP_URL = "https://wa.me/5548998294750";
+const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
+const EMAIL = "lucasfortesrec@gmail.com";
+const PHONE_DISPLAY = "48 9 9829 4750";
 
 const works: Work[] = [
-  { title: "Aurum — Institucional", category: "Marcas", categoryLabel: "Marcas / Institucional", year: "2025", image: work1, video: "https://player.vimeo.com/video/76979871" },
-  { title: "Dra. Helena Costa", category: "Profissionais", categoryLabel: "Profissionais Liberais", year: "2025", image: work2, video: "https://player.vimeo.com/video/76979871" },
-  { title: "Marina & Rafael", category: "Casamentos", categoryLabel: "Casamentos / Eventos", year: "2024", image: work3, video: "https://player.vimeo.com/video/76979871" },
-  { title: "Studio Noir — Brand Film", category: "Marcas", categoryLabel: "Marcas / Institucional", year: "2024", image: work4, video: "https://player.vimeo.com/video/76979871" },
-  { title: "Dr. Rafael Menezes", category: "Profissionais", categoryLabel: "Profissionais Liberais", year: "2024", image: work5, video: "https://player.vimeo.com/video/76979871" },
-  { title: "Julia & Pedro", category: "Casamentos", categoryLabel: "Casamentos / Eventos", year: "2023", image: work6, video: "https://player.vimeo.com/video/76979871" },
+  { title: "Chef Autoral — Menu Degustação", category: "Gastronomia", image: work1, video: "https://player.vimeo.com/video/76979871" },
+  { title: "Bistrô Aurora — Brand Film", category: "Gastronomia", image: work4, video: "https://player.vimeo.com/video/76979871" },
+  { title: "Dra. Helena Costa — Odontologia", category: "Profissionais Liberais", image: work2, video: "https://player.vimeo.com/video/76979871" },
+  { title: "Dr. Rafael Menezes — Clínica", category: "Profissionais Liberais", image: work5, video: "https://player.vimeo.com/video/76979871" },
+  { title: "GT Motors — Lançamento Premium", category: "Automotivo", image: work3, video: "https://player.vimeo.com/video/76979871" },
+  { title: "Signature Drive — Test Drive", category: "Automotivo", image: work6, video: "https://player.vimeo.com/video/76979871" },
 ];
 
-const filters: { key: "Todos" | Category; label: string }[] = [
-  { key: "Todos", label: "Todos" },
-  { key: "Marcas", label: "Marcas / Institucional" },
-  { key: "Profissionais", label: "Profissionais Liberais" },
-  { key: "Casamentos", label: "Casamentos / Eventos" },
+const categories: Category[] = ["Gastronomia", "Profissionais Liberais", "Automotivo"];
+
+const differentials = [
+  { icon: Camera, title: "Equipamentos Profissionais", desc: "Câmeras cinema, óticas dedicadas e áudio broadcast." },
+  { icon: Wand2, title: "Direção Criativa Personalizada", desc: "Roteiro e conceito visual sob medida para sua marca." },
+  { icon: UserRound, title: "Atendimento Direto com o Filmmaker", desc: "Sem intermediários — do briefing à entrega final." },
+  { icon: Share2, title: "Entrega Otimizada para Redes Sociais", desc: "Cortes verticais, horizontais e reels de alta retenção." },
+  { icon: Palette, title: "Edição e Colorização Profissional", desc: "Color grading cinematográfico e sound design imersivo." },
 ];
 
-const services = [
-  {
-    icon: Building2,
-    title: "Vídeos Institucionais e Corporativos",
-    desc: "Filmes de marca que constroem autoridade — narrativas que traduzem cultura, propósito e diferencial competitivo.",
-  },
-  {
-    icon: UserRound,
-    title: "Conteúdo para Profissionais Liberais",
-    desc: "Personal branding em vídeo: reels de alta retenção, entrevistas e cortes verticais para posicionar sua expertise.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Filmes de Casamentos e Eventos",
-    desc: "Storytelling premium e sensorial — filmes que eternizam a emoção com estética cinematográfica e trilha sob medida.",
-  },
-];
-
-const process = [
-  {
-    step: "01",
-    icon: PenLine,
-    title: "Pré-produção & Roteiro",
-    desc: "Imersão na sua história: briefing estratégico, direção criativa, roteiro e planejamento visual detalhado.",
-  },
-  {
-    step: "02",
-    icon: Camera,
-    title: "Gravação & Equipamento Premium",
-    desc: "Câmeras cinema, óticas dedicadas, áudio profissional e direção em set para capturar cada nuance.",
-  },
-  {
-    step: "03",
-    icon: Clapperboard,
-    title: "Pós-produção & Color Grading",
-    desc: "Montagem sensível, color grading cinematográfico, sound design e mixagem final entregues em alta.",
-  },
-];
-
-const faqs = [
-  {
-    q: "Como funciona o orçamento?",
-    a: "Cada projeto é único. Após uma conversa inicial para entender objetivo, entregáveis e prazo, envio uma proposta detalhada com escopo, cronograma e investimento. Sem surpresas depois.",
-  },
-  {
-    q: "Qual o prazo de entrega?",
-    a: "Reels e conteúdos curtos: de 5 a 10 dias úteis. Filmes institucionais: 3 a 5 semanas. Casamentos: teaser em até 15 dias, filme completo em até 90 dias. Prazos são acordados no contrato.",
-  },
-  {
-    q: "Você atende em outras regiões?",
-    a: "Sim. Atendo todo o Brasil e viagens internacionais sob demanda. Custos de deslocamento e diária ficam claros na proposta.",
-  },
-  {
-    q: "Trabalha com equipe própria?",
-    a: "Sim. Tenho uma equipe fixa de confiança (direção de fotografia, som direto, assistentes) e amplio o time conforme a complexidade do projeto.",
-  },
-];
+const workflow = ["Roteiro e Direção", "Produção Completa", "Som Cinematográfico", "Finalização e Cor"];
 
 function Index() {
   const [openVideo, setOpenVideo] = useState<Work | null>(null);
-  const [activeFilter, setActiveFilter] = useState<"Todos" | Category>("Todos");
+  const [activeCategory, setActiveCategory] = useState<Category>("Gastronomia");
 
-  const filteredWorks = useMemo(
-    () => (activeFilter === "Todos" ? works : works.filter((w) => w.category === activeFilter)),
-    [activeFilter],
-  );
+  const filtered = useMemo(() => works.filter((w) => w.category === activeCategory), [activeCategory]);
 
   useEffect(() => {
     document.body.style.overflow = openVideo ? "hidden" : "";
@@ -139,56 +78,61 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Nav */}
-      <header className="fixed top-4 left-4 right-4 z-40 mx-auto max-w-6xl rounded-full backdrop-blur-xl bg-background/60 border border-border">
-        <div className="px-4 md:px-6 h-14 flex items-center justify-between">
-          <a href="#top" className="font-display text-sm md:text-base tracking-tight font-semibold">
-            LUCASFORTES<span className="text-gold">.</span>REC
+      {/* Header */}
+      <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/60 border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
+          <a href="#top" className="min-w-0 truncate text-sm sm:text-base font-bold tracking-[0.15em]">
+            LUCASFORTES<span className="text-gold"> </span>REC
           </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#portfolio" className="hover:text-foreground transition-colors">Portfólio</a>
-            <a href="#services" className="hover:text-foreground transition-colors">Serviços</a>
-            <a href="#process" className="hover:text-foreground transition-colors">Processo</a>
-            <a href="#faq" className="hover:text-foreground transition-colors">FAQ</a>
-          </nav>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 py-2 text-xs md:text-sm font-medium hover:opacity-90 transition-opacity shadow-[var(--shadow-elegant)]"
-          >
-            Solicitar Orçamento <ArrowUpRight className="size-3.5" />
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="grid place-items-center size-10 rounded-full border border-border bg-card/40 hover:bg-accent hover:border-gold/40 hover:text-gold transition-all"
+            >
+              <Instagram className="size-4" />
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
+            >
+              <MessageCircle className="size-4" />
+              <span className="hidden sm:inline">Fale Comigo</span>
+              <span className="sm:hidden">Fale</span>
+            </a>
+          </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
-        <img
-          src={heroImg}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_10%,var(--background)_95%)]" />
+      <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden pt-16">
+        <img src={heroImg} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,transparent_0%,var(--background)_85%)]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 w-full pt-24">
-          <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6">
-            <span className="h-px w-8 bg-gold" />
-            Filmmaker · Direção · Pós-produção
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 py-16">
+          <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-[0.4em] text-gold mb-8">
+            <span className="h-px w-10 bg-gold" />
+            Produção Audiovisual
           </div>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.98] tracking-tight text-balance max-w-5xl font-semibold">
-            Transformando histórias em <span className="italic text-gold">cinema</span>.
-            <br className="hidden md:block" />
-            Vídeos que conectam, vendem e eternizam.
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight font-bold max-w-5xl text-balance">
+            LUCAS FORTES
+            <span className="block text-muted-foreground font-light text-2xl sm:text-3xl md:text-4xl mt-4 mb-4 tracking-normal">
+              Filmes que
+            </span>
+            <span className="block text-gold italic">VALORIZAM MARCAS.</span>
           </h1>
-          <p className="mt-6 md:mt-8 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
-            Produção audiovisual profissional para marcas, empresas, profissionais liberais e grandes eventos.
+          <p className="mt-8 max-w-2xl text-base md:text-xl text-muted-foreground leading-relaxed">
+            Produção profissional para empresas, profissionais e marcas.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <a
               href="#portfolio"
-              className="inline-flex items-center gap-3 rounded-full bg-gold text-gold-foreground px-7 py-4 text-sm font-medium hover:opacity-90 transition-all shadow-[var(--shadow-elegant)] hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-7 py-4 text-sm font-semibold hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
             >
               Ver Portfólio <ArrowUpRight className="size-4" />
             </a>
@@ -196,91 +140,82 @@ function Index() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full border border-border bg-card/40 backdrop-blur-md px-6 py-4 text-sm hover:bg-accent hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 backdrop-blur-md px-7 py-4 text-sm font-medium hover:bg-accent hover:-translate-y-0.5 transition-all"
             >
               <MessageCircle className="size-4" />
-              Fale no WhatsApp
+              Solicitar Orçamento
             </a>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16 md:mt-24 grid grid-cols-3 gap-6 max-w-xl">
-            {[
-              { n: "80+", l: "Projetos entregues" },
-              { n: "6", l: "Anos de estrada" },
-              { n: "100%", l: "Clientes recorrentes" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-2xl md:text-3xl text-gold">{s.n}</div>
-                <div className="text-[11px] md:text-xs text-muted-foreground mt-1 uppercase tracking-[0.2em]">{s.l}</div>
-              </div>
-            ))}
-          </div>
+      {/* Objection / Value Proposition */}
+      <section className="py-24 md:py-36 px-6 md:px-10 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-xs uppercase tracking-[0.4em] text-gold mb-6">Por que um filme profissional?</div>
+          <p className="text-xl md:text-3xl font-light leading-[1.35] text-balance text-foreground/90 mb-16">
+            Sua marca é julgada <span className="text-gold font-medium">antes mesmo da primeira conversa</span>. Um filme bem produzido transmite <span className="text-white font-medium">confiança, valor e profissionalismo</span> em segundos.
+          </p>
+
+          <figure className="relative rounded-3xl border border-gold/20 bg-gradient-to-br from-card via-background to-card p-10 md:p-16">
+            <div className="absolute -top-6 left-8 md:left-12 grid place-items-center size-12 rounded-full bg-gold text-gold-foreground font-serif text-3xl leading-none pt-1">"</div>
+            <blockquote className="font-display text-2xl md:text-4xl lg:text-5xl leading-[1.15] italic tracking-tight text-balance">
+              Uma boa produção não mostra apenas o que você faz.
+              <span className="block text-gold not-italic font-semibold mt-4">Ela mostra o valor do que você entrega.</span>
+            </blockquote>
+            <figcaption className="mt-8 text-xs uppercase tracking-[0.3em] text-muted-foreground">— Lucas Fortes, Filmmaker</figcaption>
+          </figure>
         </div>
       </section>
 
       {/* Portfolio */}
       <section id="portfolio" className="py-24 md:py-32 px-6 md:px-10 border-t border-border">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-            <div>
-              <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">01 — Portfólio</div>
-              <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight">Trabalhos selecionados.</h2>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Uma curadoria dos projetos mais recentes — clique para assistir.
-            </p>
+          <div className="text-center mb-14">
+            <div className="text-xs uppercase tracking-[0.4em] text-gold mb-4">Portfólio</div>
+            <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight">O QUE EU FAÇO?</h2>
           </div>
 
-          {/* Filters */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {filters.map((f) => {
-              const active = activeFilter === f.key;
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12">
+            {categories.map((c) => {
+              const active = activeCategory === c;
               return (
                 <button
-                  key={f.key}
-                  onClick={() => setActiveFilter(f.key)}
-                  className={`rounded-full px-4 py-2 text-xs md:text-sm border transition-all ${
+                  key={c}
+                  onClick={() => setActiveCategory(c)}
+                  className={`rounded-full px-5 py-2.5 text-xs md:text-sm font-medium uppercase tracking-wider border transition-all ${
                     active
                       ? "bg-gold text-gold-foreground border-gold shadow-[var(--shadow-elegant)]"
-                      : "border-border text-muted-foreground hover:text-foreground hover:bg-accent"
+                      : "border-border text-muted-foreground hover:text-foreground hover:bg-accent hover:border-gold/30"
                   }`}
                 >
-                  {f.label}
+                  {c}
                 </button>
               );
             })}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {filteredWorks.map((w) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {filtered.map((w) => (
               <button
                 key={w.title}
                 onClick={() => setOpenVideo(w)}
-                className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-card text-left shadow-[var(--shadow-card)] transition-all duration-500 hover:-translate-y-1 hover:border-gold/50 hover:shadow-[var(--shadow-elegant)]"
+                className="group relative aspect-video overflow-hidden rounded-2xl border border-border bg-card text-left transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_0_60px_-15px_var(--gold)]"
               >
-                <img
-                  src={w.image}
-                  alt={w.title}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
+                <img src={w.image} alt={w.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors duration-500" />
 
                 <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="grid place-items-center size-16 rounded-full bg-gold text-gold-foreground shadow-[var(--shadow-elegant)] scale-90 group-hover:scale-100 transition-transform duration-500">
-                    <Play className="size-5 fill-current translate-x-0.5" />
+                  <div className="flex items-center gap-3 rounded-full bg-gold text-gold-foreground px-5 py-3 shadow-[var(--shadow-elegant)] scale-90 group-hover:scale-100 transition-transform duration-500">
+                    <Play className="size-4 fill-current" />
+                    <span className="text-xs font-semibold uppercase tracking-wider">Play Movie</span>
                   </div>
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-gold mb-2">
-                    <span>{w.categoryLabel}</span>
-                    <span className="h-px w-6 bg-gold/40" />
-                    <span className="text-muted-foreground">{w.year}</span>
-                  </div>
-                  <h3 className="font-display text-xl md:text-2xl leading-tight font-semibold">
-                    {w.title}
-                  </h3>
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">{w.category}</div>
+                  <h3 className="font-display text-lg md:text-2xl leading-tight font-semibold">{w.title}</h3>
                 </div>
               </button>
             ))}
@@ -288,157 +223,146 @@ function Index() {
         </div>
       </section>
 
-      {/* Services */}
-      <section id="services" className="py-24 md:py-32 px-6 md:px-10 border-t border-border">
+      {/* Differentials */}
+      <section className="py-24 md:py-32 px-6 md:px-10 border-t border-border">
         <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-14">
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">02 — Serviços</div>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05]">
-              Especialidades feitas para <span className="italic text-gold">gerar impacto</span>.
-            </h2>
+          <div className="text-center mb-14">
+            <div className="text-xs uppercase tracking-[0.4em] text-gold mb-4">Por que escolher</div>
+            <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight">DIFERENCIAIS</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-            {services.map((s) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-16">
+            {differentials.map((d) => (
               <div
-                key={s.title}
-                className="group relative rounded-2xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold/40 hover:bg-accent"
+                key={d.title}
+                className="group rounded-2xl border border-border bg-card p-8 hover:-translate-y-1 hover:border-gold/40 hover:bg-accent transition-all duration-500"
               >
                 <div className="grid place-items-center size-12 rounded-xl bg-gold/10 text-gold border border-gold/20 mb-6 group-hover:bg-gold group-hover:text-gold-foreground transition-colors duration-500">
-                  <s.icon className="size-5" />
+                  <d.icon className="size-5" />
                 </div>
-                <h3 className="font-display text-xl md:text-2xl font-semibold leading-tight">{s.title}</h3>
-                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">{s.desc}</p>
-                <div className="mt-8 flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">
-                  Saiba mais <ArrowUpRight className="size-3.5" />
-                </div>
+                <h3 className="font-display text-lg md:text-xl font-semibold leading-tight mb-3">{d.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Process */}
-      <section id="process" className="py-24 md:py-32 px-6 md:px-10 border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-14">
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">03 — Processo criativo</div>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05]">
-              Do briefing à entrega final — sem ruído.
-            </h2>
-          </div>
-
-          <div className="relative grid md:grid-cols-3 gap-6 md:gap-8">
-            <div className="hidden md:block absolute top-8 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-            {process.map((p) => (
-              <div key={p.step} className="relative rounded-2xl border border-border bg-card p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="grid place-items-center size-12 rounded-full bg-background border border-gold/30 text-gold relative z-10">
-                    <p.icon className="size-5" />
+          {/* Workflow Badge Bar */}
+          <div className="rounded-2xl border border-gold/20 bg-gradient-to-r from-card via-background to-card p-6 md:p-8">
+            <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground mb-5 text-center">Fluxo completo de produção</div>
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+              {workflow.map((step, i) => (
+                <div key={step} className="flex items-center gap-2 md:gap-3">
+                  <div className="rounded-full border border-gold/40 bg-gold/5 px-4 py-2 text-[10px] md:text-xs uppercase tracking-[0.2em] font-semibold text-foreground">
+                    {step}
                   </div>
-                  <div className="font-display text-4xl text-gold/30 font-semibold">{p.step}</div>
+                  {i < workflow.length - 1 && <ChevronRight className="size-4 text-gold/60 shrink-0" />}
                 </div>
-                <h3 className="font-display text-xl md:text-2xl font-semibold leading-tight">{p.title}</h3>
-                <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="py-20 md:py-28 px-6 md:px-10">
-        <div className="max-w-6xl mx-auto relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-card via-background to-card p-10 md:p-20 text-center">
-          <div className="absolute -top-24 -right-24 size-64 rounded-full bg-gold/20 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 size-64 rounded-full bg-gold/10 blur-3xl" />
-          <div className="relative">
+      {/* Contact / CTA */}
+      <section id="contact" className="py-24 md:py-32 px-6 md:px-10 border-t border-border relative overflow-hidden">
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 size-96 rounded-full bg-gold/10 blur-3xl" />
+        <div className="max-w-5xl mx-auto relative">
+          <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/5 px-4 py-1.5 text-[10px] uppercase tracking-[0.3em] text-gold mb-6">
               <Sparkles className="size-3" />
-              Vagas limitadas · 2026
+              Vamos criar juntos
             </div>
-            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05] text-balance max-w-4xl mx-auto">
-              Pronto para tirar o seu projeto do papel e dar a ele o <span className="italic text-gold">visual que ele merece</span>?
+            <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight text-balance">
+              Pronto para <span className="italic text-gold">valorizar</span> a sua marca?
             </h2>
-            <p className="mt-6 max-w-xl mx-auto text-base md:text-lg text-muted-foreground">
-              Vamos conversar sobre a sua ideia. Resposta em até 24 horas.
+            <p className="mt-5 text-muted-foreground text-base md:text-lg max-w-xl mx-auto">
+              Fale diretamente com o filmmaker. Resposta em até 24 horas.
             </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="group relative inline-flex items-center gap-3 rounded-full bg-gold text-gold-foreground px-8 py-4 text-sm font-medium hover:opacity-90 transition-all shadow-[var(--shadow-elegant)] hover:-translate-y-0.5"
-              >
-                <span className="absolute inset-0 rounded-full bg-gold animate-ping opacity-20" />
-                <MessageCircle className="size-4 relative" />
-                <span className="relative">Iniciar Meu Projeto</span>
-              </a>
-              <a
-                href="#portfolio"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-4 text-sm hover:bg-accent transition-colors"
-              >
-                Ver portfólio
-              </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="group rounded-2xl border border-border bg-card p-8 hover:-translate-y-1 hover:border-gold/50 hover:bg-accent transition-all duration-500"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="grid place-items-center size-12 rounded-xl bg-gold/10 text-gold border border-gold/20 group-hover:bg-gold group-hover:text-gold-foreground transition-colors">
+                  <Instagram className="size-5" />
+                </div>
+                <ArrowUpRight className="size-5 text-muted-foreground group-hover:text-gold group-hover:-translate-y-1 group-hover:translate-x-1 transition-all" />
+              </div>
+              <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-2">Instagram</div>
+              <div className="font-display text-xl md:text-2xl font-semibold">@lucasfortes.rec</div>
+            </a>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="group rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 via-card to-card p-8 hover:-translate-y-1 hover:border-gold hover:shadow-[var(--shadow-elegant)] transition-all duration-500"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="grid place-items-center size-12 rounded-xl bg-gold text-gold-foreground border border-gold">
+                  <MessageCircle className="size-5" />
+                </div>
+                <ArrowUpRight className="size-5 text-gold group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+              </div>
+              <div className="text-xs uppercase tracking-[0.3em] text-gold mb-2">WhatsApp</div>
+              <div className="font-display text-xl md:text-2xl font-semibold">{PHONE_DISPLAY}</div>
+            </a>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="grid place-items-center size-12 shrink-0 rounded-xl bg-gold/10 text-gold border border-gold/20">
+                <Mail className="size-5" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-1">E-mail</div>
+                <a href={`mailto:${EMAIL}`} className="font-display text-base md:text-xl font-semibold hover:text-gold transition-colors truncate block">
+                  {EMAIL}
+                </a>
+              </div>
             </div>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs font-medium hover:bg-accent hover:border-gold/40 transition-all shrink-0"
+            >
+              Enviar mensagem <ArrowUpRight className="size-3.5" />
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-24 md:py-32 px-6 md:px-10 border-t border-border">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-3">04 — FAQ</div>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight">Perguntas frequentes.</h2>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((f, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="rounded-2xl border border-border bg-card px-6 data-[state=open]:border-gold/30 data-[state=open]:bg-accent transition-colors"
-              >
-                <AccordionTrigger className="text-left font-display text-base md:text-lg font-medium hover:no-underline py-5">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm md:text-base text-muted-foreground leading-relaxed pb-5">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-border px-6 md:px-10 py-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <div>
-            <div className="font-display text-base font-semibold tracking-tight">
-              LUCASFORTES<span className="text-gold">.</span>REC
+        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+          <div className="min-w-0">
+            <div className="font-display text-base font-bold tracking-[0.15em]">
+              LUCASFORTES<span className="text-gold"> </span>REC
             </div>
             <div className="mt-2 text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Lucas Fortes. Made with passion — São Paulo, Brasil.
+              © {new Date().getFullYear()} Lucas Fortes Filmmaker. Todos os direitos reservados.
+            </div>
+            <div className="mt-1 text-xs text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1">
+              <a href={`mailto:${EMAIL}`} className="hover:text-gold transition-colors">{EMAIL}</a>
+              <span className="text-border">·</span>
+              <span className="inline-flex items-center gap-1.5"><Phone className="size-3" /> {PHONE_DISPLAY}</span>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            {[
-              { icon: Instagram, label: "Instagram", href: "#" },
-              { icon: Youtube, label: "YouTube", href: "#" },
-              { icon: Youtube, label: "Vimeo", href: "#" },
-              { icon: Linkedin, label: "LinkedIn", href: "#" },
-            ].map((s, i) => (
-              <a
-                key={i}
-                href={s.href}
-                aria-label={s.label}
-                className="grid place-items-center size-10 rounded-full border border-border bg-card hover:bg-accent hover:border-gold/40 hover:text-gold transition-all"
-              >
-                <s.icon className="size-4" />
-              </a>
-            ))}
+          <div className="flex gap-2 shrink-0">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid place-items-center size-10 rounded-full border border-border bg-card hover:bg-accent hover:border-gold/40 hover:text-gold transition-all">
+              <Instagram className="size-4" />
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid place-items-center size-10 rounded-full border border-border bg-card hover:bg-accent hover:border-gold/40 hover:text-gold transition-all">
+              <MessageCircle className="size-4" />
+            </a>
+            <a href={`mailto:${EMAIL}`} aria-label="E-mail" className="grid place-items-center size-10 rounded-full border border-border bg-card hover:bg-accent hover:border-gold/40 hover:text-gold transition-all">
+              <Mail className="size-4" />
+            </a>
           </div>
         </div>
       </footer>
@@ -466,7 +390,7 @@ function Index() {
               />
             </div>
             <div className="mt-5">
-              <div className="text-xs uppercase tracking-[0.3em] text-gold">{openVideo.categoryLabel} — {openVideo.year}</div>
+              <div className="text-xs uppercase tracking-[0.3em] text-gold">{openVideo.category}</div>
               <div className="font-display text-2xl mt-1 font-semibold">{openVideo.title}</div>
             </div>
           </div>
