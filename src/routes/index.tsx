@@ -213,27 +213,8 @@ function Index() {
             <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight">O QUE EU FAÇO?</h2>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12">
-            {categories.map((c) => {
-              const active = activeCategory === c;
-              return (
-                <button
-                  key={c}
-                  onClick={() => setActiveCategory(c)}
-                  className={`rounded-full px-5 py-2.5 text-xs md:text-sm font-medium uppercase tracking-wider border transition-all ${
-                    active
-                      ? "bg-gold text-gold-foreground border-gold shadow-[var(--shadow-elegant)]"
-                      : "border-border text-muted-foreground hover:text-foreground hover:bg-accent hover:border-gold/30"
-                  }`}
-                >
-                  {c}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {filtered.map((w) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {works.map((w) => (
               <button
                 key={w.title}
                 onClick={() => setOpenVideo(w)}
