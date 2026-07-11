@@ -16,7 +16,7 @@ import {
   Phone,
   ChevronRight,
 } from "lucide-react";
-import heroImg from "@/assets/hero.jpg";
+import heroImg from "@/assets/lucas-portrait.png";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
@@ -162,15 +162,14 @@ function Index() {
 
           {/* Portrait */}
           <div className="hidden md:block relative">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-[var(--shadow-elegant)]">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-[var(--shadow-elegant)] bg-gradient-to-b from-card via-background to-background">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,var(--gold)/15%,transparent_60%)] opacity-40" />
               <img
                 src={heroImg}
-                alt="Lucas Fortes filmando com câmera cinema"
-                width={1920}
-                height={1280}
-                className="absolute inset-0 h-full w-full object-cover"
+                alt="Lucas Fortes — Filmmaker"
+                className="absolute inset-x-0 bottom-0 h-full w-full object-contain object-bottom"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3">
                 <div className="rounded-full bg-background/70 backdrop-blur-md border border-border px-4 py-2 text-[10px] uppercase tracking-[0.3em]">
                   <span className="text-gold">●</span> No set
