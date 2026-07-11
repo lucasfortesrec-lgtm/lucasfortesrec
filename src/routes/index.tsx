@@ -28,11 +28,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Category = "Gastronomia" | "Profissionais Liberais" | "Automotivo";
-
 type Work = {
   title: string;
-  category: Category;
+  category: string;
   image: string;
   video: string;
 };
@@ -50,8 +48,6 @@ const works: Work[] = [
   { title: "GT Motors — Lançamento Premium", category: "Automotivo", image: work3, video: "https://player.vimeo.com/video/76979871" },
   { title: "Signature Drive — Test Drive", category: "Automotivo", image: work6, video: "https://player.vimeo.com/video/76979871" },
 ];
-
-const categories: Category[] = ["Gastronomia", "Profissionais Liberais", "Automotivo"];
 
 const differentials = [
   { icon: Camera, title: "Equipamentos Profissionais", desc: "Câmeras cinema, óticas dedicadas e áudio broadcast." },
