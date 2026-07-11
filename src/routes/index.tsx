@@ -16,7 +16,6 @@ import {
   Phone,
   ChevronRight,
 } from "lucide-react";
-import heroImg from "@/assets/lucas-portrait.png";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
@@ -101,89 +100,135 @@ function Index() {
         </div>
       </header>
 
-      {/* Hero */}
-      <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden pt-24 md:pt-16">
-        {/* Mobile background */}
-        <img src={heroImg} alt="" className="md:hidden absolute inset-0 h-full w-full object-cover opacity-25" />
-        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+      {/* Hero — Cinematic Viewfinder */}
+      <section id="top" className="relative min-h-[100svh] flex items-center overflow-hidden">
+        {/* Ambient background */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,color-mix(in_oklab,var(--gold)_18%,transparent)_0%,transparent_55%)]" />
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+            maskImage: "radial-gradient(ellipse at center, black 40%, transparent 85%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20 grid md:grid-cols-[1.05fr_1fr] gap-10 md:gap-14 items-center">
-          <div>
-            <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-[0.4em] text-gold mb-8">
-              <span className="h-px w-10 bg-gold" />
-              Produção Audiovisual
+        {/* Viewfinder brackets */}
+        <div className="pointer-events-none absolute inset-4 sm:inset-8 md:inset-12">
+          <span className="absolute top-0 left-0 size-8 md:size-12 border-t-2 border-l-2 border-gold/70" />
+          <span className="absolute top-0 right-0 size-8 md:size-12 border-t-2 border-r-2 border-gold/70" />
+          <span className="absolute bottom-0 left-0 size-8 md:size-12 border-b-2 border-l-2 border-gold/70" />
+          <span className="absolute bottom-0 right-0 size-8 md:size-12 border-b-2 border-r-2 border-gold/70" />
+        </div>
+
+        {/* HUD row */}
+        <div className="pointer-events-none absolute top-20 md:top-24 left-6 sm:left-12 md:left-20 right-6 sm:right-12 md:right-20 flex items-center justify-between text-[10px] tracking-[0.35em] uppercase">
+          <div className="flex items-center gap-2.5 text-muted-foreground">
+            <span className="relative flex size-2">
+              <span className="absolute inset-0 rounded-full bg-gold/50 animate-ping" />
+              <span className="relative size-2 rounded-full bg-gold" />
+            </span>
+            <span className="text-gold">REC</span>
+            <span className="hidden sm:inline text-border">|</span>
+            <span className="hidden sm:inline">24 FPS · 4K</span>
+          </div>
+          <div className="hidden md:flex items-center gap-3 tabular-nums text-muted-foreground">
+            <span>SCENE 06</span>
+            <span className="text-border">|</span>
+            <span className="text-gold">TC 00:00:24:12</span>
+          </div>
+        </div>
+
+        {/* Vertical side rail */}
+        <div className="hidden md:flex pointer-events-none absolute left-6 top-1/2 -translate-y-1/2 flex-col items-center gap-6 text-[10px] tracking-[0.4em] uppercase text-muted-foreground [writing-mode:vertical-rl] rotate-180">
+          <span>Filmmaker</span>
+          <span className="h-16 w-px bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
+          <span className="text-gold">Since 2018</span>
+        </div>
+        <div className="hidden md:flex pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 flex-col items-center gap-6 text-[10px] tracking-[0.4em] uppercase text-muted-foreground [writing-mode:vertical-rl]">
+          <span>Florianópolis</span>
+          <span className="h-16 w-px bg-gradient-to-b from-transparent via-gold/60 to-transparent" />
+          <span className="text-gold">BR · Worldwide</span>
+        </div>
+
+        {/* Main content */}
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-20 pt-32 pb-32 md:pt-28 md:pb-32">
+          <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold mb-10 md:mb-14">
+            <span className="h-px w-8 md:w-14 bg-gold" />
+            Produção Audiovisual Cinematográfica
+          </div>
+
+          <h1 className="font-display font-semibold leading-[0.86] tracking-[-0.045em] text-balance">
+            <span className="block text-[clamp(3rem,13.5vw,12rem)]">LUCAS</span>
+            <span className="block text-[clamp(3rem,13.5vw,12rem)] italic text-gold">FORTES</span>
+          </h1>
+
+          {/* Divider with meta */}
+          <div className="mt-10 md:mt-14 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+            <div className="max-w-2xl">
+              <div className="mb-6 h-px w-24 bg-gradient-to-r from-gold to-transparent" />
+              <p className="text-lg md:text-2xl font-light leading-[1.35] text-foreground/85 text-balance">
+                Filmes que <span className="text-gold italic">valorizam marcas</span> — direção, câmera e cor cinematográfica para empresas, profissionais liberais e eventos premium.
+              </p>
             </div>
-            <h1 className="font-display text-4xl sm:text-6xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight font-bold text-balance">
-              LUCAS FORTES
-              <span className="block text-muted-foreground font-light text-2xl sm:text-3xl md:text-3xl lg:text-4xl mt-4 mb-3 tracking-normal">
-                Filmes que
-              </span>
-              <span className="block text-gold italic">VALORIZAM MARCAS.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
-              Produção profissional para empresas, profissionais e marcas.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+
+            <div className="flex flex-wrap gap-3 md:justify-end">
               <a
                 href="#portfolio"
-                className="inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-7 py-4 text-sm font-semibold hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-gold text-gold-foreground px-7 py-4 text-sm font-semibold hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
               >
-                Ver Portfólio <ArrowUpRight className="size-4" />
+                Ver Portfólio
+                <ArrowUpRight className="size-4 group-hover:rotate-45 transition-transform duration-300" />
               </a>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 backdrop-blur-md px-7 py-4 text-sm font-medium hover:bg-accent hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/40 backdrop-blur-md px-7 py-4 text-sm font-medium hover:bg-accent hover:border-gold/50 hover:-translate-y-0.5 transition-all"
               >
                 <MessageCircle className="size-4" />
                 Solicitar Orçamento
               </a>
             </div>
-
-            {/* Trust strip */}
-            <div className="mt-14 hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              <div>
-                <div className="font-display text-2xl text-foreground font-semibold tracking-normal normal-case">6+</div>
-                <div className="mt-1">Anos de estrada</div>
-              </div>
-              <div className="h-8 w-px bg-border" />
-              <div>
-                <div className="font-display text-2xl text-foreground font-semibold tracking-normal normal-case">80+</div>
-                <div className="mt-1">Projetos entregues</div>
-              </div>
-              <div className="h-8 w-px bg-border" />
-              <div>
-                <div className="font-display text-2xl text-gold font-semibold tracking-normal normal-case">4K</div>
-                <div className="mt-1">Cinema padrão</div>
-              </div>
-            </div>
           </div>
 
-          {/* Portrait */}
-          <div className="hidden md:block relative">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-[var(--shadow-elegant)] bg-gradient-to-b from-card via-background to-background">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,var(--gold)/15%,transparent_60%)] opacity-40" />
-              <img
-                src={heroImg}
-                alt="Lucas Fortes — Filmmaker"
-                className="absolute inset-x-0 bottom-0 h-full w-full object-contain object-bottom"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3">
-                <div className="rounded-full bg-background/70 backdrop-blur-md border border-border px-4 py-2 text-[10px] uppercase tracking-[0.3em]">
-                  <span className="text-gold">●</span> No set
-                </div>
-                <div className="rounded-full bg-background/70 backdrop-blur-md border border-border px-4 py-2 text-[10px] uppercase tracking-[0.3em]">
-                  Florianópolis · BR
-                </div>
-              </div>
+          {/* Trust strip */}
+          <div className="mt-16 md:mt-20 grid grid-cols-3 gap-4 md:flex md:items-center md:gap-10 text-[10px] md:text-xs uppercase tracking-[0.25em] text-muted-foreground">
+            <div className="flex flex-col">
+              <span className="font-display text-2xl md:text-4xl text-foreground font-semibold tracking-tight normal-case leading-none">6+</span>
+              <span className="mt-2">Anos de estrada</span>
             </div>
-            {/* Decorative glow */}
-            <div className="absolute -z-10 -inset-6 rounded-[2rem] bg-gold/10 blur-3xl" />
+            <div className="hidden md:block h-10 w-px bg-border" />
+            <div className="flex flex-col">
+              <span className="font-display text-2xl md:text-4xl text-foreground font-semibold tracking-tight normal-case leading-none">80+</span>
+              <span className="mt-2">Projetos entregues</span>
+            </div>
+            <div className="hidden md:block h-10 w-px bg-border" />
+            <div className="flex flex-col">
+              <span className="font-display text-2xl md:text-4xl text-gold font-semibold tracking-tight normal-case leading-none">4K</span>
+              <span className="mt-2">Cinema padrão</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom marquee — client sectors */}
+        <div className="absolute bottom-0 inset-x-0 border-t border-border bg-background/70 backdrop-blur-md py-4 overflow-hidden">
+          <div className="flex items-center gap-14 whitespace-nowrap animate-marquee text-[11px] uppercase tracking-[0.45em] text-muted-foreground w-max">
+            {Array.from({ length: 2 }).flatMap((_, r) =>
+              ["Brand Films", "Gastronomia", "Profissionais Liberais", "Automotivo", "Casamentos Premium", "Institucional", "Color Grading", "Direção Criativa"].map((w, i) => (
+                <span key={`${r}-${i}`} className="flex items-center gap-14 shrink-0">
+                  {w}
+                  <span className="text-gold">✦</span>
+                </span>
+              )),
+            )}
           </div>
         </div>
       </section>
+
 
       {/* Objection / Value Proposition */}
       <section className="py-24 md:py-36 px-6 md:px-10 border-t border-border">
