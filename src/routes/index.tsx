@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Play,
   ArrowUpRight,
@@ -28,11 +28,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Category = "Gastronomia" | "Profissionais Liberais" | "Automotivo";
-
 type Work = {
   title: string;
-  category: Category;
+  category: string;
   image: string;
   video: string;
 };
@@ -51,8 +49,6 @@ const works: Work[] = [
   { title: "Signature Drive — Test Drive", category: "Automotivo", image: work6, video: "https://player.vimeo.com/video/76979871" },
 ];
 
-const categories: Category[] = ["Gastronomia", "Profissionais Liberais", "Automotivo"];
-
 const differentials = [
   { icon: Camera, title: "Equipamentos Profissionais", desc: "Câmeras cinema, óticas dedicadas e áudio broadcast." },
   { icon: Wand2, title: "Direção Criativa Personalizada", desc: "Roteiro e conceito visual sob medida para sua marca." },
@@ -65,9 +61,6 @@ const workflow = ["Roteiro e Direção", "Produção Completa", "Som Cinematogr�
 
 function Index() {
   const [openVideo, setOpenVideo] = useState<Work | null>(null);
-  const [activeCategory, setActiveCategory] = useState<Category>("Gastronomia");
-
-  const filtered = useMemo(() => works.filter((w) => w.category === activeCategory), [activeCategory]);
 
   useEffect(() => {
     document.body.style.overflow = openVideo ? "hidden" : "";
@@ -220,27 +213,8 @@ function Index() {
             <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight">O QUE EU FAÇO?</h2>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12">
-            {categories.map((c) => {
-              const active = activeCategory === c;
-              return (
-                <button
-                  key={c}
-                  onClick={() => setActiveCategory(c)}
-                  className={`rounded-full px-5 py-2.5 text-xs md:text-sm font-medium uppercase tracking-wider border transition-all ${
-                    active
-                      ? "bg-gold text-gold-foreground border-gold shadow-[var(--shadow-elegant)]"
-                      : "border-border text-muted-foreground hover:text-foreground hover:bg-accent hover:border-gold/30"
-                  }`}
-                >
-                  {c}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {filtered.map((w) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {works.map((w) => (
               <button
                 key={w.title}
                 onClick={() => setOpenVideo(w)}
