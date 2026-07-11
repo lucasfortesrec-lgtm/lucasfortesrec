@@ -163,7 +163,11 @@ function Index() {
 
           <h1 className="font-display font-semibold leading-[0.86] tracking-[-0.045em] text-balance">
             <span className="block text-[clamp(3rem,13.5vw,12rem)]">LUCAS</span>
-            <span className="block text-[clamp(3rem,13.5vw,12rem)] italic text-gold">FORTES</span>
+            <span className="block text-[clamp(3rem,13.5vw,12rem)] italic">
+              <span className="text-gold">FORTES</span>
+              <span className="text-foreground">.</span>
+              <span className="text-destructive">REC</span>
+            </span>
           </h1>
 
           {/* Divider with meta */}
