@@ -61,9 +61,6 @@ const workflow = ["Roteiro e Direção", "Produção Completa", "Som Cinematogr�
 
 function Index() {
   const [openVideo, setOpenVideo] = useState<Work | null>(null);
-  const [activeCategory, setActiveCategory] = useState<Category>("Gastronomia");
-
-  const filtered = useMemo(() => works.filter((w) => w.category === activeCategory), [activeCategory]);
 
   useEffect(() => {
     document.body.style.overflow = openVideo ? "hidden" : "";
