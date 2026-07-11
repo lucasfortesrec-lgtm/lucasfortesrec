@@ -16,7 +16,6 @@ import {
   Phone,
   ChevronRight,
 } from "lucide-react";
-import heroImg from "@/assets/lucas-portrait.png";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
