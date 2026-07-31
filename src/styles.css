@@ -40,8 +40,9 @@
   --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --shadow-elegant: 0 30px 80px -40px color-mix(in oklab, var(--gold) 20%, transparent);
+  --shadow-elegant: 0 30px 80px -40px color-mix(in oklab, var(--brand) 45%, transparent);
   --shadow-card: 0 20px 50px -30px oklch(0 0 0 / 0.6);
+
 }
 
 :root {
