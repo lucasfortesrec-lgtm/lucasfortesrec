@@ -69,13 +69,17 @@
   --gold: oklch(0.78 0.11 78);
   --gold-foreground: oklch(0.14 0.005 60);
 
+  --brand: oklch(0.55 0.23 12);
+  --brand-foreground: oklch(0.99 0 0);
+
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
 
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.12);
-  --ring: oklch(0.78 0.11 78);
+  --ring: oklch(0.55 0.23 12);
 }
+
 
 @layer base {
   * {
