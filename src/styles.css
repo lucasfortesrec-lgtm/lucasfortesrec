@@ -28,6 +28,9 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-gold: var(--gold);
   --color-gold-foreground: var(--gold-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -37,8 +40,9 @@
   --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  --shadow-elegant: 0 30px 80px -40px color-mix(in oklab, var(--gold) 20%, transparent);
+  --shadow-elegant: 0 30px 80px -40px color-mix(in oklab, var(--brand) 45%, transparent);
   --shadow-card: 0 20px 50px -30px oklch(0 0 0 / 0.6);
+
 }
 
 :root {
@@ -66,13 +70,17 @@
   --gold: oklch(0.78 0.11 78);
   --gold-foreground: oklch(0.14 0.005 60);
 
+  --brand: oklch(0.55 0.23 12);
+  --brand-foreground: oklch(0.99 0 0);
+
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
 
   --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.12);
-  --ring: oklch(0.78 0.11 78);
+  --ring: oklch(0.55 0.23 12);
 }
+
 
 @layer base {
   * {
