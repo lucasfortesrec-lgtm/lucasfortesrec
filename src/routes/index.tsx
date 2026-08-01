@@ -73,19 +73,8 @@ const nav = [
   { label: "Reel", href: "#showreel", index: "01" },
   { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
-  { label: "Arquivo", href: "#portfolio", index: "04" },
-  { label: "Instagram", href: "#instagram", index: "05" },
-  { label: "Contato", href: "#contato", index: "06" },
-
-];
-
-const works: Work[] = [
-  { title: "Sabor em Close", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
-  { title: "Manifesto de Marca", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
-  { title: "Rotina de Consultório", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
-  { title: "Retrato Profissional", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
-  { title: "Linhas & Reflexos", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
-  { title: "Estrada ao Entardecer", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
+  { label: "Instagram", href: "#instagram", index: "04" },
+  { label: "Contato", href: "#contato", index: "05" },
 ];
 
 
