@@ -37,7 +37,11 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-signal: var(--signal);
+  --color-bone: var(--bone);
+
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --shadow-elegant: 0 30px 80px -40px color-mix(in oklab, var(--brand) 45%, transparent);
