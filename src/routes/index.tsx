@@ -2,19 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Play,
-  ArrowUpRight,
-  X,
   Instagram,
   MessageCircle,
   Mail,
   Phone,
 } from "lucide-react";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
-import work5 from "@/assets/work-5.jpg";
-import work6 from "@/assets/work-6.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -37,14 +29,6 @@ export const Route = createFileRoute("/")({
     ],
   }),
 });
-
-type Work = {
-  title: string;
-  category: string;
-  image: string;
-  video: string;
-  year: string;
-};
 
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
@@ -73,19 +57,8 @@ const nav = [
   { label: "Reel", href: "#showreel", index: "01" },
   { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
-  { label: "Arquivo", href: "#portfolio", index: "04" },
-  { label: "Instagram", href: "#instagram", index: "05" },
-  { label: "Contato", href: "#contato", index: "06" },
-
-];
-
-const works: Work[] = [
-  { title: "Sabor em Close", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
-  { title: "Manifesto de Marca", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
-  { title: "Rotina de Consultório", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
-  { title: "Retrato Profissional", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
-  { title: "Linhas & Reflexos", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
-  { title: "Estrada ao Entardecer", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
+  { label: "Instagram", href: "#instagram", index: "04" },
+  { label: "Contato", href: "#contato", index: "05" },
 ];
 
 
@@ -141,15 +114,7 @@ const principles = [
 
 
 function Index() {
-  const [openVideo, setOpenVideo] = useState<Work | null>(null);
   const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    document.body.style.overflow = openVideo ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [openVideo]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -236,15 +201,6 @@ function Index() {
               </p>
 
               <div className="mt-11 flex flex-wrap items-center gap-5">
-                <a
-                  href="#portfolio"
-                  className="group inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground pl-8 pr-3 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[var(--shadow-elegant)] hover:-translate-y-0.5 transition-transform"
-                >
-                  Ver o arquivo
-                  <span className="grid place-items-center size-9 rounded-full bg-brand-foreground/15 group-hover:bg-brand-foreground/25 transition-colors">
-                    <ArrowUpRight className="size-4 group-hover:rotate-45 transition-transform duration-300" />
-                  </span>
-                </a>
                 <a
                   href="#showreel"
                   className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground"
@@ -401,66 +357,6 @@ function Index() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Portfólio — arquivo assimétrico */}
-      <section id="portfolio" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
-            <div className="flex items-baseline gap-4">
-              <span className="font-serif-editorial text-brand text-xl">04</span>
-              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
-                O Arquivo
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Clique em qualquer miniatura para assistir ao filme completo.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5">
-            {works.map((w, i) => {
-              const span =
-                i === 0 ? "md:col-span-4" : i === 1 ? "md:col-span-2" : i === 2 ? "md:col-span-2" : i === 3 ? "md:col-span-4" : "md:col-span-3";
-              return (
-                <button
-                  key={w.title}
-                  onClick={() => setOpenVideo(w)}
-                  className={`group relative overflow-hidden rounded-[22px] border border-border bg-card text-left transition-all duration-500 hover:border-brand/60 hover:shadow-[var(--shadow-elegant)] ${span} aspect-video md:aspect-auto md:h-[21rem]`}
-                >
-                  <img
-                    src={w.image}
-                    alt={w.title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover opacity-70 grayscale transition-all duration-[900ms] ease-out group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
-
-                  <span className="absolute top-4 left-5 font-serif-editorial text-sm text-bone/70">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="absolute top-4 right-5 text-[10px] uppercase tracking-[0.24em] text-bone/60">
-                    {w.year}
-                  </span>
-
-                  <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="grid place-items-center size-16 rounded-full bg-brand text-brand-foreground scale-90 group-hover:scale-100 transition-transform duration-500">
-                      <Play className="size-5 fill-current" />
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="text-[10px] uppercase tracking-[0.26em] text-signal mb-2">{w.category}</div>
-                    <h3 className="font-display text-lg md:text-2xl font-extrabold uppercase leading-tight tracking-[-0.035em]">
-                      {w.title}
-                    </h3>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
         </div>
       </section>
 
@@ -634,38 +530,6 @@ function Index() {
         <MessageCircle className="size-6" />
       </a>
 
-      {/* Lightbox */}
-      {openVideo && (
-        <div
-          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl grid place-items-center p-4 md:p-10"
-          onClick={() => setOpenVideo(null)}
-        >
-          <button
-            onClick={() => setOpenVideo(null)}
-            className="absolute top-6 right-6 grid place-items-center size-12 rounded-full border border-border bg-card hover:bg-accent transition-colors"
-            aria-label="Fechar"
-          >
-            <X className="size-5" />
-          </button>
-          <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-            <div className="aspect-video rounded-[24px] overflow-hidden border border-border shadow-[var(--shadow-card)] bg-black">
-              <iframe
-                src={`${openVideo.video}?autoplay=1&title=0&byline=0`}
-                title={openVideo.title}
-                className="h-full w-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="mt-5">
-              <div className="text-[10px] uppercase tracking-[0.28em] text-signal">{openVideo.category}</div>
-              <div className="font-display text-2xl mt-1 font-extrabold uppercase tracking-[-0.035em]">
-                {openVideo.title}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
