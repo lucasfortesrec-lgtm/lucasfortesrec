@@ -509,6 +509,22 @@ function Index() {
               );
             })}
           </div>
+
+          <div className="mt-12 flex flex-col items-center gap-4 rounded-[22px] border border-border bg-card px-6 py-10 text-center">
+            <p className="max-w-md text-sm md:text-base font-light text-muted-foreground">
+              Novos trabalhos são publicados primeiro no Instagram — bastidores, cortes e projetos recentes.
+            </p>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform"
+            >
+              <Instagram className="size-4" />
+              @lucasfortes.rec
+            </a>
+          </div>
+
         </div>
       </section>
 
