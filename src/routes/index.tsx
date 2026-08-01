@@ -198,12 +198,12 @@ function Index() {
               </div>
 
               <h1 className="mt-8 font-display font-extrabold uppercase leading-[0.86] tracking-[-0.045em] text-[clamp(2.9rem,10vw,8.5rem)]">
-                Imagem
+                FILMES
                 <span className="block">
                   <span className="font-serif-editorial lowercase text-brand normal-case tracking-[-0.02em]">
-                    que faz
+                    que fazem
                   </span>{" "}
-                  lembrar
+                  LEMBRAR
                 </span>
               </h1>
 
