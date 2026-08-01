@@ -58,7 +58,9 @@ const nav = [
   { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
   { label: "Arquivo", href: "#portfolio", index: "04" },
-  { label: "Contato", href: "#contato", index: "05" },
+  { label: "Instagram", href: "#instagram", index: "05" },
+  { label: "Contato", href: "#contato", index: "06" },
+
 ];
 
 const works: Work[] = [
@@ -160,17 +162,17 @@ function Index() {
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-9">
             {nav.map((n) => (
-              <a key={n.href} href={n.href} className="group flex items-baseline gap-2">
-                <span className="font-serif-editorial text-[13px] text-brand/70 group-hover:text-signal transition-colors">
-                  {n.index}
-                </span>
-                <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground group-hover:text-foreground transition-colors">
-                  {n.label}
-                </span>
+              <a
+                key={n.href}
+                href={n.href}
+                className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {n.label}
               </a>
             ))}
+
             <a
               href={WHATSAPP_URL}
               target="_blank"
@@ -197,10 +199,10 @@ function Index() {
                 key={n.href}
                 href={n.href}
                 onClick={() => setMenuOpen(false)}
-                className="flex items-baseline gap-3 text-xs uppercase tracking-[0.28em] text-muted-foreground"
+                className="text-xs uppercase tracking-[0.28em] text-muted-foreground"
               >
-                <span className="font-serif-editorial text-brand/70 text-sm">{n.index}</span>
                 {n.label}
+
               </a>
             ))}
           </div>
@@ -211,26 +213,9 @@ function Index() {
       <section id="top" className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-28">
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(120%_80%_at_15%_10%,color-mix(in_oklab,var(--brand)_20%,transparent)_0%,transparent_55%)]"
-        />
-        <div aria-hidden className="absolute inset-0 grain-overlay opacity-[0.35] mix-blend-soft-light" />
-        <div
-          aria-hidden
-          className="absolute right-[-10%] top-[12%] hidden md:block size-[38rem] rounded-full border border-border/60"
-        />
-        <div
-          aria-hidden
-          className="absolute right-[2%] top-[26%] hidden md:block size-[22rem] rounded-full border border-brand/20"
+          className="absolute inset-0 bg-[radial-gradient(110%_75%_at_20%_5%,color-mix(in_oklab,var(--brand)_12%,transparent)_0%,transparent_60%)]"
         />
 
-        {/* left vertical rail */}
-        <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-6">
-          <span className="h-24 w-px bg-gradient-to-b from-transparent to-brand" />
-          <span className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground [writing-mode:vertical-rl]">
-            Florianópolis · SC
-          </span>
-          <span className="h-24 w-px bg-gradient-to-t from-transparent to-signal/60" />
-        </div>
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 md:px-10 pb-20 md:pb-28">
           <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
@@ -281,13 +266,13 @@ function Index() {
             </div>
 
             {/* right stat column */}
-            <div className="grid grid-cols-3 lg:grid-cols-1 gap-px bg-border border border-border rounded-2xl overflow-hidden">
+            <div className="flex flex-wrap gap-x-10 gap-y-6 lg:block lg:space-y-8">
               {[
                 { k: "80+", v: "Projetos entregues" },
                 { k: "06", v: "Anos de estrada" },
                 { k: "4K", v: "Cinema pipeline" },
               ].map((s) => (
-                <div key={s.k} className="bg-background px-5 py-6 lg:px-7 lg:py-6">
+                <div key={s.k}>
                   <div className="font-display text-2xl lg:text-3xl font-extrabold tracking-[-0.04em]">{s.k}</div>
                   <div className="mt-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
                     {s.v}
@@ -295,31 +280,12 @@ function Index() {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
 
-        {/* Marquee */}
-        <div className="relative border-y border-border bg-background/60 backdrop-blur-md py-4 overflow-hidden">
-          <div className="flex items-center gap-12 whitespace-nowrap animate-marquee text-[11px] uppercase tracking-[0.4em] text-muted-foreground w-max">
-            {Array.from({ length: 2 }).flatMap((_, r) =>
-              [
-                "Brand Films",
-                "Social Content",
-                "Gastronomia",
-                "Automotivo",
-                "Institucional",
-                "Eventos Premium",
-                "Color Grading",
-                "Direção Criativa",
-              ].map((w, i) => (
-                <span key={`${r}-${i}`} className="flex items-center gap-12 shrink-0">
-                  {w}
-                  <span className="size-1 rounded-full bg-brand" />
-                </span>
-              )),
-            )}
-          </div>
-        </div>
+        <div className="border-t border-border" />
+
       </section>
 
       {/* Showreel */}
@@ -394,27 +360,20 @@ function Index() {
           </div>
         </div>
 
-        {/* Marquee de princípios */}
-        <div className="max-w-[1500px] mx-auto mt-20">
-          <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground mb-8">
-            Do briefing ao master
-          </div>
-          <div className="overflow-hidden border-y border-border py-8">
-            <div className="flex items-center gap-16 whitespace-nowrap animate-marquee w-max">
-              {Array.from({ length: 2 }).flatMap((_, r) =>
-                principles.map((c, i) => (
-                  <span
-                    key={`${r}-${i}`}
-                    className="font-display text-xl md:text-2xl font-extrabold uppercase tracking-[-0.03em] text-muted-foreground/45 shrink-0"
-                  >
-                    {c}
-                  </span>
-                )),
-              )}
-
-            </div>
+        {/* Etapas do processo — lista estática */}
+        <div className="max-w-[1500px] mx-auto mt-20 border-t border-border pt-8">
+          <div className="flex flex-wrap gap-x-10 gap-y-3">
+            {principles.map((c) => (
+              <span
+                key={c}
+                className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground"
+              >
+                {c}
+              </span>
+            ))}
           </div>
         </div>
+
       </section>
 
       {/* Serviços — editorial index rows */}
@@ -510,23 +469,39 @@ function Index() {
             })}
           </div>
 
-          <div className="mt-12 flex flex-col items-center gap-4 rounded-[22px] border border-border bg-card px-6 py-10 text-center">
-            <p className="max-w-md text-sm md:text-base font-light text-muted-foreground">
-              Novos trabalhos são publicados primeiro no Instagram — bastidores, cortes e projetos recentes.
-            </p>
+        </div>
+      </section>
+
+      {/* Instagram */}
+      <section id="instagram" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
+        <div className="max-w-[1500px] mx-auto">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.045em]">
+              No Instagram
+            </h2>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground hover:text-foreground transition-colors"
             >
               <Instagram className="size-4" />
               @lucasfortes.rec
             </a>
           </div>
 
+          <div className="overflow-hidden rounded-[22px] border border-border bg-card">
+            <iframe
+              src="https://www.instagram.com/lucasfortes.rec/embed"
+              title="Publicações recentes no Instagram de Lucas Fortes"
+              loading="lazy"
+              scrolling="no"
+              className="w-full h-[560px] md:h-[640px] block"
+            />
+          </div>
         </div>
       </section>
+
 
       {/* Contato */}
       <section id="contato" className="relative py-28 md:py-40 px-5 md:px-10 border-t border-border overflow-hidden">
@@ -569,11 +544,12 @@ function Index() {
 
           <dl className="grid gap-px bg-border border border-border rounded-2xl overflow-hidden">
             {[
-              { t: "Base", v: "Florianópolis · Santa Catarina" },
-              { t: "Atendimento", v: "Todo o litoral catarinense" },
+              { t: "Endereço", v: "Rua Campolino Alves, 300 — Sala 414, Capoeiras" },
+              { t: "Cidade", v: "Florianópolis · SC · 88085-110" },
               { t: "Telefone", v: PHONE_DISPLAY },
               { t: "E-mail", v: EMAIL },
             ].map((r) => (
+
               <div key={r.t} className="bg-background px-6 py-5 flex items-baseline justify-between gap-4">
                 <dt className="text-[10px] uppercase tracking-[0.26em] text-muted-foreground">{r.t}</dt>
                 <dd className="text-sm text-foreground text-right break-all">{r.v}</dd>
@@ -592,8 +568,12 @@ function Index() {
               <span className="text-brand">rec</span>
             </div>
             <div className="mt-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-              Florianópolis · Santa Catarina · Brasil
+              Rua Campolino Alves, 300 · Sala 414 · Capoeiras
             </div>
+            <div className="mt-1 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+              Florianópolis · SC · 88085-110
+            </div>
+
             <div className="mt-3 text-xs text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1">
               <a href={`mailto:${EMAIL}`} className="hover:text-brand transition-colors">
                 {EMAIL}
