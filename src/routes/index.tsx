@@ -66,7 +66,7 @@ const PHONE_DISPLAY = "48 9 9829 4750";
 const SHOWREEL = "https://player.vimeo.com/video/76979871";
 
 const nav = [
-  { label: "Reel", href: "#showreel", index: "01" },
+  { label: "INÍCIO", href: "#showreel", index: "01" },
   { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
   { label: "Instagram", href: "#instagram", index: "04" },
