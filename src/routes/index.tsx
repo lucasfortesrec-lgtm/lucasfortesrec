@@ -7,6 +7,18 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import lucasSet from "@/assets/lucas-set.jpg.asset.json";
+import bts1 from "@/assets/bts-1.jpg.asset.json";
+import bts2 from "@/assets/bts-2.jpg.asset.json";
+import bts3 from "@/assets/bts-3.jpg.asset.json";
+import bts4 from "@/assets/bts-4.jpg.asset.json";
+
+const BTS = [
+  { src: bts1.url, alt: "Bastidores: entrevista sendo gravada com casal em locação" },
+  { src: bts2.url, alt: "Bastidores: captação com gimbal em evento corporativo" },
+  { src: bts3.url, alt: "Bastidores: set de gravação em consultório" },
+  { src: bts4.url, alt: "Bastidores: gravação em concessionária de veículos" },
+];
 
 export const Route = createFileRoute("/")({
   component: Index,
