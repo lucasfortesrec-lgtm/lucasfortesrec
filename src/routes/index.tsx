@@ -286,7 +286,16 @@ function Index() {
                 </span>
               ))}
             </div>
+            <div className="mt-10 overflow-hidden rounded-[20px] border border-border">
+              <img
+                src={lucasSet.url}
+                alt="Lucas Fortes em set de filmagem com iluminação profissional"
+                loading="lazy"
+                className="w-full aspect-[4/5] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
           </div>
+
 
           <div className="space-y-7">
             <p className="font-serif-editorial text-2xl md:text-4xl leading-[1.25] text-bone">
