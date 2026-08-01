@@ -448,9 +448,9 @@ function Index() {
       </section>
 
       {/* Instagram */}
-      <section id="instagram" className="py-10 md:py-14 px-5 md:px-10 border-t border-border">
+      <section id="instagram" className="py-6 md:py-8 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-6">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-4">
             <h2 className="font-display text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.045em]">
               No Instagram
             </h2>
@@ -465,18 +465,23 @@ function Index() {
             </a>
           </div>
 
-          <div className="relative overflow-hidden rounded-[22px] border border-border bg-card max-w-[900px] mx-auto h-[560px] md:h-[720px]">
-            {/* Máscara que oculta o header branco do perfil no embed */}
+          <div className="relative overflow-hidden rounded-[22px] border border-border bg-card max-w-[560px] mx-auto h-[500px] md:h-[750px]">
+            {/* Máscara superior — oculta o header do perfil */}
             <div
               aria-hidden
-              className="absolute top-0 left-0 right-0 h-[72px] md:h-[78px] bg-background z-10"
+              className="absolute top-0 left-0 right-0 h-[110px] md:h-[158px] bg-background z-10"
+            />
+            {/* Máscara inferior — oculta qualquer footer/respiro branco do embed */}
+            <div
+              aria-hidden
+              className="absolute bottom-0 left-0 right-0 h-[28px] bg-background z-10"
             />
             <iframe
               src="https://www.instagram.com/lucasfortes.rec/embed"
               title="Publicações recentes no Instagram de Lucas Fortes"
               loading="lazy"
               scrolling="no"
-              className="w-full h-[720px] md:h-[920px] block -mt-[72px] md:-mt-[78px] scale-[0.82] origin-top"
+              className="w-full h-[620px] md:h-[920px] block -mt-[110px] md:-mt-[158px]"
             />
           </div>
         </div>
