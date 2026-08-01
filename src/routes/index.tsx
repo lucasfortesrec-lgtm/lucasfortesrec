@@ -110,16 +110,17 @@ const services = [
   },
 ];
 
-const clients = [
-  "Bistrô Aurora",
-  "GT Motors",
-  "Clínica Menezes",
-  "Signature Drive",
-  "Chef Autoral",
-  "Studio Helena",
-  "Casa Vermelha",
-  "Praia Grande Co.",
+const principles = [
+  "Direção",
+  "Roteiro",
+  "Câmera",
+  "Luz",
+  "Movimento",
+  "Cor",
+  "Ritmo",
+  "Entrega",
 ];
+
 
 function Index() {
   const [openVideo, setOpenVideo] = useState<Work | null>(null);
