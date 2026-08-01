@@ -55,20 +55,21 @@ const SHOWREEL = "https://player.vimeo.com/video/76979871";
 
 const nav = [
   { label: "Reel", href: "#showreel", index: "01" },
-  { label: "Estúdio", href: "#sobre", index: "02" },
+  { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
   { label: "Arquivo", href: "#portfolio", index: "04" },
   { label: "Contato", href: "#contato", index: "05" },
 ];
 
 const works: Work[] = [
-  { title: "Chef Autoral — Menu Degustação", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
-  { title: "Bistrô Aurora — Brand Film", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
-  { title: "Dra. Helena Costa — Odontologia", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
-  { title: "Dr. Rafael Menezes — Clínica", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
-  { title: "GT Motors — Lançamento Premium", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
-  { title: "Signature Drive — Test Drive", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
+  { title: "Sabor em Close", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
+  { title: "Manifesto de Marca", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
+  { title: "Rotina de Consultório", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
+  { title: "Retrato Profissional", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
+  { title: "Linhas & Reflexos", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
+  { title: "Estrada ao Entardecer", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
 ];
+
 
 const services = [
   {
