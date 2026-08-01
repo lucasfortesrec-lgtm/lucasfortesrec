@@ -55,20 +55,21 @@ const SHOWREEL = "https://player.vimeo.com/video/76979871";
 
 const nav = [
   { label: "Reel", href: "#showreel", index: "01" },
-  { label: "Estúdio", href: "#sobre", index: "02" },
+  { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
   { label: "Arquivo", href: "#portfolio", index: "04" },
   { label: "Contato", href: "#contato", index: "05" },
 ];
 
 const works: Work[] = [
-  { title: "Chef Autoral — Menu Degustação", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
-  { title: "Bistrô Aurora — Brand Film", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
-  { title: "Dra. Helena Costa — Odontologia", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
-  { title: "Dr. Rafael Menezes — Clínica", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
-  { title: "GT Motors — Lançamento Premium", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
-  { title: "Signature Drive — Test Drive", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
+  { title: "Sabor em Close", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
+  { title: "Manifesto de Marca", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
+  { title: "Rotina de Consultório", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
+  { title: "Retrato Profissional", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
+  { title: "Linhas & Reflexos", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
+  { title: "Estrada ao Entardecer", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
 ];
+
 
 const services = [
   {
@@ -109,16 +110,17 @@ const services = [
   },
 ];
 
-const clients = [
-  "Bistrô Aurora",
-  "GT Motors",
-  "Clínica Menezes",
-  "Signature Drive",
-  "Chef Autoral",
-  "Studio Helena",
-  "Casa Vermelha",
-  "Praia Grande Co.",
+const principles = [
+  "Direção",
+  "Roteiro",
+  "Câmera",
+  "Luz",
+  "Movimento",
+  "Cor",
+  "Ritmo",
+  "Entrega",
 ];
+
 
 function Index() {
   const [openVideo, setOpenVideo] = useState<Work | null>(null);
@@ -354,7 +356,7 @@ function Index() {
             <div className="flex items-baseline gap-4">
               <span className="font-serif-editorial text-brand text-xl">02</span>
               <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
-                O Estúdio
+                O Filmmaker
               </h2>
             </div>
             <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
@@ -379,9 +381,10 @@ function Index() {
             </p>
             <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
               <p>
-                LUCAS FORTES.REC é um estúdio de imagem sediado em Florianópolis, que atende marcas,
-                profissionais liberais e produções premium por toda Santa Catarina.
+                Sou Lucas Fortes, filmmaker sediado em Florianópolis. Trabalho de forma independente com
+                marcas, profissionais liberais e produções premium por toda Santa Catarina.
               </p>
+
               <p>
                 Trabalho em ciclo fechado — pesquisa, roteiro, direção, câmera e finalização — para que a
                 intenção do primeiro briefing chegue intacta ao corte final. Poucos projetos por mês, atenção
@@ -391,15 +394,15 @@ function Index() {
           </div>
         </div>
 
-        {/* Clientes marquee */}
+        {/* Marquee de princípios */}
         <div className="max-w-[1500px] mx-auto mt-20">
           <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground mb-8">
-            Confiaram no processo
+            Do briefing ao master
           </div>
           <div className="overflow-hidden border-y border-border py-8">
             <div className="flex items-center gap-16 whitespace-nowrap animate-marquee w-max">
               {Array.from({ length: 2 }).flatMap((_, r) =>
-                clients.map((c, i) => (
+                principles.map((c, i) => (
                   <span
                     key={`${r}-${i}`}
                     className="font-display text-xl md:text-2xl font-extrabold uppercase tracking-[-0.03em] text-muted-foreground/45 shrink-0"
@@ -408,6 +411,7 @@ function Index() {
                   </span>
                 )),
               )}
+
             </div>
           </div>
         </div>
@@ -505,6 +509,22 @@ function Index() {
               );
             })}
           </div>
+
+          <div className="mt-12 flex flex-col items-center gap-4 rounded-[22px] border border-border bg-card px-6 py-10 text-center">
+            <p className="max-w-md text-sm md:text-base font-light text-muted-foreground">
+              Novos trabalhos são publicados primeiro no Instagram — bastidores, cortes e projetos recentes.
+            </p>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform"
+            >
+              <Instagram className="size-4" />
+              @lucasfortes.rec
+            </a>
+          </div>
+
         </div>
       </section>
 
