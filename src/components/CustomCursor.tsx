@@ -4,28 +4,41 @@ export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const mousePos = useRef({ x: 0, y: 0 });
-  const cursorPos = useRef({ x: 0, y: 0 });
-  const ringPos = useRef({ x: 0, y: 0 });
+  const [isReady, setIsReady] = useState(false);
+  const mousePos = useRef({ x: typeof window !== "undefined" ? window.innerWidth / 2 : 0, y: typeof window !== "undefined" ? window.innerHeight / 2 : 0 });
+  const cursorPos = useRef({ x: mousePos.current.x, y: mousePos.current.y });
+  const ringPos = useRef({ x: mousePos.current.x, y: mousePos.current.y });
   const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    setIsVisible(true);
+    // Small delay to ensure DOM is fully painted and avoid hydration flicker
+    const readyTimer = setTimeout(() => setIsReady(true), 50);
 
     const onMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
+      setIsVisible(true);
     };
 
     const onMouseLeave = () => setIsVisible(false);
     const onMouseEnter = () => setIsVisible(true);
+    const onMouseDown = () => {
+      if (cursorRef.current) cursorRef.current.classList.add("cursor-press");
+      if (ringRef.current) ringRef.current.classList.add("cursor-press");
+    };
+    const onMouseUp = () => {
+      if (cursorRef.current) cursorRef.current.classList.remove("cursor-press");
+      if (ringRef.current) ringRef.current.classList.remove("cursor-press");
+    };
 
     document.addEventListener("mousemove", onMouseMove, { passive: true });
     document.addEventListener("mouseleave", onMouseLeave);
     document.addEventListener("mouseenter", onMouseEnter);
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("mouseup", onMouseUp);
 
     const animate = () => {
-      const easeCursor = 0.18;
-      const easeRing = 0.1;
+      const easeCursor = 0.22;
+      const easeRing = 0.12;
 
       cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * easeCursor;
       cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * easeCursor;
@@ -46,9 +59,12 @@ export function CustomCursor() {
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
+      clearTimeout(readyTimer);
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("mouseup", onMouseUp);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
@@ -58,14 +74,14 @@ export function CustomCursor() {
       <div
         ref={cursorRef}
         className={`custom-cursor fixed top-0 left-0 z-[9999] pointer-events-none rounded-full transition-opacity duration-300 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isReady && isVisible ? "opacity-100" : "opacity-0"
         }`}
         aria-hidden="true"
       />
       <div
         ref={ringRef}
         className={`custom-cursor-ring fixed top-0 left-0 z-[9998] pointer-events-none rounded-full transition-opacity duration-300 ${
-          isVisible ? "opacity-100" : "opacity-0"
+          isReady && isVisible ? "opacity-100" : "opacity-0"
         }`}
         aria-hidden="true"
       />
