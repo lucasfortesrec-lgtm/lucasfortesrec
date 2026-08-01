@@ -9,12 +9,6 @@ import {
   Mail,
   Phone,
   Menu,
-  Clapperboard,
-  Share2,
-  Building2,
-  CalendarDays,
-  Car,
-  Utensils,
 } from "lucide-react";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
@@ -27,13 +21,13 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "LUCAS FORTES.REC — Produtora Audiovisual em Florianópolis" },
+      { title: "LUCAS FORTES.REC — Filmes de Marca em Florianópolis" },
       {
         name: "description",
         content:
-          "Filmes institucionais, social content, comerciais e eventos com direção cinematográfica. Produção audiovisual em Florianópolis, Santa Catarina.",
+          "Direção, câmera e cor cinematográfica para marcas, profissionais liberais e eventos premium em Santa Catarina. Filmes que fazem o negócio ser lembrado.",
       },
-      { property: "og:title", content: "LUCAS FORTES.REC — Produtora Audiovisual" },
+      { property: "og:title", content: "LUCAS FORTES.REC — Filmes de Marca" },
       {
         property: "og:description",
         content:
@@ -50,6 +44,7 @@ type Work = {
   category: string;
   image: string;
   video: string;
+  year: string;
 };
 
 const WHATSAPP_URL = "https://wa.me/5548998294750";
@@ -59,52 +54,58 @@ const PHONE_DISPLAY = "48 9 9829 4750";
 const SHOWREEL = "https://player.vimeo.com/video/76979871";
 
 const nav = [
-  { label: "Showreel", href: "#showreel" },
-  { label: "O Filmmaker", href: "#sobre" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Portfólio", href: "#portfolio" },
-  { label: "Contato", href: "#contato" },
+  { label: "Reel", href: "#showreel", index: "01" },
+  { label: "Estúdio", href: "#sobre", index: "02" },
+  { label: "Ofício", href: "#servicos", index: "03" },
+  { label: "Arquivo", href: "#portfolio", index: "04" },
+  { label: "Contato", href: "#contato", index: "05" },
 ];
 
 const works: Work[] = [
-  { title: "Chef Autoral — Menu Degustação", category: "gastronomia", image: work1, video: SHOWREEL },
-  { title: "Bistrô Aurora — Brand Film", category: "manifesto", image: work4, video: SHOWREEL },
-  { title: "Dra. Helena Costa — Odontologia", category: "social", image: work2, video: SHOWREEL },
-  { title: "Dr. Rafael Menezes — Clínica", category: "institucional", image: work5, video: SHOWREEL },
-  { title: "GT Motors — Lançamento Premium", category: "comercial", image: work3, video: SHOWREEL },
-  { title: "Signature Drive — Test Drive", category: "automotivo", image: work6, video: SHOWREEL },
+  { title: "Chef Autoral — Menu Degustação", category: "Gastronomia", image: work1, video: SHOWREEL, year: "2026" },
+  { title: "Bistrô Aurora — Brand Film", category: "Manifesto", image: work4, video: SHOWREEL, year: "2025" },
+  { title: "Dra. Helena Costa — Odontologia", category: "Social", image: work2, video: SHOWREEL, year: "2025" },
+  { title: "Dr. Rafael Menezes — Clínica", category: "Institucional", image: work5, video: SHOWREEL, year: "2025" },
+  { title: "GT Motors — Lançamento Premium", category: "Comercial", image: work3, video: SHOWREEL, year: "2024" },
+  { title: "Signature Drive — Test Drive", category: "Automotivo", image: work6, video: SHOWREEL, year: "2024" },
 ];
 
 const services = [
   {
-    icon: Share2,
-    title: "Redes Sociais",
-    desc: "Reels e vídeos verticais de alta retenção, com montagem dinâmica pensada para conversão.",
+    n: "01",
+    title: "Filmes de Marca",
+    lead: "Manifesto & Institucional",
+    desc: "A alma do negócio traduzida em imagem: roteiro, direção e uma peça que sustenta anos de comunicação.",
   },
   {
-    icon: Building2,
-    title: "Institucional & Manifesto",
-    desc: "Narrativas corporativas que consolidam a alma da marca e comunicam autoridade.",
+    n: "02",
+    title: "Conteúdo Social",
+    lead: "Vertical & Alta Retenção",
+    desc: "Cortes de ritmo agressivo pensados para o primeiro segundo — o que segura o dedo antes do scroll.",
   },
   {
-    icon: Clapperboard,
+    n: "03",
     title: "Comerciais",
-    desc: "Filmes publicitários calibrados para impacto imediato e memorização de marca.",
+    lead: "Campanha & Lançamento",
+    desc: "Peças publicitárias com direção de arte, elenco e pós-produção calibradas para memorização.",
   },
   {
-    icon: Utensils,
+    n: "04",
     title: "Gastronomia",
-    desc: "Direção de fotografia sensorial: textura, vapor, luz e movimento que dão água na boca.",
+    lead: "Sensorial & Macro",
+    desc: "Vapor, textura e luz rasante. Direção de fotografia que faz o prato ser desejado antes de ser provado.",
   },
   {
-    icon: Car,
+    n: "05",
     title: "Automotivo",
-    desc: "Rolling shots, detalhes em macro e color grading que valorizam cada linha do veículo.",
+    lead: "Movimento & Detalhe",
+    desc: "Rolling shots, gimbal e color grading que revelam cada linha, reflexo e acabamento do veículo.",
   },
   {
-    icon: CalendarDays,
+    n: "06",
     title: "Eventos Premium",
-    desc: "Cobertura completa com entrega ágil: casamentos, congressos e experiências de marca.",
+    lead: "Registro & Entrega Ágil",
+    desc: "Casamentos, congressos e experiências de marca capturados com discrição e entregues com pressa.",
   },
 ];
 
@@ -143,30 +144,39 @@ function Index() {
       {/* Header */}
       <header
         className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
-          scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border" : "bg-transparent"
+          scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-5 md:px-10 h-20 flex items-center justify-between gap-6">
-          <a href="#top" className="flex items-center gap-3 shrink-0">
-            <span className="grid place-items-center size-7 rounded-[6px] border-2 border-brand">
-              <span className="size-2 rounded-full bg-brand" />
+        <div className="max-w-[1500px] mx-auto pl-5 pr-3 md:pl-10 md:pr-6 h-[72px] flex items-center justify-between gap-6">
+          <a href="#top" className="flex items-baseline gap-2 shrink-0">
+            <span className="font-display text-[15px] md:text-[17px] font-extrabold tracking-[-0.02em] uppercase">
+              Lucas Fortes<span className="text-foreground">.</span>
+              <span className="text-brand">rec</span>
             </span>
-            <span className="text-base md:text-lg font-bold tracking-[0.12em]">
-              LUCAS FORTES<span className="text-foreground">.</span>
-              <span className="text-brand">REC</span>
+            <span className="hidden sm:inline text-[9px] uppercase tracking-[0.4em] text-muted-foreground">
+              Filmmaker
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-9">
+          <nav className="hidden lg:flex items-center gap-8">
             {nav.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {n.label}
+              <a key={n.href} href={n.href} className="group flex items-baseline gap-2">
+                <span className="font-serif-editorial text-[13px] text-brand/70 group-hover:text-signal transition-colors">
+                  {n.index}
+                </span>
+                <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground group-hover:text-foreground transition-colors">
+                  {n.label}
+                </span>
               </a>
             ))}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full bg-bone text-background px-6 py-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] hover:bg-brand hover:text-brand-foreground transition-colors"
+            >
+              Orçamento
+            </a>
           </nav>
 
           <button
@@ -185,8 +195,9 @@ function Index() {
                 key={n.href}
                 href={n.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-xs uppercase tracking-[0.3em] text-muted-foreground hover:text-foreground transition-colors"
+                className="flex items-baseline gap-3 text-xs uppercase tracking-[0.28em] text-muted-foreground"
               >
+                <span className="font-serif-editorial text-brand/70 text-sm">{n.index}</span>
                 {n.label}
               </a>
             ))}
@@ -194,57 +205,100 @@ function Index() {
         )}
       </header>
 
-      {/* Hero */}
-      <section id="top" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,color-mix(in_oklab,var(--brand)_16%,transparent)_0%,transparent_60%)]" />
+      {/* Hero — editorial asymmetric */}
+      <section id="top" className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-28">
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-            maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
-          }}
+          className="absolute inset-0 bg-[radial-gradient(120%_80%_at_15%_10%,color-mix(in_oklab,var(--brand)_20%,transparent)_0%,transparent_55%)]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        <div aria-hidden className="absolute inset-0 grain-overlay opacity-[0.35] mix-blend-soft-light" />
+        <div
+          aria-hidden
+          className="absolute right-[-10%] top-[12%] hidden md:block size-[38rem] rounded-full border border-border/60"
+        />
+        <div
+          aria-hidden
+          className="absolute right-[2%] top-[26%] hidden md:block size-[22rem] rounded-full border border-brand/20"
+        />
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center py-32">
-          <div className="inline-flex items-center border border-border px-5 py-2.5 text-[10px] md:text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
-            Produtora Audiovisual | Santa Catarina
-          </div>
+        {/* left vertical rail */}
+        <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-6">
+          <span className="h-24 w-px bg-gradient-to-b from-transparent to-brand" />
+          <span className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground [writing-mode:vertical-rl]">
+            Florianópolis · SC
+          </span>
+          <span className="h-24 w-px bg-gradient-to-t from-transparent to-signal/60" />
+        </div>
 
-          <h1 className="mt-10 font-display font-bold uppercase leading-[0.92] tracking-[-0.03em] text-[clamp(2.6rem,8.5vw,6.5rem)] text-balance">
-            Narrativas que
-            <span className="block text-brand">movem marcas</span>
-          </h1>
+        <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 md:px-10 pb-20 md:pb-28">
+          <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
+            <div>
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.42em] text-muted-foreground">
+                <span className="relative flex size-1.5">
+                  <span className="absolute inset-0 rounded-full bg-brand/70 animate-ping" />
+                  <span className="relative size-1.5 rounded-full bg-brand" />
+                </span>
+                Est. 2020 — Filmes sob medida
+              </div>
 
-          <p className="mt-8 mx-auto max-w-2xl text-base md:text-xl font-light leading-relaxed text-muted-foreground text-balance">
-            Direção, câmera e cor cinematográfica para empresas, profissionais liberais e eventos premium.
-            Vídeos que se destacam nas redes e trazem os resultados que o seu negócio precisa.
-          </p>
+              <h1 className="mt-8 font-display font-extrabold uppercase leading-[0.86] tracking-[-0.045em] text-[clamp(2.9rem,10vw,8.5rem)]">
+                Imagem
+                <span className="block">
+                  <span className="font-serif-editorial lowercase text-brand normal-case tracking-[-0.02em]">
+                    que faz
+                  </span>{" "}
+                  lembrar
+                </span>
+              </h1>
 
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#portfolio"
-              className="group inline-flex items-center gap-3 bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.28em] hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
-            >
-              Explorar Portfólio
-              <ArrowUpRight className="size-4 group-hover:rotate-45 transition-transform duration-300" />
-            </a>
-            <a
-              href="#showreel"
-              className="inline-flex items-center gap-3 border border-border px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.28em] hover:bg-accent hover:border-brand/50 transition-all"
-            >
-              <Play className="size-4 fill-current" />
-              Ver Showreel
-            </a>
+              <p className="mt-9 max-w-xl text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                Não vendemos vídeo por minuto. Construímos a memória visual de marcas, profissionais e
+                celebrações — do primeiro roteiro ao último frame colorizado.
+              </p>
+
+              <div className="mt-11 flex flex-wrap items-center gap-5">
+                <a
+                  href="#portfolio"
+                  className="group inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground pl-8 pr-3 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[var(--shadow-elegant)] hover:-translate-y-0.5 transition-transform"
+                >
+                  Ver o arquivo
+                  <span className="grid place-items-center size-9 rounded-full bg-brand-foreground/15 group-hover:bg-brand-foreground/25 transition-colors">
+                    <ArrowUpRight className="size-4 group-hover:rotate-45 transition-transform duration-300" />
+                  </span>
+                </a>
+                <a
+                  href="#showreel"
+                  className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground"
+                >
+                  <span className="grid place-items-center size-11 rounded-full border border-border group-hover:border-signal group-hover:text-signal transition-colors">
+                    <Play className="size-3.5 fill-current" />
+                  </span>
+                  Assistir reel
+                </a>
+              </div>
+            </div>
+
+            {/* right stat column */}
+            <div className="grid grid-cols-3 lg:grid-cols-1 gap-px bg-border border border-border rounded-2xl overflow-hidden">
+              {[
+                { k: "80+", v: "Projetos entregues" },
+                { k: "06", v: "Anos de estrada" },
+                { k: "4K", v: "Cinema pipeline" },
+              ].map((s) => (
+                <div key={s.k} className="bg-background px-5 py-6 lg:px-7 lg:py-6">
+                  <div className="font-display text-2xl lg:text-3xl font-extrabold tracking-[-0.04em]">{s.k}</div>
+                  <div className="mt-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                    {s.v}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Marquee */}
-        <div className="absolute bottom-0 inset-x-0 border-t border-border bg-background/70 backdrop-blur-md py-4 overflow-hidden">
-          <div className="flex items-center gap-14 whitespace-nowrap animate-marquee text-[11px] uppercase tracking-[0.45em] text-muted-foreground w-max">
+        <div className="relative border-y border-border bg-background/60 backdrop-blur-md py-4 overflow-hidden">
+          <div className="flex items-center gap-12 whitespace-nowrap animate-marquee text-[11px] uppercase tracking-[0.4em] text-muted-foreground w-max">
             {Array.from({ length: 2 }).flatMap((_, r) =>
               [
                 "Brand Films",
@@ -256,9 +310,9 @@ function Index() {
                 "Color Grading",
                 "Direção Criativa",
               ].map((w, i) => (
-                <span key={`${r}-${i}`} className="flex items-center gap-14 shrink-0">
+                <span key={`${r}-${i}`} className="flex items-center gap-12 shrink-0">
                   {w}
-                  <span className="text-brand">/</span>
+                  <span className="size-1 rounded-full bg-brand" />
                 </span>
               )),
             )}
@@ -267,16 +321,21 @@ function Index() {
       </section>
 
       {/* Showreel */}
-      <section id="showreel" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1400px] mx-auto">
+      <section id="showreel" className="py-24 md:py-32 px-5 md:px-10">
+        <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
-            <h2 className="font-display text-4xl md:text-7xl font-bold uppercase tracking-[-0.03em]">
-              The <span className="text-brand">Showreel</span>
-            </h2>
-            <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">2024 — 2026 / Reel</div>
+            <div className="flex items-baseline gap-4">
+              <span className="font-serif-editorial text-brand text-xl">01</span>
+              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
+                O Reel
+              </h2>
+            </div>
+            <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+              Seleção 2024 — 2026
+            </div>
           </div>
 
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-black shadow-[var(--shadow-card)]">
+          <div className="relative aspect-video overflow-hidden rounded-[28px] border border-border bg-black shadow-[var(--shadow-card)]">
             <iframe
               src={`${SHOWREEL}?title=0&byline=0&portrait=0`}
               title="Showreel Lucas Fortes"
@@ -290,20 +349,22 @@ function Index() {
 
       {/* Sobre */}
       <section id="sobre" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1400px] mx-auto grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="max-w-[1500px] mx-auto grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <div className="text-[11px] uppercase tracking-[0.4em] text-brand mb-6">A Produtora</div>
-            <h2 className="font-display text-4xl md:text-6xl font-bold uppercase leading-[0.95] tracking-[-0.03em]">
-              O Filmmaker
-            </h2>
-            <div className="mt-8 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
-              Direção <span className="text-brand">//</span> Lucas Fortes
+            <div className="flex items-baseline gap-4">
+              <span className="font-serif-editorial text-brand text-xl">02</span>
+              <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
+                O Estúdio
+              </h2>
             </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              {["6+ anos", "80+ projetos", "4K Cinema", "Florianópolis"].map((b) => (
+            <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+              Direção <span className="text-signal">·</span> Lucas Fortes
+            </div>
+            <div className="mt-10 flex flex-wrap gap-2.5">
+              {["Roteiro", "Direção", "Câmera", "Color", "Som", "Entrega"].map((b) => (
                 <span
                   key={b}
-                  className="border border-border px-4 py-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
+                  className="rounded-full border border-border px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
                 >
                   {b}
                 </span>
@@ -311,26 +372,29 @@ function Index() {
             </div>
           </div>
 
-          <div className="space-y-6 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
-            <p>
-              LUCAS FORTES.REC é uma produtora audiovisual com base em Florianópolis, conectando criatividade,
-              técnica e direção para transformar ideias em narrativas de impacto por toda Santa Catarina.
+          <div className="space-y-7">
+            <p className="font-serif-editorial text-2xl md:text-4xl leading-[1.25] text-bone">
+              “Todo negócio já tem uma história boa. O meu trabalho é encontrar o ângulo em que ela finalmente
+              aparece.”
             </p>
-            <p>
-              Com um portfólio plural, transito entre formatos com naturalidade — da solidez de vídeos
-              institucionais e comerciais à sensibilidade estética de brand films, gastronomia e automotivo.
-              Cada projeto nasce do propósito de traduzir a essência de marcas e profissionais.
-            </p>
-            <p className="text-foreground">
-              Aqui, cada frame é planejado para contar a sua história com máxima potência.
-            </p>
+            <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+              <p>
+                LUCAS FORTES.REC é um estúdio de imagem sediado em Florianópolis, que atende marcas,
+                profissionais liberais e produções premium por toda Santa Catarina.
+              </p>
+              <p>
+                Trabalho em ciclo fechado — pesquisa, roteiro, direção, câmera e finalização — para que a
+                intenção do primeiro briefing chegue intacta ao corte final. Poucos projetos por mês, atenção
+                inteira em cada um.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Clientes marquee */}
-        <div className="max-w-[1400px] mx-auto mt-20">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-8">
-            Clientes <span className="text-brand">//</span> Projetos
+        <div className="max-w-[1500px] mx-auto mt-20">
+          <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground mb-8">
+            Confiaram no processo
           </div>
           <div className="overflow-hidden border-y border-border py-8">
             <div className="flex items-center gap-16 whitespace-nowrap animate-marquee w-max">
@@ -338,7 +402,7 @@ function Index() {
                 clients.map((c, i) => (
                   <span
                     key={`${r}-${i}`}
-                    className="font-display text-xl md:text-2xl font-bold uppercase tracking-tight text-muted-foreground/50 shrink-0"
+                    className="font-display text-xl md:text-2xl font-extrabold uppercase tracking-[-0.03em] text-muted-foreground/45 shrink-0"
                   >
                     {c}
                   </span>
@@ -349,128 +413,166 @@ function Index() {
         </div>
       </section>
 
-      {/* Serviços */}
+      {/* Serviços — editorial index rows */}
       <section id="servicos" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="mb-14">
-            <div className="text-[11px] uppercase tracking-[0.4em] text-brand mb-5">O que eu faço</div>
-            <h2 className="font-display text-4xl md:text-7xl font-bold uppercase tracking-[-0.03em]">
-              Nossos Serviços
-            </h2>
+        <div className="max-w-[1500px] mx-auto">
+          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+            <div className="flex items-baseline gap-4">
+              <span className="font-serif-editorial text-brand text-xl">03</span>
+              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
+                O Ofício
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Seis frentes, um mesmo padrão de direção. Escolha o formato — a exigência é sempre a mesma.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-2xl overflow-hidden">
+          <div className="border-t border-border">
             {services.map((s) => (
-              <div key={s.title} className="group bg-background p-9 md:p-11 hover:bg-card transition-colors duration-500">
-                <s.icon className="size-6 text-brand mb-8" />
-                <h3 className="font-display text-xl md:text-2xl font-bold uppercase tracking-tight mb-4">
-                  {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+              <div
+                key={s.n}
+                className="group relative grid gap-3 md:grid-cols-[auto_1fr_1.2fr] md:items-center border-b border-border px-2 md:px-6 py-8 md:py-9 transition-colors duration-500 hover:bg-card"
+              >
+                <span className="absolute left-0 top-0 h-full w-px bg-brand scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500" />
+                <span className="font-serif-editorial text-lg text-brand/70 md:w-12">{s.n}</span>
+                <div>
+                  <h3 className="font-display text-2xl md:text-4xl font-extrabold uppercase tracking-[-0.04em] group-hover:translate-x-1 transition-transform duration-500">
+                    {s.title}
+                  </h3>
+                  <div className="mt-1.5 text-[10px] uppercase tracking-[0.28em] text-signal/80">{s.lead}</div>
+                </div>
+                <p className="text-sm md:text-base leading-relaxed text-muted-foreground md:pl-8">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Portfólio */}
+      {/* Portfólio — arquivo assimétrico */}
       <section id="portfolio" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-[1500px] mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.4em] text-brand mb-5">Portfólio</div>
-              <h2 className="font-display text-4xl md:text-7xl font-bold uppercase tracking-[-0.03em]">
-                Trabalhos
+            <div className="flex items-baseline gap-4">
+              <span className="font-serif-editorial text-brand text-xl">04</span>
+              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
+                O Arquivo
               </h2>
             </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Clique em uma miniatura para assistir ao filme completo.
+            <p className="text-sm text-muted-foreground max-w-xs">
+              Clique em qualquer miniatura para assistir ao filme completo.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {works.map((w) => (
-              <button
-                key={w.title}
-                onClick={() => setOpenVideo(w)}
-                className="group relative aspect-video overflow-hidden rounded-2xl border border-border bg-card text-left transition-all duration-500 hover:-translate-y-1 hover:border-brand/60 hover:shadow-[var(--shadow-elegant)]"
-              >
-                <img
-                  src={w.image}
-                  alt={w.title}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover opacity-80 transition-all duration-[900ms] ease-out group-hover:scale-105 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5">
+            {works.map((w, i) => {
+              const span =
+                i === 0 ? "md:col-span-4" : i === 1 ? "md:col-span-2" : i === 2 ? "md:col-span-2" : i === 3 ? "md:col-span-4" : "md:col-span-3";
+              return (
+                <button
+                  key={w.title}
+                  onClick={() => setOpenVideo(w)}
+                  className={`group relative overflow-hidden rounded-[22px] border border-border bg-card text-left transition-all duration-500 hover:border-brand/60 hover:shadow-[var(--shadow-elegant)] ${span} aspect-video md:aspect-auto md:h-[21rem]`}
+                >
+                  <img
+                    src={w.image}
+                    alt={w.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover opacity-70 grayscale transition-all duration-[900ms] ease-out group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
 
-                <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="grid place-items-center size-16 rounded-full bg-brand text-brand-foreground scale-90 group-hover:scale-100 transition-transform duration-500">
-                    <Play className="size-5 fill-current" />
+                  <span className="absolute top-4 left-5 font-serif-editorial text-sm text-bone/70">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                </div>
+                  <span className="absolute top-4 right-5 text-[10px] uppercase tracking-[0.24em] text-bone/60">
+                    {w.year}
+                  </span>
 
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="text-[10px] uppercase tracking-[0.3em] text-brand mb-2">// {w.category}</div>
-                  <h3 className="font-display text-lg md:text-xl font-bold uppercase leading-tight tracking-tight">
-                    {w.title}
-                  </h3>
-                </div>
-              </button>
-            ))}
+                  <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="grid place-items-center size-16 rounded-full bg-brand text-brand-foreground scale-90 group-hover:scale-100 transition-transform duration-500">
+                      <Play className="size-5 fill-current" />
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="text-[10px] uppercase tracking-[0.26em] text-signal mb-2">{w.category}</div>
+                    <h3 className="font-display text-lg md:text-2xl font-extrabold uppercase leading-tight tracking-[-0.035em]">
+                      {w.title}
+                    </h3>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Contato */}
       <section id="contato" className="relative py-28 md:py-40 px-5 md:px-10 border-t border-border overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 size-[32rem] rounded-full bg-brand/10 blur-3xl" />
-        <div className="relative max-w-[1400px] mx-auto text-center">
-          <div className="inline-flex items-center gap-2.5 border border-border px-5 py-2.5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <span className="relative flex size-2">
-              <span className="absolute inset-0 rounded-full bg-brand/60 animate-ping" />
-              <span className="relative size-2 rounded-full bg-brand" />
-            </span>
-            Disponível para projetos
+        <div className="absolute -top-40 left-1/4 size-[32rem] rounded-full bg-brand/10 blur-3xl" />
+        <div className="relative max-w-[1500px] mx-auto grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div>
+            <div className="flex items-baseline gap-4">
+              <span className="font-serif-editorial text-brand text-xl">05</span>
+              <span className="text-[11px] uppercase tracking-[0.32em] text-muted-foreground">Contato</span>
+            </div>
+            <h2 className="mt-7 font-display text-4xl md:text-7xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
+              Conte a ideia,
+              <span className="block font-serif-editorial normal-case lowercase text-brand tracking-[-0.02em]">
+                eu cuido do resto
+              </span>
+            </h2>
+            <p className="mt-7 max-w-lg text-base md:text-lg font-light text-muted-foreground">
+              Agenda aberta para poucos projetos por mês. Responder leva minutos — o orçamento sai no mesmo dia.
+            </p>
+
+            <div className="mt-11 flex flex-wrap items-center gap-4">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform shadow-[var(--shadow-elegant)]"
+              >
+                <MessageCircle className="size-4" />
+                Falar no WhatsApp
+              </a>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex items-center gap-3 rounded-full border border-border px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:border-signal hover:text-signal transition-colors"
+              >
+                <Mail className="size-4" />
+                Enviar e-mail
+              </a>
+            </div>
           </div>
 
-          <h2 className="mt-10 font-display text-4xl md:text-7xl font-bold uppercase leading-[0.95] tracking-[-0.03em] text-balance">
-            Vamos construir <span className="text-brand">conexões</span>
-          </h2>
-          <p className="mt-7 mx-auto max-w-xl text-base md:text-lg font-light text-muted-foreground">
-            Comunicando a essência do seu negócio através de vídeos estratégicos.
-          </p>
-
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.28em] hover:-translate-y-0.5 transition-all shadow-[var(--shadow-elegant)]"
-            >
-              <MessageCircle className="size-4" />
-              Iniciar no WhatsApp
-            </a>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="inline-flex items-center gap-3 border border-border px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.28em] hover:bg-accent hover:border-brand/50 transition-all"
-            >
-              <Mail className="size-4" />
-              Enviar e-mail
-            </a>
-          </div>
+          <dl className="grid gap-px bg-border border border-border rounded-2xl overflow-hidden">
+            {[
+              { t: "Base", v: "Florianópolis · Santa Catarina" },
+              { t: "Atendimento", v: "Todo o litoral catarinense" },
+              { t: "Telefone", v: PHONE_DISPLAY },
+              { t: "E-mail", v: EMAIL },
+            ].map((r) => (
+              <div key={r.t} className="bg-background px-6 py-5 flex items-baseline justify-between gap-4">
+                <dt className="text-[10px] uppercase tracking-[0.26em] text-muted-foreground">{r.t}</dt>
+                <dd className="text-sm text-foreground text-right break-all">{r.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-border px-5 md:px-10 py-12">
-        <div className="max-w-[1400px] mx-auto grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+        <div className="max-w-[1500px] mx-auto grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div className="min-w-0">
-            <div className="font-display text-base font-bold tracking-[0.12em]">
-              LUCAS FORTES<span className="text-foreground">.</span>
-              <span className="text-brand">REC</span>
+            <div className="font-display text-base font-extrabold uppercase tracking-[-0.02em]">
+              Lucas Fortes<span className="text-foreground">.</span>
+              <span className="text-brand">rec</span>
             </div>
-            <div className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-              Florianópolis | Santa Catarina | Brasil
+            <div className="mt-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+              Florianópolis · Santa Catarina · Brasil
             </div>
             <div className="mt-3 text-xs text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1">
               <a href={`mailto:${EMAIL}`} className="hover:text-brand transition-colors">
@@ -492,7 +594,7 @@ function Index() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="grid place-items-center size-11 rounded-full border border-border bg-card hover:bg-accent hover:border-brand/50 hover:text-brand transition-all"
+              className="grid place-items-center size-11 rounded-full border border-border bg-card hover:border-signal hover:text-signal transition-all"
             >
               <Instagram className="size-4" />
             </a>
@@ -501,14 +603,14 @@ function Index() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="grid place-items-center size-11 rounded-full border border-border bg-card hover:bg-accent hover:border-brand/50 hover:text-brand transition-all"
+              className="grid place-items-center size-11 rounded-full border border-border bg-card hover:border-signal hover:text-signal transition-all"
             >
               <MessageCircle className="size-4" />
             </a>
             <a
               href={`mailto:${EMAIL}`}
               aria-label="E-mail"
-              className="grid place-items-center size-11 rounded-full border border-border bg-card hover:bg-accent hover:border-brand/50 hover:text-brand transition-all"
+              className="grid place-items-center size-11 rounded-full border border-border bg-card hover:border-signal hover:text-signal transition-all"
             >
               <Mail className="size-4" />
             </a>
@@ -541,7 +643,7 @@ function Index() {
             <X className="size-5" />
           </button>
           <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-            <div className="aspect-video rounded-2xl overflow-hidden border border-border shadow-[var(--shadow-card)] bg-black">
+            <div className="aspect-video rounded-[24px] overflow-hidden border border-border shadow-[var(--shadow-card)] bg-black">
               <iframe
                 src={`${openVideo.video}?autoplay=1&title=0&byline=0`}
                 title={openVideo.title}
@@ -551,8 +653,10 @@ function Index() {
               />
             </div>
             <div className="mt-5">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-brand">// {openVideo.category}</div>
-              <div className="font-display text-2xl mt-1 font-bold uppercase tracking-tight">{openVideo.title}</div>
+              <div className="text-[10px] uppercase tracking-[0.28em] text-signal">{openVideo.category}</div>
+              <div className="font-display text-2xl mt-1 font-extrabold uppercase tracking-[-0.035em]">
+                {openVideo.title}
+              </div>
             </div>
           </div>
         </div>
