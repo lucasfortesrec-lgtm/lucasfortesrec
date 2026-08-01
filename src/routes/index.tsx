@@ -461,7 +461,7 @@ function Index() {
               </span>
             </h2>
             <p className="mt-7 max-w-lg text-base md:text-lg font-light text-muted-foreground">
-              Agenda aberta para poucos projetos por mês. Responder leva minutos — o orçamento sai no mesmo dia.
+              Agenda aberta para poucos projetos por mês. — O orçamento sai no mesmo dia.
             </p>
 
             <div className="mt-11 flex flex-wrap items-center gap-4">
