@@ -447,44 +447,43 @@ function Index() {
 
       {/* Contato */}
       <section id="contato" className="relative py-28 md:py-40 px-5 md:px-10 border-t border-border overflow-hidden">
-        <div className="absolute -top-40 left-1/4 size-[32rem] rounded-full bg-brand/10 blur-3xl" />
-        <div className="relative max-w-[1500px] mx-auto grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-          <div>
-            <div className="flex items-baseline gap-4">
-              <span className="font-serif-editorial text-brand text-xl">05</span>
-              <span className="text-[11px] uppercase tracking-[0.32em] text-muted-foreground">Contato</span>
-            </div>
-            <h2 className="mt-7 font-display text-4xl md:text-7xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
-              Conte a ideia,
-              <span className="block font-serif-editorial normal-case lowercase text-brand tracking-[-0.02em]">
-                eu cuido do resto
-              </span>
-            </h2>
-            <p className="mt-7 max-w-lg text-base md:text-lg font-light text-muted-foreground">
-              Agenda aberta para poucos projetos por mês. — O orçamento sai no mesmo dia.
-            </p>
-
-            <div className="mt-11 flex flex-wrap items-center gap-4">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform shadow-[var(--shadow-elegant)]"
-              >
-                <MessageCircle className="size-4" />
-                Falar no WhatsApp
-              </a>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="inline-flex items-center gap-3 rounded-full border border-border px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:border-signal hover:text-signal transition-colors"
-              >
-                <Mail className="size-4" />
-                Enviar e-mail
-              </a>
-            </div>
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 size-[32rem] rounded-full bg-brand/10 blur-3xl" />
+        <div className="relative max-w-[1100px] mx-auto text-center">
+          <div className="inline-flex items-center gap-4">
+            <span className="font-serif-editorial text-brand text-xl">05</span>
+            <span className="text-[11px] uppercase tracking-[0.32em] text-muted-foreground">Contato</span>
           </div>
 
-          <dl className="grid gap-px bg-border border border-border rounded-2xl overflow-hidden">
+          <h2 className="mt-8 font-display text-4xl md:text-7xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em] text-balance">
+            Conte a ideia,
+            <span className="block font-serif-editorial normal-case lowercase text-brand tracking-[-0.02em]">
+              eu cuido do resto
+            </span>
+          </h2>
+          <p className="mt-7 mx-auto max-w-xl text-base md:text-lg font-light text-muted-foreground">
+            Agenda aberta para poucos projetos por mês. — O orçamento sai no mesmo dia.
+          </p>
+
+          <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform shadow-[var(--shadow-elegant)]"
+            >
+              <MessageCircle className="size-4" />
+              Falar no WhatsApp
+            </a>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex items-center gap-3 rounded-full border border-border px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:border-signal hover:text-signal transition-colors"
+            >
+              <Mail className="size-4" />
+              Enviar e-mail
+            </a>
+          </div>
+
+          <dl className="mt-16 grid gap-px bg-border border border-border rounded-2xl overflow-hidden max-w-3xl mx-auto">
             {[
               { t: "Atendimento", v: "Todo o Brasil — mediante orçamento" },
               { t: "Endereço", v: "Rua Campolino Alves, 300 — Sala 414, Capoeiras" },
@@ -492,8 +491,7 @@ function Index() {
               { t: "Telefone", v: PHONE_DISPLAY },
               { t: "E-mail", v: EMAIL },
             ].map((r) => (
-
-              <div key={r.t} className="bg-background px-6 py-5 flex items-baseline justify-between gap-4">
+              <div key={r.t} className="bg-background px-6 py-4 flex items-baseline justify-between gap-4">
                 <dt className="text-[10px] uppercase tracking-[0.26em] text-muted-foreground">{r.t}</dt>
                 <dd className="text-sm text-foreground text-right break-all">{r.v}</dd>
               </div>
