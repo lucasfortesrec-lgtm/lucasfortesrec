@@ -211,26 +211,9 @@ function Index() {
       <section id="top" className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-28">
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(120%_80%_at_15%_10%,color-mix(in_oklab,var(--brand)_20%,transparent)_0%,transparent_55%)]"
-        />
-        <div aria-hidden className="absolute inset-0 grain-overlay opacity-[0.35] mix-blend-soft-light" />
-        <div
-          aria-hidden
-          className="absolute right-[-10%] top-[12%] hidden md:block size-[38rem] rounded-full border border-border/60"
-        />
-        <div
-          aria-hidden
-          className="absolute right-[2%] top-[26%] hidden md:block size-[22rem] rounded-full border border-brand/20"
+          className="absolute inset-0 bg-[radial-gradient(110%_75%_at_20%_5%,color-mix(in_oklab,var(--brand)_12%,transparent)_0%,transparent_60%)]"
         />
 
-        {/* left vertical rail */}
-        <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-6">
-          <span className="h-24 w-px bg-gradient-to-b from-transparent to-brand" />
-          <span className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground [writing-mode:vertical-rl]">
-            Florianópolis · SC
-          </span>
-          <span className="h-24 w-px bg-gradient-to-t from-transparent to-signal/60" />
-        </div>
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 md:px-10 pb-20 md:pb-28">
           <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
