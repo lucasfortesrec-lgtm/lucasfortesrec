@@ -263,7 +263,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="max-w-4xl mx-auto relative aspect-video overflow-hidden rounded-[24px] border border-border bg-black shadow-[var(--shadow-card)]">
+          <div className="max-w-2xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
             <iframe
               src={`${SHOWREEL}?title=0&byline=0&portrait=0`}
               title="Showreel Lucas Fortes"
