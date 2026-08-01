@@ -206,7 +206,7 @@ function Index() {
       </header>
 
       {/* Hero — editorial asymmetric */}
-      <section id="top" className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden pt-32">
+      <section id="top" className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-28">
         <div
           aria-hidden
           className="absolute inset-0 bg-[radial-gradient(120%_80%_at_15%_10%,color-mix(in_oklab,var(--brand)_20%,transparent)_0%,transparent_55%)]"
