@@ -474,7 +474,7 @@ function Index() {
             {/* Máscara inferior — oculta qualquer footer/respiro branco do embed */}
             <div
               aria-hidden
-              className="absolute bottom-0 left-0 right-0 h-[28px] bg-background z-10"
+              className="absolute bottom-0 left-0 right-0 h-[40px] bg-background z-10"
             />
             <iframe
               src="https://www.instagram.com/lucasfortes.rec/embed"
