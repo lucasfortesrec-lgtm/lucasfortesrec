@@ -472,9 +472,7 @@ function Index() {
                 <button
                   key={w.title}
                   onClick={() => setOpenVideo(w)}
-                  className={`group relative overflow-hidden rounded-[22px] border border-border bg-card text-left transition-all duration-500 hover:border-brand/60 hover:shadow-[var(--shadow-elegant)] ${span} ${
-                    tall ? "aspect-[16/10]" : "aspect-video"
-                  }`}
+                  className={`group relative overflow-hidden rounded-[22px] border border-border bg-card text-left transition-all duration-500 hover:border-brand/60 hover:shadow-[var(--shadow-elegant)] ${span} aspect-video md:aspect-auto md:h-[21rem]`}
                 >
                   <img
                     src={w.image}
