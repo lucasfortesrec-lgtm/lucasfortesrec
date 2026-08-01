@@ -465,7 +465,7 @@ function Index() {
             </a>
           </div>
 
-          <div className="relative rounded-[22px] border border-border bg-card max-w-[560px] mx-auto h-[600px] md:h-[680px] overflow-y-auto overflow-x-hidden overscroll-contain">
+          <div className="relative rounded-[22px] border border-border bg-card max-w-[560px] mx-auto h-[532px] overflow-y-auto overflow-x-hidden overscroll-contain">
             <iframe
               src="https://www.instagram.com/lucasfortes.rec/embed"
               title="Publicações recentes no Instagram de Lucas Fortes"
