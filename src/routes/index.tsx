@@ -448,9 +448,9 @@ function Index() {
       </section>
 
       {/* Instagram */}
-      <section id="instagram" className="py-16 md:py-24 px-5 md:px-10 border-t border-border">
+      <section id="instagram" className="py-12 md:py-16 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-6">
             <h2 className="font-display text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.045em]">
               No Instagram
             </h2>
@@ -476,7 +476,7 @@ function Index() {
               title="Publicações recentes no Instagram de Lucas Fortes"
               loading="lazy"
               scrolling="no"
-              className="w-full h-[760px] md:h-[1000px] block -mt-[72px] md:-mt-[78px]"
+              className="w-full h-[520px] md:h-[720px] block -mt-[72px] md:-mt-[78px]"
             />
           </div>
         </div>
