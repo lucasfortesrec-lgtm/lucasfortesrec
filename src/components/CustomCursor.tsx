@@ -83,11 +83,14 @@ export function CustomCursor() {
 
     return () => {
       clearTimeout(readyTimer);
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mousemove", onMouseMove, true);
+      document.removeEventListener("pointermove", onMouseMove, true);
+      document.removeEventListener("dragover", onMouseMove, true);
+      document.removeEventListener("mouseout", onMouseOut);
       document.removeEventListener("mouseenter", onMouseEnter);
-      document.removeEventListener("mousedown", onMouseDown);
-      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mousedown", onMouseDown, true);
+      document.removeEventListener("mouseup", onMouseUp, true);
+      window.removeEventListener("blur", onWindowBlur);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
