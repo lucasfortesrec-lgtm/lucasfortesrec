@@ -404,66 +404,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Portfólio — arquivo assimétrico */}
-      <section id="portfolio" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-14">
-            <div className="flex items-baseline gap-4">
-              <span className="font-serif-editorial text-brand text-xl">04</span>
-              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
-                O Arquivo
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Clique em qualquer miniatura para assistir ao filme completo.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5">
-            {works.map((w, i) => {
-              const span =
-                i === 0 ? "md:col-span-4" : i === 1 ? "md:col-span-2" : i === 2 ? "md:col-span-2" : i === 3 ? "md:col-span-4" : "md:col-span-3";
-              return (
-                <button
-                  key={w.title}
-                  onClick={() => setOpenVideo(w)}
-                  className={`group relative overflow-hidden rounded-[22px] border border-border bg-card text-left transition-all duration-500 hover:border-brand/60 hover:shadow-[var(--shadow-elegant)] ${span} aspect-video md:aspect-auto md:h-[21rem]`}
-                >
-                  <img
-                    src={w.image}
-                    alt={w.title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover opacity-70 grayscale transition-all duration-[900ms] ease-out group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
-
-                  <span className="absolute top-4 left-5 font-serif-editorial text-sm text-bone/70">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="absolute top-4 right-5 text-[10px] uppercase tracking-[0.24em] text-bone/60">
-                    {w.year}
-                  </span>
-
-                  <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="grid place-items-center size-16 rounded-full bg-brand text-brand-foreground scale-90 group-hover:scale-100 transition-transform duration-500">
-                      <Play className="size-5 fill-current" />
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="text-[10px] uppercase tracking-[0.26em] text-signal mb-2">{w.category}</div>
-                    <h3 className="font-display text-lg md:text-2xl font-extrabold uppercase leading-tight tracking-[-0.035em]">
-                      {w.title}
-                    </h3>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
       {/* Instagram */}
       <section id="instagram" className="py-6 md:py-8 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1500px] mx-auto">
