@@ -151,7 +151,7 @@ function Index() {
           scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1500px] mx-auto pl-5 pr-3 md:pl-10 md:pr-6 h-[72px] flex items-center justify-between gap-6">
+        <div className="max-w-[1500px] mx-auto px-5 md:px-10 min-h-[72px] py-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <a href="#top" className="flex items-baseline gap-2 shrink-0">
             <span className="font-display text-[15px] md:text-[17px] font-extrabold tracking-[-0.02em] uppercase">
               Lucas Fortes<span className="text-foreground">.</span>
@@ -162,12 +162,12 @@ function Index() {
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-9">
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-x-7 lg:gap-x-9">
             {nav.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
-                className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
+                className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] md:tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 {n.label}
               </a>
@@ -177,36 +177,13 @@ function Index() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-bone text-background px-6 py-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] hover:bg-brand hover:text-brand-foreground transition-colors"
+              className="rounded-full bg-bone text-background px-5 md:px-6 py-2 md:py-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] hover:bg-brand hover:text-brand-foreground transition-colors"
             >
               Orçamento
             </a>
           </nav>
-
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Menu"
-            className="lg:hidden grid place-items-center size-11 rounded-full border border-border bg-card/50"
-          >
-            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
         </div>
 
-        {menuOpen && (
-          <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl px-5 py-6 flex flex-col gap-5">
-            {nav.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-xs uppercase tracking-[0.28em] text-muted-foreground"
-              >
-                {n.label}
-
-              </a>
-            ))}
-          </div>
-        )}
       </header>
 
       {/* Hero — editorial asymmetric */}
