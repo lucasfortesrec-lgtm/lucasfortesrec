@@ -96,28 +96,36 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
         ref={iframeRef}
         src={src}
         title={title || "Vimeo video player"}
-        className="h-full w-full"
+        className="h-full w-full pointer-events-none"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
       />
 
-      {/* Play overlay when paused or not ready */}
-      {(!isReady || isPaused) && (
-        <button
-          onClick={togglePlay}
-          className="absolute inset-0 grid place-items-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          aria-label="Reproduzir vídeo"
+      {/* Full-surface tap/click target: toggles play/pause anywhere on the video */}
+      <button
+        type="button"
+        onClick={togglePlay}
+        className="absolute inset-0 z-10 grid place-items-center touch-manipulation"
+        aria-label={isPaused ? "Reproduzir vídeo" : "Pausar vídeo"}
+      >
+        <span
+          className={`grid place-items-center size-16 rounded-full bg-bone/90 text-background backdrop-blur-sm transition-opacity duration-300 ${
+            isPaused ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          }`}
         >
-          <span className="grid place-items-center size-16 rounded-full bg-bone/90 text-background backdrop-blur-sm">
+          {isPaused ? (
             <Play className="size-5 fill-current ml-0.5" />
-          </span>
-        </button>
-      )}
+          ) : (
+            <Pause className="size-5 fill-current" />
+          )}
+        </span>
+      </button>
 
       {/* Minimal play/pause control */}
       <button
+        type="button"
         onClick={togglePlay}
-        className="absolute bottom-4 right-4 z-10 grid place-items-center size-9 rounded-full bg-background/80 backdrop-blur-md border border-border text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background"
+        className="absolute bottom-4 right-4 z-20 grid place-items-center size-9 rounded-full bg-background/80 backdrop-blur-md border border-border text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background"
         aria-label={isPaused ? "Reproduzir" : "Pausar"}
       >
         {isPaused ? (
@@ -129,3 +137,4 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     </div>
   );
 }
+
