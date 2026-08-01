@@ -58,7 +58,9 @@ const nav = [
   { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
   { label: "Arquivo", href: "#portfolio", index: "04" },
-  { label: "Contato", href: "#contato", index: "05" },
+  { label: "Instagram", href: "#instagram", index: "05" },
+  { label: "Contato", href: "#contato", index: "06" },
+
 ];
 
 const works: Work[] = [
