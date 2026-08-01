@@ -468,7 +468,6 @@ function Index() {
             {works.map((w, i) => {
               const span =
                 i === 0 ? "md:col-span-4" : i === 1 ? "md:col-span-2" : i === 2 ? "md:col-span-2" : i === 3 ? "md:col-span-4" : "md:col-span-3";
-              const tall = i === 0 || i === 3;
               return (
                 <button
                   key={w.title}
