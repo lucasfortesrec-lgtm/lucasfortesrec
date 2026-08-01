@@ -298,28 +298,8 @@ function Index() {
           </div>
         </div>
 
-        {/* Marquee */}
-        <div className="relative border-y border-border bg-background/60 backdrop-blur-md py-4 overflow-hidden">
-          <div className="flex items-center gap-12 whitespace-nowrap animate-marquee text-[11px] uppercase tracking-[0.4em] text-muted-foreground w-max">
-            {Array.from({ length: 2 }).flatMap((_, r) =>
-              [
-                "Brand Films",
-                "Social Content",
-                "Gastronomia",
-                "Automotivo",
-                "Institucional",
-                "Eventos Premium",
-                "Color Grading",
-                "Direção Criativa",
-              ].map((w, i) => (
-                <span key={`${r}-${i}`} className="flex items-center gap-12 shrink-0">
-                  {w}
-                  <span className="size-1 rounded-full bg-brand" />
-                </span>
-              )),
-            )}
-          </div>
-        </div>
+        <div className="border-t border-border" />
+
       </section>
 
       {/* Showreel */}
