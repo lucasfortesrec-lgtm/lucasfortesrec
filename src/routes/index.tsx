@@ -49,19 +49,21 @@ type Work = {
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
 
-const INSTAGRAM_POSTS = [
-  "DbVuBimRBFY",
-  "DbO1tXPxxTV",
-  "DbKEQRotrcx",
-  "Da_T_j9kRE7",
-  "DYTWBuzNIxx",
-  "DYTQVZ2jSsA",
-  "DYTOutBtDXL",
-  "DYTOZb-NBe2",
-  "DYTMmXZNZVI",
-  "DYTMkB_tMRC",
-  "DYTMhg1tWxP",
+// ratio = largura/altura da mídia real de cada post (medido no embed)
+const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
+  { id: "DbVuBimRBFY", ratio: 4 / 5 },
+  { id: "DbO1tXPxxTV", ratio: 4 / 5 },
+  { id: "DbKEQRotrcx", ratio: 4 / 5 },
+  { id: "Da_T_j9kRE7", ratio: 4 / 5 },
+  { id: "DYTWBuzNIxx", ratio: 16 / 9 },
+  { id: "DYTQVZ2jSsA", ratio: 387 / 330 },
+  { id: "DYTOutBtDXL", ratio: 4 / 5 },
+  { id: "DYTOZb-NBe2", ratio: 4 / 5 },
+  { id: "DYTMmXZNZVI", ratio: 4 / 5 },
+  { id: "DYTMkB_tMRC", ratio: 4 / 5 },
+  { id: "DYTMhg1tWxP", ratio: 4 / 5 },
 ];
+
 
 const EMAIL = "lucasfortesrec@gmail.com";
 const PHONE_DISPLAY = "48 9 9829 4750";
@@ -480,24 +482,25 @@ function Index() {
             </a>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {INSTAGRAM_POSTS.map((id) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-start">
+            {INSTAGRAM_POSTS.map(({ id, ratio }) => (
               <div
                 key={id}
-                className="relative rounded-[16px] border border-border bg-background overflow-hidden h-[380px]"
+                style={{ aspectRatio: ratio }}
+                className="relative w-full rounded-[16px] border border-border bg-background overflow-hidden"
               >
                 <iframe
                   src={`https://www.instagram.com/p/${id}/embed`}
                   title={`Publicação ${id} no Instagram de Lucas Fortes`}
                   loading="lazy"
                   scrolling="no"
-                  className="w-full h-[560px] block border-0 -mt-[54px]"
+                  style={{ height: "calc(100% + 56px)", marginTop: "-54px" }}
+                  className="w-full block border-0"
                 />
-                {/* Máscara inferior: oculta a faixa branca do embed */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[8px] bg-background" />
               </div>
             ))}
           </div>
+
 
 
         </div>
