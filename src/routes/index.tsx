@@ -393,15 +393,15 @@ function Index() {
           </div>
         </div>
 
-        {/* Clientes marquee */}
+        {/* Marquee de princípios */}
         <div className="max-w-[1500px] mx-auto mt-20">
           <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground mb-8">
-            Confiaram no processo
+            Do briefing ao master
           </div>
           <div className="overflow-hidden border-y border-border py-8">
             <div className="flex items-center gap-16 whitespace-nowrap animate-marquee w-max">
               {Array.from({ length: 2 }).flatMap((_, r) =>
-                clients.map((c, i) => (
+                principles.map((c, i) => (
                   <span
                     key={`${r}-${i}`}
                     className="font-display text-xl md:text-2xl font-extrabold uppercase tracking-[-0.03em] text-muted-foreground/45 shrink-0"
@@ -410,6 +410,7 @@ function Index() {
                   </span>
                 )),
               )}
+
             </div>
           </div>
         </div>
