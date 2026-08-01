@@ -254,6 +254,7 @@ function Index() {
           <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
             <div className="flex items-baseline gap-4">
               <span className="font-serif-editorial text-brand text-xl">01</span>
+              <span className="h-10 w-px bg-signal" aria-hidden />
               <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
                 O Reel
               </h2>
@@ -263,7 +264,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
+          <div className="w-full relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
             <iframe
               src={`${SHOWREEL}?title=0&byline=0&portrait=0`}
               title="Showreel Lucas Fortes"
