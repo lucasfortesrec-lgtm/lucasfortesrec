@@ -482,24 +482,25 @@ function Index() {
             </a>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {INSTAGRAM_POSTS.map((id) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-start">
+            {INSTAGRAM_POSTS.map(({ id, ratio }) => (
               <div
                 key={id}
-                className="relative rounded-[16px] border border-border bg-background overflow-hidden h-[380px]"
+                style={{ aspectRatio: ratio }}
+                className="relative w-full rounded-[16px] border border-border bg-background overflow-hidden"
               >
                 <iframe
                   src={`https://www.instagram.com/p/${id}/embed`}
                   title={`Publicação ${id} no Instagram de Lucas Fortes`}
                   loading="lazy"
                   scrolling="no"
-                  className="w-full h-[560px] block border-0 -mt-[54px]"
+                  style={{ height: "calc(100% + 56px)", marginTop: "-54px" }}
+                  className="w-full block border-0"
                 />
-                {/* Máscara inferior: oculta a faixa branca do embed */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[8px] bg-background" />
               </div>
             ))}
           </div>
+
 
 
         </div>
