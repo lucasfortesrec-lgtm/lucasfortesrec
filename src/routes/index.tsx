@@ -319,8 +319,7 @@ function Index() {
                 </p>
                 <p>
                   Trabalho em ciclo fechado — pesquisa, roteiro, direção, câmera e finalização — para que a
-                  intenção do primeiro briefing chegue intacta ao corte final. Poucos projetos por mês, atenção
-                  inteira em cada um.
+                  intenção do primeiro briefing chegue intacta ao corte final.
                 </p>
               </div>
             </div>
