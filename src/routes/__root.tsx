@@ -86,8 +86,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "LUCAS FORTES.REC" },
       { name: "twitter:description", content: "Direção, câmera e cor cinematográfica para marcas, profissionais liberais e eventos premium em Santa Catarina. Filmes que fazem o negócio ser lembrado." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4db7713c-d68b-486e-bb93-ae6e22a2346b/id-preview-c42bdf70--fba67ec7-faec-4e37-ad4c-5b6b899c2c68.lovable.app-1785599549960.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4db7713c-d68b-486e-bb93-ae6e22a2346b/id-preview-c42bdf70--fba67ec7-faec-4e37-ad4c-5b6b899c2c68.lovable.app-1785599549960.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/dde83709-2f0f-4279-9beb-50269bb4e030" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/dde83709-2f0f-4279-9beb-50269bb4e030" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
