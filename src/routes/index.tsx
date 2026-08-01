@@ -228,7 +228,7 @@ function Index() {
             {/* right stat column */}
             <div className="flex flex-wrap gap-x-10 gap-y-6 lg:block lg:space-y-8">
               {[
-                { k: "80+", v: "Projetos entregues" },
+                { k: "60+", v: "Projetos entregues" },
                 { k: "06", v: "Anos de estrada" },
                 { k: "4K", v: "Cinema pipeline" },
               ].map((s) => (
