@@ -48,6 +48,21 @@ type Work = {
 
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
+
+const INSTAGRAM_POSTS = [
+  "DbVuBimRBFY",
+  "DbO1tXPxxTV",
+  "DbKEQRotrcx",
+  "Da_T_j9kRE7",
+  "DYTWBuzNIxx",
+  "DYTQVZ2jSsA",
+  "DYTOutBtDXL",
+  "DYTOZb-NBe2",
+  "DYTMmXZNZVI",
+  "DYTMkB_tMRC",
+  "DYTMhg1tWxP",
+];
+
 const EMAIL = "lucasfortesrec@gmail.com";
 const PHONE_DISPLAY = "48 9 9829 4750";
 const SHOWREEL = "https://player.vimeo.com/video/76979871";
@@ -465,21 +480,25 @@ function Index() {
             </a>
           </div>
 
-          <div className="relative rounded-[22px] border border-border bg-card max-w-[560px] mx-auto h-[600px] overflow-hidden">
-            {/* Máscara superior: oculta header branco, avatar, bio, contagem de posts/seguidores e faixa de transição */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[190px] bg-background" />
-
-            <iframe
-              src="https://www.instagram.com/lucasfortes.rec/embed"
-              title="Publicações recentes no Instagram de Lucas Fortes"
-              loading="lazy"
-              scrolling="yes"
-              className="w-full h-[900px] block border-0"
-            />
-
-            {/* Máscara inferior: oculta fundo branco abaixo do grid de posts */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[90px] bg-background" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {INSTAGRAM_POSTS.map((id) => (
+              <div
+                key={id}
+                className="relative rounded-[16px] border border-border bg-background overflow-hidden h-[380px]"
+              >
+                <iframe
+                  src={`https://www.instagram.com/p/${id}/embed`}
+                  title={`Publicação ${id} no Instagram de Lucas Fortes`}
+                  loading="lazy"
+                  scrolling="no"
+                  className="w-full h-[560px] block border-0 -mt-[54px]"
+                />
+                {/* Máscara inferior: oculta a faixa branca do embed */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[8px] bg-background" />
+              </div>
+            ))}
           </div>
+
 
         </div>
       </section>
