@@ -249,9 +249,9 @@ function Index() {
       </section>
 
       {/* Showreel */}
-      <section id="showreel" className="py-24 md:py-32 px-5 md:px-10">
+      <section id="showreel" className="py-16 md:py-20 px-5 md:px-10">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-6">
             <div className="flex items-baseline gap-4">
               <span className="font-serif-editorial text-brand text-xl">01</span>
               <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
@@ -263,7 +263,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
+          <div className="max-w-4xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
             <iframe
               src={`${SHOWREEL}?title=0&byline=0&portrait=0`}
               title="Showreel Lucas Fortes"
