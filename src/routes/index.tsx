@@ -484,7 +484,7 @@ function Index() {
             {INSTAGRAM_POSTS.map((id) => (
               <div
                 key={id}
-                className="relative rounded-[16px] border border-border bg-background overflow-hidden h-[420px]"
+                className="relative rounded-[16px] border border-border bg-background overflow-hidden h-[380px]"
               >
                 <iframe
                   src={`https://www.instagram.com/p/${id}/embed`}
