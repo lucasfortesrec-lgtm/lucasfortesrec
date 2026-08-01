@@ -105,14 +105,30 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
   }
+}
+
+@utility font-serif-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@utility grain {
+  position: relative;
+}
+@utility grain-overlay {
+  background-image: radial-gradient(oklch(0.93 0.02 85 / 0.09) 1px, transparent 1px);
+  background-size: 3px 3px;
 }
 
 @utility text-balance {
   text-wrap: balance;
 }
+
 
 @keyframes marquee {
   from { transform: translateX(0); }
