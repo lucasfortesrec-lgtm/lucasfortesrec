@@ -281,13 +281,13 @@ function Index() {
             </div>
 
             {/* right stat column */}
-            <div className="grid grid-cols-3 lg:grid-cols-1 gap-px bg-border border border-border rounded-2xl overflow-hidden">
+            <div className="flex flex-wrap gap-x-10 gap-y-6 lg:block lg:space-y-8">
               {[
                 { k: "80+", v: "Projetos entregues" },
                 { k: "06", v: "Anos de estrada" },
                 { k: "4K", v: "Cinema pipeline" },
               ].map((s) => (
-                <div key={s.k} className="bg-background px-5 py-6 lg:px-7 lg:py-6">
+                <div key={s.k}>
                   <div className="font-display text-2xl lg:text-3xl font-extrabold tracking-[-0.04em]">{s.k}</div>
                   <div className="mt-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
                     {s.v}
@@ -295,6 +295,7 @@ function Index() {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
 
