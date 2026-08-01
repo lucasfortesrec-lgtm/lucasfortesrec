@@ -53,8 +53,6 @@ export function CustomCursor() {
     };
   }, []);
 
-  if (typeof window === "undefined") return null;
-
   return (
     <>
       <div
