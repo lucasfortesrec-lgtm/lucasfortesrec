@@ -634,38 +634,6 @@ function Index() {
         <MessageCircle className="size-6" />
       </a>
 
-      {/* Lightbox */}
-      {openVideo && (
-        <div
-          className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl grid place-items-center p-4 md:p-10"
-          onClick={() => setOpenVideo(null)}
-        >
-          <button
-            onClick={() => setOpenVideo(null)}
-            className="absolute top-6 right-6 grid place-items-center size-12 rounded-full border border-border bg-card hover:bg-accent transition-colors"
-            aria-label="Fechar"
-          >
-            <X className="size-5" />
-          </button>
-          <div className="w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
-            <div className="aspect-video rounded-[24px] overflow-hidden border border-border shadow-[var(--shadow-card)] bg-black">
-              <iframe
-                src={`${openVideo.video}?autoplay=1&title=0&byline=0`}
-                title={openVideo.title}
-                className="h-full w-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <div className="mt-5">
-              <div className="text-[10px] uppercase tracking-[0.28em] text-signal">{openVideo.category}</div>
-              <div className="font-display text-2xl mt-1 font-extrabold uppercase tracking-[-0.035em]">
-                {openVideo.title}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
