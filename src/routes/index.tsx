@@ -125,7 +125,6 @@ const principles = [
 
 function Index() {
   const [openVideo, setOpenVideo] = useState<Work | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
