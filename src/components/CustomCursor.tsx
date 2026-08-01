@@ -19,7 +19,13 @@ export function CustomCursor() {
       setIsVisible(true);
     };
 
-    const onMouseLeave = () => setIsVisible(false);
+    // Only hide when the pointer really leaves the viewport (not when it enters
+    // an iframe such as Vimeo / Instagram embeds, which swallow mouse events).
+    const onMouseOut = (e: MouseEvent) => {
+      if (!e.relatedTarget && (e.clientY <= 0 || e.clientX <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
+        setIsVisible(false);
+      }
+    };
     const onMouseEnter = () => setIsVisible(true);
     const onMouseDown = () => {
       if (cursorRef.current) cursorRef.current.classList.add("cursor-press");
@@ -30,11 +36,28 @@ export function CustomCursor() {
       if (ringRef.current) ringRef.current.classList.remove("cursor-press");
     };
 
-    document.addEventListener("mousemove", onMouseMove, { passive: true });
-    document.addEventListener("mouseleave", onMouseLeave);
+    // While hovering an embed the parent document stops receiving mousemove.
+    // Keep the cursor alive and approximate its position from the hovered frame.
+    const onWindowBlur = () => {
+      const el = document.activeElement;
+      if (el && el.tagName === "IFRAME") {
+        const r = el.getBoundingClientRect();
+        mousePos.current = {
+          x: Math.min(Math.max(mousePos.current.x, r.left), r.right),
+          y: Math.min(Math.max(mousePos.current.y, r.top), r.bottom),
+        };
+        setIsVisible(true);
+      }
+    };
+
+    document.addEventListener("mousemove", onMouseMove, { passive: true, capture: true });
+    document.addEventListener("pointermove", onMouseMove, { passive: true, capture: true });
+    document.addEventListener("dragover", onMouseMove, { passive: true, capture: true });
+    document.addEventListener("mouseout", onMouseOut);
     document.addEventListener("mouseenter", onMouseEnter);
-    document.addEventListener("mousedown", onMouseDown);
-    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mousedown", onMouseDown, true);
+    document.addEventListener("mouseup", onMouseUp, true);
+    window.addEventListener("blur", onWindowBlur);
 
     const animate = () => {
       const easeCursor = 1;
@@ -60,11 +83,14 @@ export function CustomCursor() {
 
     return () => {
       clearTimeout(readyTimer);
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mousemove", onMouseMove, true);
+      document.removeEventListener("pointermove", onMouseMove, true);
+      document.removeEventListener("dragover", onMouseMove, true);
+      document.removeEventListener("mouseout", onMouseOut);
       document.removeEventListener("mouseenter", onMouseEnter);
-      document.removeEventListener("mousedown", onMouseDown);
-      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mousedown", onMouseDown, true);
+      document.removeEventListener("mouseup", onMouseUp, true);
+      window.removeEventListener("blur", onWindowBlur);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
