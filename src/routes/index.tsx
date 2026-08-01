@@ -394,27 +394,20 @@ function Index() {
           </div>
         </div>
 
-        {/* Marquee de princípios */}
-        <div className="max-w-[1500px] mx-auto mt-20">
-          <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground mb-8">
-            Do briefing ao master
-          </div>
-          <div className="overflow-hidden border-y border-border py-8">
-            <div className="flex items-center gap-16 whitespace-nowrap animate-marquee w-max">
-              {Array.from({ length: 2 }).flatMap((_, r) =>
-                principles.map((c, i) => (
-                  <span
-                    key={`${r}-${i}`}
-                    className="font-display text-xl md:text-2xl font-extrabold uppercase tracking-[-0.03em] text-muted-foreground/45 shrink-0"
-                  >
-                    {c}
-                  </span>
-                )),
-              )}
-
-            </div>
+        {/* Etapas do processo — lista estática */}
+        <div className="max-w-[1500px] mx-auto mt-20 border-t border-border pt-8">
+          <div className="flex flex-wrap gap-x-10 gap-y-3">
+            {principles.map((c) => (
+              <span
+                key={c}
+                className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground"
+              >
+                {c}
+              </span>
+            ))}
           </div>
         </div>
+
       </section>
 
       {/* Serviços — editorial index rows */}
