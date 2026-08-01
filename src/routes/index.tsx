@@ -481,7 +481,7 @@ function Index() {
               title="Publicações recentes no Instagram de Lucas Fortes"
               loading="lazy"
               scrolling="no"
-              className="w-full h-[620px] md:h-[920px] block -mt-[110px] md:-mt-[158px]"
+              className="w-full h-[750px] md:h-[750px] block -mt-[110px] md:-mt-[158px]"
             />
           </div>
         </div>
