@@ -510,23 +510,39 @@ function Index() {
             })}
           </div>
 
-          <div className="mt-12 flex flex-col items-center gap-4 rounded-[22px] border border-border bg-card px-6 py-10 text-center">
-            <p className="max-w-md text-sm md:text-base font-light text-muted-foreground">
-              Novos trabalhos são publicados primeiro no Instagram — bastidores, cortes e projetos recentes.
-            </p>
+        </div>
+      </section>
+
+      {/* Instagram */}
+      <section id="instagram" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
+        <div className="max-w-[1500px] mx-auto">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.045em]">
+              No Instagram
+            </h2>
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-8 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground hover:text-foreground transition-colors"
             >
               <Instagram className="size-4" />
               @lucasfortes.rec
             </a>
           </div>
 
+          <div className="overflow-hidden rounded-[22px] border border-border bg-card">
+            <iframe
+              src="https://www.instagram.com/lucasfortes.rec/embed"
+              title="Publicações recentes no Instagram de Lucas Fortes"
+              loading="lazy"
+              scrolling="no"
+              className="w-full h-[560px] md:h-[640px] block"
+            />
+          </div>
         </div>
       </section>
+
 
       {/* Contato */}
       <section id="contato" className="relative py-28 md:py-40 px-5 md:px-10 border-t border-border overflow-hidden">
