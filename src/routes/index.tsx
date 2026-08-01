@@ -7,6 +7,7 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import { VimeoPlayer } from "@/components/VimeoPlayer";
 import lucasSet from "@/assets/lucas-set.jpg.asset.json";
 import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
@@ -264,12 +265,10 @@ function Index() {
           </div>
 
           <div className="max-w-5xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
-            <iframe
-              src={`${SHOWREEL}?title=0&byline=0&portrait=0&controls=0&quality=1080p&hd=1`}
+            <VimeoPlayer
+              videoUrl={SHOWREEL}
               title="Showreel Lucas Fortes"
               className="h-full w-full"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
             />
           </div>
         </div>
