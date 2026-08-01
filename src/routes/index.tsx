@@ -24,17 +24,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "LUCAS FORTES.REC — Filmes de Marca em Florianópolis" },
+      { title: "LUCAS FORTES.REC" },
       {
         name: "description",
         content:
           "Direção, câmera e cor cinematográfica para marcas, profissionais liberais e eventos premium em Santa Catarina. Filmes que fazem o negócio ser lembrado.",
       },
-      { property: "og:title", content: "LUCAS FORTES.REC — Filmes de Marca" },
+      { property: "og:title", content: "LUCAS FORTES.REC" },
       {
         property: "og:description",
         content:
-          "Narrativas visuais de alto impacto para marcas, profissionais liberais e eventos premium em Santa Catarina.",
+          "Direção, câmera e cor cinematográfica para marcas, profissionais liberais e eventos premium em Santa Catarina. Filmes que fazem o negócio ser lembrado.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
