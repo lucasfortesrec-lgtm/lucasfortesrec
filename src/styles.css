@@ -161,20 +161,35 @@
   }
 
   .custom-cursor {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     background-color: oklch(0.78 0.14 170);
-    box-shadow: 0 0 12px oklch(0.78 0.14 170 / 0.8);
+    box-shadow:
+      0 0 0 2px oklch(0.2 0.02 170 / 0.35),
+      0 0 16px oklch(0.78 0.14 170 / 0.95),
+      0 0 32px oklch(0.78 0.14 170 / 0.55);
     will-change: transform;
+    transition: transform 0.15s ease-out, background-color 0.15s ease-out;
+  }
+
+  .custom-cursor.cursor-press {
+    transform: translate(-50%, -50%) scale(0.75) !important;
+    background-color: oklch(0.7 0.16 170);
   }
 
   .custom-cursor-ring {
-    width: 44px;
-    height: 44px;
-    border: 1px solid oklch(0.78 0.14 170 / 0.45);
-    background-color: oklch(0.78 0.14 170 / 0.08);
-    animation: cursor-pulse 2s ease-in-out infinite;
+    width: 48px;
+    height: 48px;
+    border: 1px solid oklch(0.78 0.14 170 / 0.5);
+    background-color: oklch(0.78 0.14 170 / 0.06);
+    animation: cursor-pulse 2.2s ease-in-out infinite;
     will-change: transform;
+    transition: transform 0.15s ease-out, border-color 0.15s ease-out;
+  }
+
+  .custom-cursor-ring.cursor-press {
+    transform: translate(-50%, -50%) scale(0.85) !important;
+    border-color: oklch(0.78 0.14 170 / 0.85);
   }
 
   @keyframes cursor-pulse {
@@ -183,8 +198,8 @@
       border-color: oklch(0.78 0.14 170 / 0.45);
     }
     50% {
-      transform: translate(-50%, -50%) scale(1.25);
-      border-color: oklch(0.78 0.14 170 / 0.75);
+      transform: translate(-50%, -50%) scale(1.3);
+      border-color: oklch(0.78 0.14 170 / 0.8);
     }
   }
 
@@ -194,9 +209,25 @@
   input:hover ~ .custom-cursor,
   textarea:hover ~ .custom-cursor,
   select:hover ~ .custom-cursor,
-  .hover-target:hover ~ .custom-cursor {
-    transform: translate(-50%, -50%) scale(1.6) !important;
+  .hover-target:hover ~ .custom-cursor,
+  a:hover ~ .custom-cursor-ring,
+  button:hover ~ .custom-cursor-ring,
+  [role="button"]:hover ~ .custom-cursor-ring,
+  input:hover ~ .custom-cursor-ring,
+  textarea:hover ~ .custom-cursor-ring,
+  select:hover ~ .custom-cursor-ring,
+  .hover-target:hover ~ .custom-cursor-ring {
     background-color: oklch(0.85 0.12 170);
+  }
+
+  a:hover ~ .custom-cursor,
+  button:hover ~ .custom-cursor,
+  [role="button"]:hover ~ .custom-cursor,
+  input:hover ~ .custom-cursor,
+  textarea:hover ~ .custom-cursor,
+  select:hover ~ .custom-cursor,
+  .hover-target:hover ~ .custom-cursor {
+    transform: translate(-50%, -50%) scale(1.7) !important;
   }
 }
 
