@@ -419,12 +419,14 @@ function Index() {
             </a>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-start">
-            {INSTAGRAM_POSTS.map(({ id, ratio }) => (
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+            {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <div
                 key={id}
                 style={{ aspectRatio: ratio }}
-                className="relative w-full rounded-[16px] border border-border bg-background overflow-hidden"
+                className={`relative w-full rounded-[16px] border border-border bg-background overflow-hidden break-inside-avoid ${
+                  i % 5 === 1 ? "sm:mt-8" : i % 5 === 3 ? "sm:mt-12" : ""
+                }`}
               >
                 <iframe
                   src={`https://www.instagram.com/p/${id}/embed`}
