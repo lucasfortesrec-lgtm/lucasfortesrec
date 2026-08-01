@@ -166,14 +166,6 @@ function Index() {
               </a>
             ))}
 
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-bone text-background px-5 md:px-6 py-2 md:py-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] hover:bg-brand hover:text-brand-foreground transition-colors"
-            >
-              Orçamento
-            </a>
           </nav>
         </div>
 
