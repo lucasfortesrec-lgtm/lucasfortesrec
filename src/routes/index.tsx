@@ -356,7 +356,7 @@ function Index() {
             <div className="flex items-baseline gap-4">
               <span className="font-serif-editorial text-brand text-xl">02</span>
               <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
-                O Estúdio
+                O Filmmaker
               </h2>
             </div>
             <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
