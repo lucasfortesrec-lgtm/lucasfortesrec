@@ -465,7 +465,7 @@ function Index() {
             </a>
           </div>
 
-          <div className="relative overflow-hidden rounded-[22px] border border-border bg-card max-w-[560px] mx-auto h-[500px] md:h-[750px]">
+          <div className="relative overflow-hidden rounded-[22px] border border-border bg-card max-w-[560px] mx-auto h-[540px] md:h-[540px]">
             {/* Máscara superior — oculta o header do perfil */}
             <div
               aria-hidden
