@@ -263,17 +263,14 @@ function Index() {
             </div>
           </div>
 
-          <div className="flex items-stretch gap-4 md:gap-6">
-            <div className="w-1 md:w-1.5 shrink-0 rounded-full bg-signal" aria-hidden />
-            <div className="flex-1 relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
-              <iframe
-                src={`${SHOWREEL}?title=0&byline=0&portrait=0`}
-                title="Showreel Lucas Fortes"
-                className="h-full w-full"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
+          <div className="relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
+            <iframe
+              src={`${SHOWREEL}?title=0&byline=0&portrait=0`}
+              title="Showreel Lucas Fortes"
+              className="h-full w-full"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
