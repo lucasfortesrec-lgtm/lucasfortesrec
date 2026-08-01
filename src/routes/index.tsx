@@ -298,12 +298,12 @@ function Index() {
                 </span>
               ))}
             </div>
-            <div className="mt-10 overflow-hidden rounded-[20px] border border-border">
+            <div className="mt-10 overflow-hidden rounded-[16px] border border-border max-w-[220px] md:max-w-[260px]">
               <img
                 src={lucasSet.url}
-                alt="Lucas Fortes em set de filmagem com iluminação profissional"
+                alt="Lucas Fortes em set de filmagem com iluminação profissional batches="
                 loading="lazy"
-                className="w-full aspect-[4/5] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
+                className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
               />
             </div>
           </div>
