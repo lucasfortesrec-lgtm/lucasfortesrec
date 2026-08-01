@@ -465,13 +465,18 @@ function Index() {
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-[22px] border border-border bg-card">
+          <div className="relative overflow-hidden rounded-[22px] border border-border bg-card">
+            {/* Máscara que oculta o header branco do perfil no embed */}
+            <div
+              aria-hidden
+              className="absolute top-0 left-0 right-0 h-[72px] md:h-[78px] bg-background z-10"
+            />
             <iframe
               src="https://www.instagram.com/lucasfortes.rec/embed"
               title="Publicações recentes no Instagram de Lucas Fortes"
               loading="lazy"
               scrolling="no"
-              className="w-full h-[560px] md:h-[640px] block"
+              className="w-full h-[680px] md:h-[920px] block -mt-[72px] md:-mt-[78px]"
             />
           </div>
         </div>
