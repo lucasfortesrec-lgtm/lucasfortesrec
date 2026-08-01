@@ -237,15 +237,6 @@ function Index() {
 
               <div className="mt-11 flex flex-wrap items-center gap-5">
                 <a
-                  href="#portfolio"
-                  className="group inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground pl-8 pr-3 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] shadow-[var(--shadow-elegant)] hover:-translate-y-0.5 transition-transform"
-                >
-                  Ver o arquivo
-                  <span className="grid place-items-center size-9 rounded-full bg-brand-foreground/15 group-hover:bg-brand-foreground/25 transition-colors">
-                    <ArrowUpRight className="size-4 group-hover:rotate-45 transition-transform duration-300" />
-                  </span>
-                </a>
-                <a
                   href="#showreel"
                   className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground"
                 >
