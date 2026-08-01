@@ -160,17 +160,17 @@ function Index() {
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-9">
             {nav.map((n) => (
-              <a key={n.href} href={n.href} className="group flex items-baseline gap-2">
-                <span className="font-serif-editorial text-[13px] text-brand/70 group-hover:text-signal transition-colors">
-                  {n.index}
-                </span>
-                <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground group-hover:text-foreground transition-colors">
-                  {n.label}
-                </span>
+              <a
+                key={n.href}
+                href={n.href}
+                className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {n.label}
               </a>
             ))}
+
             <a
               href={WHATSAPP_URL}
               target="_blank"
