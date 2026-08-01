@@ -141,15 +141,7 @@ const principles = [
 
 
 function Index() {
-  const [openVideo, setOpenVideo] = useState<Work | null>(null);
   const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    document.body.style.overflow = openVideo ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [openVideo]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
