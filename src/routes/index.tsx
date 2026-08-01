@@ -197,10 +197,10 @@ function Index() {
                 key={n.href}
                 href={n.href}
                 onClick={() => setMenuOpen(false)}
-                className="flex items-baseline gap-3 text-xs uppercase tracking-[0.28em] text-muted-foreground"
+                className="text-xs uppercase tracking-[0.28em] text-muted-foreground"
               >
-                <span className="font-serif-editorial text-brand/70 text-sm">{n.index}</span>
                 {n.label}
+
               </a>
             ))}
           </div>
