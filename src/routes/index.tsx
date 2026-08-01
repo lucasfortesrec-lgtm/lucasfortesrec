@@ -569,11 +569,12 @@ function Index() {
 
           <dl className="grid gap-px bg-border border border-border rounded-2xl overflow-hidden">
             {[
-              { t: "Base", v: "Florianópolis · Santa Catarina" },
-              { t: "Atendimento", v: "Todo o litoral catarinense" },
+              { t: "Endereço", v: "Rua Campolino Alves, 300 — Sala 414, Capoeiras" },
+              { t: "Cidade", v: "Florianópolis · SC · 88085-110" },
               { t: "Telefone", v: PHONE_DISPLAY },
               { t: "E-mail", v: EMAIL },
             ].map((r) => (
+
               <div key={r.t} className="bg-background px-6 py-5 flex items-baseline justify-between gap-4">
                 <dt className="text-[10px] uppercase tracking-[0.26em] text-muted-foreground">{r.t}</dt>
                 <dd className="text-sm text-foreground text-right break-all">{r.v}</dd>
