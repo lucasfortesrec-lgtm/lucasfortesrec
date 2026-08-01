@@ -7,6 +7,18 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import lucasSet from "@/assets/lucas-set.jpg.asset.json";
+import bts1 from "@/assets/bts-1.jpg.asset.json";
+import bts2 from "@/assets/bts-2.jpg.asset.json";
+import bts3 from "@/assets/bts-3.jpg.asset.json";
+import bts4 from "@/assets/bts-4.jpg.asset.json";
+
+const BTS = [
+  { src: bts1.url, alt: "Bastidores: entrevista sendo gravada com casal em locação" },
+  { src: bts2.url, alt: "Bastidores: captação com gimbal em evento corporativo" },
+  { src: bts3.url, alt: "Bastidores: set de gravação em consultório" },
+  { src: bts4.url, alt: "Bastidores: gravação em concessionária de veículos" },
+];
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -286,7 +298,16 @@ function Index() {
                 </span>
               ))}
             </div>
+            <div className="mt-10 overflow-hidden rounded-[20px] border border-border">
+              <img
+                src={lucasSet.url}
+                alt="Lucas Fortes em set de filmagem com iluminação profissional"
+                loading="lazy"
+                className="w-full aspect-[4/5] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
           </div>
+
 
           <div className="space-y-7">
             <p className="font-serif-editorial text-2xl md:text-4xl leading-[1.25] text-bone">
@@ -308,7 +329,30 @@ function Index() {
           </div>
         </div>
 
+        {/* Bastidores */}
+        <div className="max-w-[1500px] mx-auto mt-20">
+          <div className="mb-6 flex items-baseline justify-between gap-6">
+            <h3 className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+              Bastidores <span className="text-signal">·</span> Making of
+            </h3>
+            <span className="font-serif-editorial text-brand text-sm">02.1</span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {BTS.map((b) => (
+              <div key={b.src} className="overflow-hidden rounded-[16px] border border-border">
+                <img
+                  src={b.src}
+                  alt={b.alt}
+                  loading="lazy"
+                  className="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 hover:scale-[1.03] transition-all duration-700"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Etapas do processo — lista estática */}
+
         <div className="max-w-[1500px] mx-auto mt-20 border-t border-border pt-8">
           <div className="flex flex-wrap gap-x-10 gap-y-3">
             {principles.map((c) => (
