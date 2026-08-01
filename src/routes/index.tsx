@@ -2,19 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Play,
-  ArrowUpRight,
-  X,
   Instagram,
   MessageCircle,
   Mail,
   Phone,
 } from "lucide-react";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
-import work5 from "@/assets/work-5.jpg";
-import work6 from "@/assets/work-6.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -37,14 +29,6 @@ export const Route = createFileRoute("/")({
     ],
   }),
 });
-
-type Work = {
-  title: string;
-  category: string;
-  image: string;
-  video: string;
-  year: string;
-};
 
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
