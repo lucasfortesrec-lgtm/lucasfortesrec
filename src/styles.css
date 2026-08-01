@@ -184,7 +184,7 @@
     background-color: oklch(0.78 0.14 170 / 0.06);
     animation: cursor-pulse 2.2s ease-in-out infinite;
     will-change: transform;
-    transition: transform 0.15s ease-out, border-color 0.15s ease-out;
+    transition: border-color 0.15s ease-out;
   }
 
   .custom-cursor-ring.cursor-press {
