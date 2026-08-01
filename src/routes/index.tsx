@@ -277,56 +277,52 @@ function Index() {
 
       {/* Sobre */}
       <section id="sobre" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
-        <div className="max-w-[1500px] mx-auto grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
-            <div className="flex items-baseline gap-4">
-              <span className="font-serif-editorial text-brand text-xl">02</span>
-              <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
-                O Filmmaker
-              </h2>
+        <div className="max-w-[1100px] mx-auto">
+          <div className="flex items-baseline gap-4">
+            <span className="font-serif-editorial text-brand text-xl">02</span>
+            <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
+              O Filmmaker
+            </h2>
+          </div>
+          <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+            Direção <span className="text-signal">·</span> Lucas Fortes
+          </div>
+          <div className="mt-10 flex flex-wrap gap-2.5">
+            {["Roteiro", "Direção", "Câmera", "Color", "Som", "Entrega"].map((b) => (
+              <span
+                key={b}
+                className="rounded-full border border-border px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col md:flex-row gap-8 md:items-start">
+            <div className="overflow-hidden rounded-[16px] border border-border max-w-[220px] md:max-w-[260px] shrink-0">
+              <img
+                src={lucasSet.url}
+                alt="Lucas Fortes em set de filmagem com iluminação profissional"
+                loading="lazy"
+                className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
+              />
             </div>
-            <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-              Direção <span className="text-signal">·</span> Lucas Fortes
-            </div>
-            <div className="mt-10 flex flex-wrap gap-2.5">
-              {["Roteiro", "Direção", "Câmera", "Color", "Som", "Entrega"].map((b) => (
-                <span
-                  key={b}
-                  className="rounded-full border border-border px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
-                >
-                  {b}
-                </span>
-              ))}
-            </div>
-            <div className="mt-10 flex flex-col md:flex-row gap-8 md:items-start">
-              <div className="overflow-hidden rounded-[16px] border border-border max-w-[220px] md:max-w-[260px] shrink-0">
-                <img
-                  src={lucasSet.url}
-                  alt="Lucas Fortes em set de filmagem com iluminação profissional"
-                  loading="lazy"
-                  className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
-                />
-              </div>
-              <p className="font-serif-editorial text-xl md:text-2xl lg:text-3xl leading-[1.25] text-bone md:pt-4">
+            <div className="space-y-6 md:pt-4">
+              <p className="font-serif-editorial text-xl md:text-2xl lg:text-3xl leading-[1.25] text-bone">
                 “Todo negócio já tem uma história boa. O meu trabalho é encontrar o ângulo em que ela finalmente
                 aparece.”
               </p>
-            </div>
-          </div>
-
-
-          <div className="space-y-7">
-            <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
-              <p>
-                Sou Lucas Fortes, filmmaker sediado em Florianópolis. Trabalho de forma independente com
-                marcas, profissionais liberais e produções premium em todo o Brasil, mediante orçamento.
-              </p>
-
-              <p>
-                Trabalho em ciclo fechado — pesquisa, roteiro, direção, câmera e finalização — para que a
-                intenção do primeiro briefing chegue intacta ao corte final. Poucos projetos por mês, atenção
-                inteira em cada um.
-              </p>
+              <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                <p>
+                  Sou Lucas Fortes, filmmaker sediado em Florianópolis. Trabalho de forma independente com
+                  marcas, profissionais liberais e produções premium em todo o Brasil, mediante orçamento.
+                </p>
+                <p>
+                  Trabalho em ciclo fechado — pesquisa, roteiro, direção, câmera e finalização — para que a
+                  intenção do primeiro briefing chegue intacta ao corte final. Poucos projetos por mês, atenção
+                  inteira em cada um.
+                </p>
+              </div>
             </div>
           </div>
         </div>
