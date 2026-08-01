@@ -381,9 +381,10 @@ function Index() {
             </p>
             <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
               <p>
-                LUCAS FORTES.REC é um estúdio de imagem sediado em Florianópolis, que atende marcas,
-                profissionais liberais e produções premium por toda Santa Catarina.
+                Sou Lucas Fortes, filmmaker sediado em Florianópolis. Trabalho de forma independente com
+                marcas, profissionais liberais e produções premium por toda Santa Catarina.
               </p>
+
               <p>
                 Trabalho em ciclo fechado — pesquisa, roteiro, direção, câmera e finalização — para que a
                 intenção do primeiro briefing chegue intacta ao corte final. Poucos projetos por mês, atenção
