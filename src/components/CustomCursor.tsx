@@ -37,8 +37,8 @@ export function CustomCursor() {
     document.addEventListener("mouseup", onMouseUp);
 
     const animate = () => {
-      const easeCursor = 0.22;
-      const easeRing = 0.12;
+      const easeCursor = 1;
+      const easeRing = 0.35;
 
       cursorPos.current.x += (mousePos.current.x - cursorPos.current.x) * easeCursor;
       cursorPos.current.y += (mousePos.current.y - cursorPos.current.y) * easeCursor;
