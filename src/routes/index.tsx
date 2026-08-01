@@ -323,7 +323,7 @@ function Index() {
             <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
               <p>
                 Sou Lucas Fortes, filmmaker sediado em Florianópolis. Trabalho de forma independente com
-                marcas, profissionais liberais e produções premium por toda Santa Catarina.
+                marcas, profissionais liberais e produções premium em todo o Brasil, mediante orçamento.
               </p>
 
               <p>
@@ -448,9 +448,9 @@ function Index() {
       </section>
 
       {/* Instagram */}
-      <section id="instagram" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
+      <section id="instagram" className="py-16 md:py-24 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
             <h2 className="font-display text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.045em]">
               No Instagram
             </h2>
@@ -476,7 +476,7 @@ function Index() {
               title="Publicações recentes no Instagram de Lucas Fortes"
               loading="lazy"
               scrolling="no"
-              className="w-full h-[680px] md:h-[920px] block -mt-[72px] md:-mt-[78px]"
+              className="w-full h-[760px] md:h-[1000px] block -mt-[72px] md:-mt-[78px]"
             />
           </div>
         </div>
@@ -524,6 +524,7 @@ function Index() {
 
           <dl className="grid gap-px bg-border border border-border rounded-2xl overflow-hidden">
             {[
+              { t: "Atendimento", v: "Todo o Brasil — mediante orçamento" },
               { t: "Endereço", v: "Rua Campolino Alves, 300 — Sala 414, Capoeiras" },
               { t: "Cidade", v: "Florianópolis · SC · 88085-110" },
               { t: "Telefone", v: PHONE_DISPLAY },
