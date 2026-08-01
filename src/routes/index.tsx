@@ -592,8 +592,12 @@ function Index() {
               <span className="text-brand">rec</span>
             </div>
             <div className="mt-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-              Florianópolis · Santa Catarina · Brasil
+              Rua Campolino Alves, 300 · Sala 414 · Capoeiras
             </div>
+            <div className="mt-1 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+              Florianópolis · SC · 88085-110
+            </div>
+
             <div className="mt-3 text-xs text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1">
               <a href={`mailto:${EMAIL}`} className="hover:text-brand transition-colors">
                 {EMAIL}
