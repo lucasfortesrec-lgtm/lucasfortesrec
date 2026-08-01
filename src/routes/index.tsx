@@ -8,7 +8,6 @@ import {
   MessageCircle,
   Mail,
   Phone,
-  Menu,
 } from "lucide-react";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
