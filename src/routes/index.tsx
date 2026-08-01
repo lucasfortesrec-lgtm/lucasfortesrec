@@ -301,7 +301,7 @@ function Index() {
             <div className="mt-10 overflow-hidden rounded-[16px] border border-border max-w-[220px] md:max-w-[260px]">
               <img
                 src={lucasSet.url}
-                alt="Lucas Fortes em set de filmagem com iluminação profissional batches="
+                alt="Lucas Fortes em set de filmagem com iluminação profissional"
                 loading="lazy"
                 className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
               />
