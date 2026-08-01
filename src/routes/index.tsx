@@ -298,22 +298,24 @@ function Index() {
                 </span>
               ))}
             </div>
-            <div className="mt-10 overflow-hidden rounded-[16px] border border-border max-w-[220px] md:max-w-[260px]">
-              <img
-                src={lucasSet.url}
-                alt="Lucas Fortes em set de filmagem com iluminação profissional"
-                loading="lazy"
-                className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
-              />
+            <div className="mt-10 flex flex-col md:flex-row gap-8 md:items-start">
+              <div className="overflow-hidden rounded-[16px] border border-border max-w-[220px] md:max-w-[260px] shrink-0">
+                <img
+                  src={lucasSet.url}
+                  alt="Lucas Fortes em set de filmagem com iluminação profissional"
+                  loading="lazy"
+                  className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
+              <p className="font-serif-editorial text-xl md:text-2xl lg:text-3xl leading-[1.25] text-bone md:pt-4">
+                “Todo negócio já tem uma história boa. O meu trabalho é encontrar o ângulo em que ela finalmente
+                aparece.”
+              </p>
             </div>
           </div>
 
 
           <div className="space-y-7">
-            <p className="font-serif-editorial text-2xl md:text-4xl leading-[1.25] text-bone">
-              “Todo negócio já tem uma história boa. O meu trabalho é encontrar o ângulo em que ela finalmente
-              aparece.”
-            </p>
             <div className="space-y-5 text-base md:text-lg font-light leading-relaxed text-muted-foreground">
               <p>
                 Sou Lucas Fortes, filmmaker sediado em Florianópolis. Trabalho de forma independente com
