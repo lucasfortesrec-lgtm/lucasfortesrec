@@ -147,7 +147,7 @@ function Index() {
         <div className="max-w-[1500px] mx-auto px-5 md:px-10 min-h-[72px] py-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <a href="#top" className="flex items-baseline gap-2 shrink-0">
             <span className="font-display text-[15px] md:text-[17px] font-extrabold tracking-[-0.02em] uppercase">
-              Lucas Fortes<span className="text-foreground">.</span>
+              Lucas Fortes<span className="text-brand">.</span>
               <span className="text-brand">rec</span>
             </span>
             <span className="hidden sm:inline text-[9px] uppercase tracking-[0.4em] text-muted-foreground">
