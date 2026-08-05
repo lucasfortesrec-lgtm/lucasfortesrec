@@ -64,7 +64,7 @@ const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
 
 const EMAIL = "lucasfortesrec@gmail.com";
 const PHONE_DISPLAY = "48 9 9829 4750";
-const SHOWREEL = "https://player.vimeo.com/video/76979871";
+const SHOWREEL = "https://player.vimeo.com/video/1215940031";
 
 const nav = [
   { label: "INÍCIO", href: "#showreel", index: "01" },
