@@ -86,6 +86,7 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     try {
       const paused = await player.getPaused();
       if (paused) {
+        await player.setVolume(1);
         await player.play();
       } else {
         await player.pause();
