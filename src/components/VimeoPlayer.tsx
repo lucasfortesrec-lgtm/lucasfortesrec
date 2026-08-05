@@ -56,6 +56,7 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       player.on("loaded", () => {
         setIsReady(true);
         player.setQuality("auto").catch(() => {});
+        player.setVolume(1).catch(() => {});
       });
 
       player.on("play", () => setIsPaused(false));
