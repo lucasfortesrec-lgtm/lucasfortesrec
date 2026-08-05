@@ -46,6 +46,8 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       const player = new Vimeo.Player(iframe, {
         quality: "auto",
         autopause: false,
+        muted: false,
+        volume: 1,
       });
       playerRef.current = player;
 
