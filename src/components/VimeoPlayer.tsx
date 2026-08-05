@@ -6,6 +6,8 @@ type VimeoPlayerInstance = {
   play(): Promise<void>;
   pause(): Promise<void>;
   getPaused(): Promise<boolean>;
+  getVolume(): Promise<number>;
+  setVolume(volume: number): Promise<number>;
   setQuality(quality: string): Promise<string>;
   unload(): Promise<void>;
 };
@@ -33,8 +35,8 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
   const [isPaused, setIsPaused] = useState(true);
   const [isReady, setIsReady] = useState(false);
 
-  const videoId = videoUrl.replace("https://player.vimeo.com/video/", "");
-  const src = `https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0&controls=0&quality=auto&transparent=0&playsinline=1&autopause=0`;
+  const videoId = videoUrl.replace("https://player.vimeo.com/video/", "").split("?")[0];
+  const src = `https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0&controls=0&quality=auto&transparent=0&playsinline=1&autopause=0&muted=0`;
 
   useEffect(() => {
     const iframe = iframeRef.current;
@@ -46,12 +48,15 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       const player = new Vimeo.Player(iframe, {
         quality: "auto",
         autopause: false,
+        muted: false,
+        volume: 1,
       });
       playerRef.current = player;
 
       player.on("loaded", () => {
         setIsReady(true);
         player.setQuality("auto").catch(() => {});
+        player.setVolume(1).catch(() => {});
       });
 
       player.on("play", () => setIsPaused(false));
@@ -81,6 +86,7 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     try {
       const paused = await player.getPaused();
       if (paused) {
+        await player.setVolume(1);
         await player.play();
       } else {
         await player.pause();
