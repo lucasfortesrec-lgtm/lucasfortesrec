@@ -218,21 +218,32 @@ function Index() {
               </div>
             </div>
 
-            {/* right stat column */}
-            <div className="flex flex-wrap gap-x-10 gap-y-6 lg:block lg:space-y-8">
-              {[
-                { k: "60+", v: "Projetos entregues" },
-                { k: "06", v: "Anos de estrada" },
-                { k: "4K", v: "Cinema pipeline" },
-              ].map((s) => (
-                <div key={s.k}>
-                  <div className="font-display text-2xl lg:text-3xl font-extrabold tracking-[-0.04em]">{s.k}</div>
-                  <div className="mt-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                    {s.v}
+            {/* right column — vertical reel + stats */}
+            <div className="space-y-8">
+              <div className="relative w-full max-w-[300px] mx-auto lg:mx-0 aspect-[9/16] overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
+                <VimeoPlayer
+                  videoUrl="https://player.vimeo.com/video/1216431410"
+                  title="Vídeo vertical"
+                  className="h-full w-full"
+                />
+              </div>
+
+              <div className="flex flex-wrap gap-x-10 gap-y-6 lg:block lg:space-y-8">
+                {[
+                  { k: "60+", v: "Projetos entregues" },
+                  { k: "06", v: "Anos de estrada" },
+                  { k: "4K", v: "Cinema pipeline" },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <div className="font-display text-2xl lg:text-3xl font-extrabold tracking-[-0.04em]">{s.k}</div>
+                    <div className="mt-1.5 text-[9px] lg:text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                      {s.v}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
 
           </div>
         </div>
