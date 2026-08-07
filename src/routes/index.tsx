@@ -206,15 +206,12 @@ function Index() {
               </p>
 
               <div className="mt-11 flex flex-wrap items-center gap-5">
-                <a
-                  href="#showreel"
-                  className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground"
-                >
+                <div className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground">
                   <span className="grid place-items-center size-11 rounded-full border border-border group-hover:border-signal group-hover:text-signal transition-colors">
                     <Play className="size-3.5 fill-current" />
                   </span>
                   Assistir reels
-                </a>
+                </div>
               </div>
 
               <div className="mt-10 flex items-baseline gap-4">
