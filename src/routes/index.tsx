@@ -249,9 +249,6 @@ function Index() {
                 O REELS
               </h2>
             </div>
-            <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-              Seleção 2024 — 2026
-            </div>
           </div>
 
           <div className="max-w-5xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
