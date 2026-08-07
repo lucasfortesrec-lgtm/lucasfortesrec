@@ -220,7 +220,7 @@ function Index() {
 
             {/* right column — vertical reel + stats */}
             <div className="space-y-8">
-              <div className="relative w-full max-w-[300px] mx-auto lg:mx-0 aspect-[9/16] overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
+              <div className="relative w-full max-w-[430px] mx-auto lg:mx-0 aspect-[9/16] overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
                 <VimeoPlayer
                   videoUrl="https://player.vimeo.com/video/1216431410"
                   title="Vídeo vertical"
