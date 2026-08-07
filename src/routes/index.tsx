@@ -180,7 +180,7 @@ function Index() {
 
 
         <div className="relative z-10 w-full max-w-[1500px] mx-auto px-5 md:px-10 pb-20 md:pb-28">
-          <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.42em] text-muted-foreground">
                 <span className="relative flex size-1.5">
@@ -220,7 +220,7 @@ function Index() {
 
             {/* right column — vertical reel + stats */}
             <div className="space-y-8">
-              <div className="relative w-full max-w-[300px] mx-auto lg:mx-0 aspect-[9/16] overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
+              <div className="relative w-full max-w-[430px] mx-auto lg:mx-0 aspect-[9/16] overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
                 <VimeoPlayer
                   videoUrl="https://player.vimeo.com/video/1216431410"
                   title="Vídeo vertical"
