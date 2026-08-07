@@ -218,8 +218,8 @@ function Index() {
               </div>
             </div>
 
-            {/* right column — vertical reel + stats */}
             {/* right column — vertical reel */}
+
             <div>
               <div className="relative w-full max-w-[380px] mx-auto lg:mx-0 aspect-[9/16] overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
                 <VimeoPlayer
