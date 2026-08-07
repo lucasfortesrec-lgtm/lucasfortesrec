@@ -8,6 +8,8 @@ type VimeoPlayerInstance = {
   getPaused(): Promise<boolean>;
   getVolume(): Promise<number>;
   setVolume(volume: number): Promise<number>;
+  getMuted(): Promise<boolean>;
+  setMuted(muted: boolean): Promise<boolean>;
   setQuality(quality: string): Promise<string>;
   unload(): Promise<void>;
 };
