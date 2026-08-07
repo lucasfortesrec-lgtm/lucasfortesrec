@@ -213,8 +213,15 @@ function Index() {
                   <span className="grid place-items-center size-11 rounded-full border border-border group-hover:border-signal group-hover:text-signal transition-colors">
                     <Play className="size-3.5 fill-current" />
                   </span>
-                  Assistir reel
+                  Assistir reels
                 </a>
+              </div>
+
+              <div className="mt-10 flex items-baseline gap-4">
+                <span className="font-serif-editorial text-brand text-xl">01</span>
+                <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase tracking-[-0.045em]">
+                  O REELS
+                </h2>
               </div>
             </div>
 
