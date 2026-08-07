@@ -213,8 +213,15 @@ function Index() {
                   <span className="grid place-items-center size-11 rounded-full border border-border group-hover:border-signal group-hover:text-signal transition-colors">
                     <Play className="size-3.5 fill-current" />
                   </span>
-                  Assistir reel
+                  Assistir reels
                 </a>
+              </div>
+
+              <div className="mt-10 flex items-baseline gap-4">
+                <span className="font-serif-editorial text-brand text-xl">01</span>
+                <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase tracking-[-0.045em]">
+                  O REELS
+                </h2>
               </div>
             </div>
 
@@ -242,14 +249,6 @@ function Index() {
       {/* Showreel */}
       <section id="showreel" className="py-16 md:py-20 px-5 md:px-10">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-6">
-            <div className="flex items-baseline gap-4">
-              <span className="font-serif-editorial text-brand text-xl">01</span>
-              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
-                O REELS
-              </h2>
-            </div>
-          </div>
 
           <div className="max-w-5xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
             <VimeoPlayer
