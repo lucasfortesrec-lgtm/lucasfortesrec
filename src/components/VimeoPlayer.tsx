@@ -58,10 +58,22 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       player.on("loaded", () => {
         setIsReady(true);
         player.setQuality("auto").catch(() => {});
-        player.setVolume(1).catch(() => {});
       });
 
-      player.on("play", () => setIsPaused(false));
+      // Mobile browsers can force a muted start; unmute as soon as playback begins
+      const forceAudio = () => {
+        player.setMuted(false).catch(() => {});
+        player.setVolume(1).catch(() => {});
+      };
+
+      player.on("play", () => {
+        setIsPaused(false);
+        forceAudio();
+        // some mobile players apply the mute right after the play event
+        setTimeout(forceAudio, 150);
+        setTimeout(forceAudio, 600);
+      });
+      player.on("playing", forceAudio);
       player.on("pause", () => setIsPaused(true));
       player.on("ended", () => setIsPaused(true));
     };
@@ -82,19 +94,24 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     };
   }, []);
 
-  const togglePlay = async () => {
+  const togglePlay = () => {
     const player = playerRef.current;
     if (!player) return;
-    try {
-      const paused = await player.getPaused();
-      if (paused) {
-        await player.setVolume(1);
-        await player.play();
-      } else {
-        await player.pause();
-      }
-    } catch {
-      // ignore
+
+    if (isPaused) {
+      // Call play() synchronously inside the user gesture so mobile browsers
+      // allow audio; unmute right after instead of awaiting before play().
+      setIsPaused(false);
+      player
+        .play()
+        .then(() => {
+          player.setMuted(false).catch(() => {});
+          player.setVolume(1).catch(() => {});
+        })
+        .catch(() => setIsPaused(true));
+    } else {
+      setIsPaused(true);
+      player.pause().catch(() => {});
     }
   };
 
