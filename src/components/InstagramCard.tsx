@@ -132,14 +132,14 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           </button>
 
           <div
-            className="relative flex flex-col items-center gap-4 max-h-[90vh] max-w-3xl w-full"
+            className="relative flex flex-col items-center gap-4 max-w-3xl w-full max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full overflow-hidden rounded-[16px] bg-black shadow-2xl">
+            <div className="relative w-full overflow-hidden rounded-[16px] bg-black shadow-2xl max-h-[75vh]">
               <img
                 src={`/instagram-covers/${id}.jpg`}
                 alt=""
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain max-h-[75vh]"
               />
               {isCarousel && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/70 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
@@ -152,12 +152,13 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
               href={`https://www.instagram.com/p/${id}/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm text-white hover:bg-white/20 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm text-white hover:bg-white/20 transition-colors shrink-0"
             >
               <Instagram className="size-4" />
               {isCarousel ? "Ver carrossel completo" : "Ver no Instagram"}
             </a>
           </div>
+
 
         </div>
       )}
