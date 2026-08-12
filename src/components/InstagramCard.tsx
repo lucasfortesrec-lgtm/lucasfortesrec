@@ -25,7 +25,7 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           aria-label={`Reproduzir publicação ${id} do Instagram`}
         >
           <img
-            src={`https://www.instagram.com/p/${id}/media/?size=l`}
+            src={`/instagram-covers/${id}.jpg`}
             alt=""
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
