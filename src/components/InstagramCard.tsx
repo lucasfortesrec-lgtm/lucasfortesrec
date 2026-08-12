@@ -24,11 +24,11 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           className="group absolute inset-0 w-full h-full cursor-pointer"
           aria-label={`Reproduzir publicação ${id} do Instagram`}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.04]"
-            style={{
-              backgroundImage: `url(https://www.instagram.com/p/${id}/media/?size=l)`,
-            }}
+          <img
+            src={`https://www.instagram.com/p/${id}/media/?size=l`}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
           <div className="absolute inset-0 grid place-items-center">
