@@ -49,18 +49,18 @@ const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
 
 // ratio = largura/altura da mídia real de cada post (medido no embed)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
-  { id: "DbVuBimRBFY", ratio: 4 / 5 },
-  { id: "DbO1tXPxxTV", ratio: 4 / 5 },
-  { id: "DbKEQRotrcx", ratio: 4 / 5 },
-  { id: "Da_T_j9kRE7", ratio: 4 / 5 },
-  { id: "DZzywvax8qD", ratio: 4 / 5 },
+  { id: "DbVuBimRBFY", ratio: 9 / 16 },
+  { id: "DbO1tXPxxTV", ratio: 9 / 16 },
+  { id: "DbKEQRotrcx", ratio: 9 / 16 },
+  { id: "Da_T_j9kRE7", ratio: 9 / 16 },
+  { id: "DZzywvax8qD", ratio: 9 / 16 },
   { id: "DYTWBuzNIxx", ratio: 16 / 9 },
   { id: "DYTQVZ2jSsA", ratio: 387 / 330 },
-  { id: "DYTOutBtDXL", ratio: 4 / 5 },
-  { id: "DYTOZb-NBe2", ratio: 4 / 5 },
-  { id: "DYTMmXZNZVI", ratio: 4 / 5 },
-  { id: "DYTMkB_tMRC", ratio: 4 / 5 },
-  { id: "DYTMhg1tWxP", ratio: 4 / 5 },
+  { id: "DYTOutBtDXL", ratio: 9 / 16 },
+  { id: "DYTOZb-NBe2", ratio: 9 / 16 },
+  { id: "DYTMmXZNZVI", ratio: 9 / 16 },
+  { id: "DYTMkB_tMRC", ratio: 9 / 16 },
+  { id: "DYTMhg1tWxP", ratio: 9 / 16 },
 ];
 
 
