@@ -408,7 +408,7 @@ function Index() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-1.5 lg:gap-2 grid-auto-flow-dense auto-rows-auto">
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
