@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
 import {
   Play,
   Instagram,
@@ -14,6 +15,7 @@ import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
+
 
 const BTS = [
   { src: bts1.url, alt: "Bastidores: entrevista sendo gravada com casal em locação" },
