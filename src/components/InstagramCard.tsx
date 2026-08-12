@@ -5,6 +5,7 @@ interface InstagramCardProps {
   id: string;
   ratio: number;
   index: number;
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 /** Posts whose video is hosted locally — these play inline, nothing else on the card. */
@@ -16,10 +17,18 @@ const LOCAL_VIDEOS = new Set([
   "DYTQVZ2jSsA",
 ]);
 
-export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
+const sizeScale: Record<NonNullable<InstagramCardProps["size"]>, number> = {
+  sm: 0.82,
+  md: 1,
+  lg: 1.18,
+  xl: 1.35,
+};
+
+export function InstagramCard({ id, ratio, index, size = "md" }: InstagramCardProps) {
   const [started, setStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const hasLocal = LOCAL_VIDEOS.has(id);
+  const scale = sizeScale[size];
 
   const start = () => {
     setStarted(true);
@@ -32,12 +41,23 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     });
   };
 
+  const offsetClass =
+    index % 6 === 0
+      ? "mt-0"
+      : index % 6 === 1
+      ? "mt-6 sm:mt-10"
+      : index % 6 === 2
+      ? "mt-3 sm:mt-5"
+      : index % 6 === 3
+      ? "mt-9 sm:mt-14"
+      : index % 6 === 4
+      ? "mt-2 sm:mt-3"
+      : "mt-7 sm:mt-11";
+
   return (
     <div
-      style={{ aspectRatio: ratio }}
-      className={`relative w-full rounded-[16px] border border-border bg-background overflow-hidden break-inside-avoid ${
-        index % 5 === 1 ? "sm:mt-8" : index % 5 === 3 ? "sm:mt-12" : ""
-      }`}
+      style={{ aspectRatio: ratio, transform: `scale(${scale})`, transformOrigin: "top center" }}
+      className={`relative w-full rounded-[16px] border border-border bg-background overflow-hidden break-inside-avoid ${offsetClass}`}
     >
       {hasLocal && started ? (
         <video
@@ -98,4 +118,5 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     </div>
   );
 }
+
 
