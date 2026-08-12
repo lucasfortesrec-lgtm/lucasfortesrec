@@ -56,14 +56,15 @@ const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DbKEQRotrcx", ratio: 9 / 16 },
   { id: "Da_T_j9kRE7", ratio: 9 / 16 },
   { id: "DZzywvax8qD", ratio: 9 / 16 },
-  { id: "DYTWBuzNIxx", ratio: 16 / 9 },
-  { id: "DYTQVZ2jSsA", ratio: 387 / 330 },
+  { id: "DYTWBuzNIxx", ratio: 9 / 16 },
+  { id: "DYTQVZ2jSsA", ratio: 9 / 16 },
   { id: "DYTOutBtDXL", ratio: 9 / 16 },
   { id: "DYTOZb-NBe2", ratio: 9 / 16 },
   { id: "DYTMmXZNZVI", ratio: 9 / 16 },
   { id: "DYTMkB_tMRC", ratio: 9 / 16 },
   { id: "DYTMhg1tWxP", ratio: 9 / 16 },
 ];
+
 
 
 
