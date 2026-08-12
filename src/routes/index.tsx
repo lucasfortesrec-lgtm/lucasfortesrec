@@ -8,6 +8,7 @@ import {
   Phone,
 } from "lucide-react";
 import { VimeoPlayer } from "@/components/VimeoPlayer";
+import { InstagramCard } from "@/components/InstagramCard";
 import lucasSet from "@/assets/lucas-set.jpg.asset.json";
 import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
@@ -404,22 +405,7 @@ function Index() {
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
-              <div
-                key={id}
-                style={{ aspectRatio: ratio }}
-                className={`relative w-full rounded-[16px] border border-border bg-background overflow-hidden break-inside-avoid ${
-                  i % 5 === 1 ? "sm:mt-8" : i % 5 === 3 ? "sm:mt-12" : ""
-                }`}
-              >
-                <iframe
-                  src={`https://www.instagram.com/p/${id}/embed`}
-                  title={`Publicação ${id} no Instagram de Lucas Fortes`}
-                  loading="lazy"
-                  scrolling="no"
-                  style={{ height: "calc(100% + 56px)", marginTop: "-54px" }}
-                  className="w-full block border-0"
-                />
-              </div>
+              <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
           </div>
 
