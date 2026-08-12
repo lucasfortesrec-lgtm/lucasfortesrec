@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import Masonry from "react-masonry-css";
 import {
   Play,
   Instagram,
@@ -56,14 +55,15 @@ const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DbKEQRotrcx", ratio: 9 / 16 },
   { id: "Da_T_j9kRE7", ratio: 9 / 16 },
   { id: "DZzywvax8qD", ratio: 9 / 16 },
-  { id: "DYTWBuzNIxx", ratio: 16 / 9 },
-  { id: "DYTQVZ2jSsA", ratio: 387 / 330 },
+  { id: "DYTWBuzNIxx", ratio: 9 / 16 },
+  { id: "DYTQVZ2jSsA", ratio: 9 / 16 },
   { id: "DYTOutBtDXL", ratio: 9 / 16 },
   { id: "DYTOZb-NBe2", ratio: 9 / 16 },
   { id: "DYTMmXZNZVI", ratio: 9 / 16 },
   { id: "DYTMkB_tMRC", ratio: 9 / 16 },
   { id: "DYTMhg1tWxP", ratio: 9 / 16 },
 ];
+
 
 
 
@@ -407,20 +407,11 @@ function Index() {
             </a>
           </div>
 
-          <Masonry
-            breakpointCols={{
-              default: 5,
-              1280: 4,
-              1024: 3,
-              640: 2,
-            }}
-            className="flex -ml-4 sm:-ml-5 w-auto"
-            columnClassName="pl-4 sm:pl-5 bg-clip-padding"
-          >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
-          </Masonry>
+          </div>
 
 
 
