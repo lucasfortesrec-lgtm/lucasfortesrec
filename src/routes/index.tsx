@@ -391,9 +391,9 @@ function Index() {
       </section>
 
       {/* Instagram */}
-      <section id="instagram" className="py-6 md:py-8 px-5 md:px-10 border-t border-border">
+      <section id="instagram" className="py-4 md:py-6 px-3 md:px-5 border-t border-border">
         <div className="max-w-[1500px] mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-4">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-2 md:mb-3">
             <h2 className="font-display text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.045em]">
               No Instagram
             </h2>
@@ -408,7 +408,7 @@ function Index() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 grid-auto-flow-dense auto-rows-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-1.5 lg:gap-2 grid-auto-flow-dense auto-rows-auto">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
