@@ -68,8 +68,12 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
             src={`/instagram-videos/${id}.mp4`}
             poster={`/instagram-covers/${id}.jpg`}
             controls
+            controlsList="nodownload"
+            disablePictureInPicture
+            disableRemotePlayback
             playsInline
             preload="auto"
+            onContextMenu={(e) => e.preventDefault()}
             className="absolute inset-0 w-full h-full object-cover bg-black"
           />
         ) : hasLocal ? (
@@ -83,6 +87,8 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
               src={`/instagram-covers/${id}.jpg`}
               alt=""
               loading="lazy"
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
@@ -103,6 +109,8 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
               src={`/instagram-covers/${id}.jpg`}
               alt=""
               loading="lazy"
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
             />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors" />
@@ -140,6 +148,8 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
               <img
                 src={`/instagram-covers/${id}.jpg`}
                 alt=""
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-contain max-h-[75vh]"
               />
               {isCarousel && (
