@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Play } from "lucide-react";
+import { Play, X, Images, Instagram } from "lucide-react";
 
 interface InstagramCardProps {
   id: string;
@@ -16,10 +16,23 @@ const LOCAL_VIDEOS = new Set([
   "DYTQVZ2jSsA",
 ]);
 
+/** Posts we know are Instagram carousels — shown as a photo set without white footer. */
+const CAROUSELS = new Set([
+  "Da_T_j9kRE7",
+  "DbKEQRotrcx",
+  "DYTOutBtDXL",
+  "DYTOZb-NBe2",
+  "DYTMmXZNZVI",
+  "DYTMkB_tMRC",
+  "DYTMhg1tWxP",
+]);
+
 export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
   const [started, setStarted] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const hasLocal = LOCAL_VIDEOS.has(id);
+  const isCarousel = CAROUSELS.has(id);
 
   const start = () => {
     setStarted(true);
@@ -32,70 +45,127 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     });
   };
 
-  return (
-    <div
-      style={{ aspectRatio: ratio }}
-      className="relative w-full rounded-[16px] border border-border bg-background overflow-hidden"
-    >
-      {hasLocal && started ? (
-        <video
-          ref={videoRef}
-          src={`/instagram-videos/${id}.mp4`}
-          poster={`/instagram-covers/${id}.jpg`}
-          controls
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover bg-black"
-        />
-      ) : hasLocal ? (
-        <button
-          type="button"
-          onClick={start}
-          className="group absolute inset-0 w-full h-full cursor-pointer"
-          aria-label={`Reproduzir vídeo ${id}`}
-        >
-          <img
-            src={`/instagram-covers/${id}.jpg`}
-            alt=""
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          />
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-          <div className="absolute inset-0 grid place-items-center">
-            <span className="grid place-items-center size-12 rounded-full bg-background/90 text-foreground shadow-lg backdrop-blur-sm group-hover:scale-110 transition-transform">
-              <Play className="size-4 fill-current ml-0.5" />
-            </span>
-          </div>
-        </button>
-      ) : started ? (
-        <iframe
-          src={`https://www.instagram.com/p/${id}/embed/captioned`}
-          title={`Publicação ${id} no Instagram de Lucas Fortes`}
-          loading="lazy"
-          scrolling="no"
-          style={{ height: "calc(100% + 240px)", marginTop: "-54px" }}
-          className="absolute top-0 left-0 w-full block border-0 bg-black"
-        />
-      ) : (
-        <button
-          type="button"
-          onClick={() => setStarted(true)}
-          className="group absolute inset-0 w-full h-full cursor-pointer"
-          aria-label={`Ver publicação ${id} no Instagram`}
-        >
-          <img
-            src={`/instagram-covers/${id}.jpg`}
-            alt=""
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-          />
-          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors" />
-        </button>
-      )}
+  const openPhoto = () => {
+    if (hasLocal) {
+      start();
+    } else {
+      setModalOpen(true);
+    }
+  };
 
-    </div>
+  const closeModal = () => setModalOpen(false);
+
+  return (
+    <>
+      <div
+        style={{ aspectRatio: ratio }}
+        className="relative w-full rounded-[16px] border border-border bg-background overflow-hidden"
+      >
+        {hasLocal && started ? (
+          <video
+            ref={videoRef}
+            src={`/instagram-videos/${id}.mp4`}
+            poster={`/instagram-covers/${id}.jpg`}
+            controls
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover bg-black"
+          />
+        ) : hasLocal ? (
+          <button
+            type="button"
+            onClick={start}
+            className="group absolute inset-0 w-full h-full cursor-pointer"
+            aria-label={`Reproduzir vídeo ${id}`}
+          >
+            <img
+              src={`/instagram-covers/${id}.jpg`}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+            <div className="absolute inset-0 grid place-items-center">
+              <span className="grid place-items-center size-12 rounded-full bg-background/90 text-foreground shadow-lg backdrop-blur-sm group-hover:scale-110 transition-transform">
+                <Play className="size-4 fill-current ml-0.5" />
+              </span>
+            </div>
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={openPhoto}
+            className="group absolute inset-0 w-full h-full cursor-pointer"
+            aria-label={`Ver publicação ${id} no Instagram`}
+          >
+            <img
+              src={`/instagram-covers/${id}.jpg`}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors" />
+            {isCarousel && (
+              <div className="absolute top-3 right-3 grid place-items-center size-8 rounded-full bg-black/60 text-white backdrop-blur-sm">
+                <Images className="size-4" />
+              </div>
+            )}
+          </button>
+        )}
+      </div>
+
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+          onClick={closeModal}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Publicação ${id}`}
+        >
+          <button
+            type="button"
+            onClick={closeModal}
+            className="absolute top-4 right-4 grid place-items-center size-11 rounded-full bg-background/10 text-white hover:bg-background/20 transition-colors"
+            aria-label="Fechar"
+          >
+            <X className="size-5" />
+          </button>
+
+          <div
+            className="relative flex flex-col items-center gap-4 max-w-3xl w-full max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full overflow-hidden rounded-[16px] bg-black shadow-2xl max-h-[75vh]">
+              <img
+                src={`/instagram-covers/${id}.jpg`}
+                alt=""
+                className="w-full h-full object-contain max-h-[75vh]"
+              />
+              {isCarousel && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/70 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
+                  <Images className="size-4" />
+                  <span>Carrossel</span>
+                </div>
+              )}
+            </div>
+            <a
+              href={`https://www.instagram.com/p/${id}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-sm text-white hover:bg-white/20 transition-colors shrink-0"
+            >
+              <Instagram className="size-4" />
+              {isCarousel ? "Ver carrossel completo" : "Ver no Instagram"}
+            </a>
+          </div>
+
+
+        </div>
+      )}
+    </>
   );
 }
+
 
 
 
