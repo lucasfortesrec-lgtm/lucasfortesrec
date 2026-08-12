@@ -46,6 +46,7 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           style={{ height: "calc(100% + 56px)", marginTop: "-54px" }}
           className="w-full h-full block border-0"
         />
+
       )}
     </div>
   );
