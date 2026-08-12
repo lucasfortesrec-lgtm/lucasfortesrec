@@ -406,20 +406,21 @@ function Index() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5 [grid-template-rows:masonry]">
-            {INSTAGRAM_POSTS.map(({ id, ratio }, i) => {
-              const rowsArr: Array<1 | 2 | 3> = [2, 1, 2, 1, 3, 1, 2, 1, 2, 1, 1, 3];
-              return (
-                <InstagramCard
-                  key={id}
-                  id={id}
-                  ratio={ratio}
-                  index={i}
-                  rows={rowsArr[i % rowsArr.length]}
-                />
-              );
-            })}
-          </div>
+          <Masonry
+            breakpointCols={{
+              default: 5,
+              1280: 4,
+              1024: 3,
+              640: 2,
+            }}
+            className="flex -ml-4 sm:-ml-5 w-auto"
+            columnClassName="pl-4 sm:pl-5 bg-clip-padding"
+          >
+            {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
+              <InstagramCard key={id} id={id} ratio={ratio} index={i} />
+            ))}
+          </Masonry>
+
 
 
 
