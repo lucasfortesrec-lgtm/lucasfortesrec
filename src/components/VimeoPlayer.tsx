@@ -116,7 +116,7 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
   };
 
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`relative group ${className}`} onContextMenu={(e) => e.preventDefault()}>
       <iframe
         ref={iframeRef}
         src={src}
