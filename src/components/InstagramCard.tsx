@@ -59,9 +59,7 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     <>
       <div
         style={{ aspectRatio: ratio }}
-        className={`relative w-full rounded-[12px] border border-border bg-background overflow-hidden ${
-          ratio >= 1 ? "col-span-2" : ""
-        }`}
+        className="relative w-full rounded-[12px] border border-border bg-background overflow-hidden break-inside-avoid mb-1 sm:mb-1.5 lg:mb-2"
       >
 
         {hasLocal && started ? (
