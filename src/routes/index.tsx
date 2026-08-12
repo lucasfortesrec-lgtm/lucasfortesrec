@@ -405,18 +405,23 @@ function Index() {
 
           <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-4 sm:gap-5">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => {
-              const sizes: Array<"sm" | "md" | "lg" | "xl"> = ["lg", "sm", "md", "xl", "sm", "md", "lg", "sm", "xl", "md", "sm", "lg"];
+              const spans: Array<"single" | "tall" | "wide"> = [
+                "tall", "single", "single", "tall", "single",
+                "single", "tall", "single", "single", "single",
+                "tall", "single",
+              ];
               return (
                 <InstagramCard
                   key={id}
                   id={id}
                   ratio={ratio}
                   index={i}
-                  size={sizes[i % sizes.length]}
+                  span={spans[i % spans.length]}
                 />
               );
             })}
           </div>
+
 
 
 
