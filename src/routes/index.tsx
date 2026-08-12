@@ -48,21 +48,22 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
 
-// ratio = largura/altura da mídia real de cada post (medido no embed)
+// ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
-  { id: "DbVuBimRBFY", ratio: 9 / 16 },
-  { id: "DbO1tXPxxTV", ratio: 9 / 16 },
-  { id: "DbKEQRotrcx", ratio: 9 / 16 },
-  { id: "Da_T_j9kRE7", ratio: 9 / 16 },
-  { id: "DZzywvax8qD", ratio: 9 / 16 },
-  { id: "DYTWBuzNIxx", ratio: 9 / 16 },
-  { id: "DYTQVZ2jSsA", ratio: 9 / 16 },
-  { id: "DYTOutBtDXL", ratio: 9 / 16 },
-  { id: "DYTOZb-NBe2", ratio: 9 / 16 },
-  { id: "DYTMmXZNZVI", ratio: 9 / 16 },
-  { id: "DYTMkB_tMRC", ratio: 9 / 16 },
-  { id: "DYTMhg1tWxP", ratio: 9 / 16 },
+  { id: "DbVuBimRBFY", ratio: 0.5625 },   // 9:16 portrait video
+  { id: "DbO1tXPxxTV", ratio: 0.5625 },   // 9:16 portrait video
+  { id: "DbKEQRotrcx", ratio: 0.8 },      // 4:5 portrait carousel
+  { id: "Da_T_j9kRE7", ratio: 0.7505 },  // ~3:4 portrait carousel
+  { id: "DZzywvax8qD", ratio: 0.5625 },   // 9:16 portrait video
+  { id: "DYTWBuzNIxx", ratio: 1.7778 },   // 16:9 landscape video
+  { id: "DYTQVZ2jSsA", ratio: 1.0682 },  // ~1:1 square/landscape video
+  { id: "DYTOutBtDXL", ratio: 0.8 },      // 4:5 portrait carousel
+  { id: "DYTOZb-NBe2", ratio: 0.8 },      // 4:5 portrait carousel
+  { id: "DYTMmXZNZVI", ratio: 0.8 },      // 4:5 portrait carousel
+  { id: "DYTMkB_tMRC", ratio: 0.8 },      // 4:5 portrait carousel
+  { id: "DYTMhg1tWxP", ratio: 0.8 },      // 4:5 portrait carousel
 ];
+
 
 
 
