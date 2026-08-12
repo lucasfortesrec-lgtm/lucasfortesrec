@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Play, X, Images, Instagram } from "lucide-react";
+import { Play, X, Images, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface InstagramCardProps {
   id: string;
@@ -14,7 +14,15 @@ const LOCAL_VIDEOS = new Set([
   "DZzywvax8qD",
   "DYTWBuzNIxx",
   "DYTQVZ2jSsA",
+  "DbvTSCuRvho",
+  "DayhVSiRCbR",
 ]);
+
+/** Carrosséis com fotos hospedadas localmente — navegáveis dentro do site. */
+const LOCAL_CAROUSELS: Record<string, number> = {
+  Da_T_j9kRE7: 18,
+  DalZ9tIEWOH: 11,
+};
 
 /** Posts we know are Instagram carousels — shown as a photo set without white footer. */
 const CAROUSELS = new Set([
@@ -25,6 +33,7 @@ const CAROUSELS = new Set([
   "DYTMmXZNZVI",
   "DYTMkB_tMRC",
   "DYTMhg1tWxP",
+  "DalZ9tIEWOH",
 ]);
 
 export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
@@ -33,6 +42,13 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const hasLocal = LOCAL_VIDEOS.has(id);
   const isCarousel = CAROUSELS.has(id);
+  const localCount = LOCAL_CAROUSELS[id] ?? 0;
+  const slides = localCount
+    ? Array.from({ length: localCount }, (_, i) => `/instagram-carousels/${id}_${i}.jpg`)
+    : [`/instagram-covers/${id}.jpg`];
+  const [slide, setSlide] = useState(0);
+  const go = (d: number) =>
+    setSlide((s) => (s + d + slides.length) % slides.length);
 
   const start = () => {
     setStarted(true);
@@ -49,6 +65,7 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     if (hasLocal) {
       start();
     } else {
+      setSlide(0);
       setModalOpen(true);
     }
   };
@@ -146,13 +163,36 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           >
             <div className="relative w-full overflow-hidden rounded-[16px] bg-black shadow-2xl max-h-[75vh]">
               <img
-                src={`/instagram-covers/${id}.jpg`}
+                src={slides[slide]}
                 alt=""
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 className="w-full h-full object-contain max-h-[75vh]"
               />
-              {isCarousel && (
+              {slides.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => go(-1)}
+                    aria-label="Anterior"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 grid place-items-center size-10 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+                  >
+                    <ChevronLeft className="size-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => go(1)}
+                    aria-label="Próxima"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 grid place-items-center size-10 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+                  >
+                    <ChevronRight className="size-5" />
+                  </button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/70 px-3 py-1 text-xs text-white backdrop-blur-sm">
+                    {slide + 1} / {slides.length}
+                  </div>
+                </>
+              )}
+              {isCarousel && slides.length === 1 && (
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/70 px-4 py-1.5 text-sm text-white backdrop-blur-sm">
                   <Images className="size-4" />
                   <span>Carrossel</span>
