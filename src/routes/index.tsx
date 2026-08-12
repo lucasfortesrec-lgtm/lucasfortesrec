@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
 import {
   Play,
   Instagram,
@@ -14,6 +15,7 @@ import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
+
 
 const BTS = [
   { src: bts1.url, alt: "Bastidores: entrevista sendo gravada com casal em locação" },
@@ -62,6 +64,8 @@ const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DYTMkB_tMRC", ratio: 9 / 16 },
   { id: "DYTMhg1tWxP", ratio: 9 / 16 },
 ];
+
+
 
 
 const EMAIL = "lucasfortesrec@gmail.com";
@@ -403,16 +407,31 @@ function Index() {
             </a>
           </div>
 
-          <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-3 space-y-3">
+          <Masonry
+            breakpointCols={{
+              default: 5,
+              1280: 4,
+              1024: 3,
+              640: 2,
+            }}
+            className="flex -ml-4 sm:-ml-5 w-auto"
+            columnClassName="pl-4 sm:pl-5 bg-clip-padding"
+          >
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
-          </div>
+          </Masonry>
+
+
+
+
+
 
 
 
         </div>
       </section>
+
 
 
       {/* Contato */}
