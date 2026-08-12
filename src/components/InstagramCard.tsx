@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Play } from "lucide-react";
 
 interface InstagramCardProps {
@@ -7,8 +7,30 @@ interface InstagramCardProps {
   index: number;
 }
 
+/** Posts whose video is hosted locally — these play inline, nothing else on the card. */
+const LOCAL_VIDEOS = new Set([
+  "DbVuBimRBFY",
+  "DbO1tXPxxTV",
+  "DZzywvax8qD",
+  "DYTWBuzNIxx",
+  "DYTQVZ2jSsA",
+]);
+
 export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
-  const [loaded, setLoaded] = useState(false);
+  const [started, setStarted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const hasLocal = LOCAL_VIDEOS.has(id);
+
+  const start = () => {
+    setStarted(true);
+    requestAnimationFrame(() => {
+      const v = videoRef.current;
+      if (!v) return;
+      v.muted = false;
+      v.volume = 1;
+      void v.play();
+    });
+  };
 
   return (
     <div
@@ -17,12 +39,22 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
         index % 5 === 1 ? "sm:mt-8" : index % 5 === 3 ? "sm:mt-12" : ""
       }`}
     >
-      {!loaded ? (
+      {hasLocal && started ? (
+        <video
+          ref={videoRef}
+          src={`/instagram-videos/${id}.mp4`}
+          poster={`/instagram-covers/${id}.jpg`}
+          controls
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover bg-black"
+        />
+      ) : !started ? (
         <button
           type="button"
-          onClick={() => setLoaded(true)}
+          onClick={hasLocal ? start : () => setStarted(true)}
           className="group absolute inset-0 w-full h-full cursor-pointer"
-          aria-label={`Reproduzir publicação ${id} do Instagram`}
+          aria-label={`Reproduzir vídeo ${id}`}
         >
           <img
             src={`/instagram-covers/${id}.jpg`}
@@ -46,7 +78,6 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           style={{ height: "calc(100% + 56px)", marginTop: "-54px" }}
           className="w-full h-full block border-0"
         />
-
       )}
     </div>
   );
