@@ -43,8 +43,8 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
           title={`Publicação ${id} no Instagram de Lucas Fortes`}
           loading="lazy"
           scrolling="no"
-          style={{ height: "calc(100% + 210px)", marginTop: "-54px" }}
-          className="w-full block border-0"
+          style={{ height: "calc(100% + 56px)", marginTop: "-54px" }}
+          className="w-full h-full block border-0"
         />
 
       )}

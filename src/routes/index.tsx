@@ -53,7 +53,7 @@ const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DbO1tXPxxTV", ratio: 4 / 5 },
   { id: "DbKEQRotrcx", ratio: 4 / 5 },
   { id: "Da_T_j9kRE7", ratio: 4 / 5 },
-  { id: "DZzywvax8qD", ratio: 9 / 16 },
+  { id: "DZzywvax8qD", ratio: 4 / 5 },
   { id: "DYTWBuzNIxx", ratio: 16 / 9 },
   { id: "DYTQVZ2jSsA", ratio: 387 / 330 },
   { id: "DYTOutBtDXL", ratio: 4 / 5 },
