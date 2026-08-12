@@ -293,6 +293,8 @@ function Index() {
                 src={lucasSet.url}
                 alt="Lucas Fortes em set de filmagem com iluminação profissional"
                 loading="lazy"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
                 className="w-full aspect-[3/4] object-cover grayscale-[0.25] hover:grayscale-0 transition-all duration-700"
               />
             </div>
@@ -330,6 +332,8 @@ function Index() {
                   src={b.src}
                   alt={b.alt}
                   loading="lazy"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                   className="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 hover:scale-[1.03] transition-all duration-700"
                 />
               </div>
