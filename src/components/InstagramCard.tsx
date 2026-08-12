@@ -5,6 +5,7 @@ interface InstagramCardProps {
   id: string;
   ratio: number;
   index: number;
+  rows?: 1 | 2 | 3;
 }
 
 /** Posts whose video is hosted locally — these play inline, nothing else on the card. */
@@ -16,7 +17,7 @@ const LOCAL_VIDEOS = new Set([
   "DYTQVZ2jSsA",
 ]);
 
-export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
+export function InstagramCard({ id, ratio, index, rows = 1 }: InstagramCardProps) {
   const [started, setStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const hasLocal = LOCAL_VIDEOS.has(id);
@@ -32,27 +33,12 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     });
   };
 
-  const offsetClass =
-    index % 8 === 0
-      ? "mt-0"
-      : index % 8 === 1
-      ? "mt-8 sm:mt-12"
-      : index % 8 === 2
-      ? "mt-2 sm:mt-3"
-      : index % 8 === 3
-      ? "mt-10 sm:mt-16"
-      : index % 8 === 4
-      ? "mt-4 sm:mt-6"
-      : index % 8 === 5
-      ? "mt-7 sm:mt-10"
-      : index % 8 === 6
-      ? "mt-1 sm:mt-2"
-      : "mt-6 sm:mt-9";
+  const rowClass = rows === 3 ? "row-span-3" : rows === 2 ? "row-span-2" : "row-span-1";
 
   return (
     <div
       style={{ aspectRatio: ratio }}
-      className={`relative w-full rounded-[16px] border border-border bg-background overflow-hidden break-inside-avoid ${offsetClass}`}
+      className={`relative w-full rounded-[16px] border border-border bg-background overflow-hidden ${rowClass}`}
     >
       {hasLocal && started ? (
         <video
@@ -113,6 +99,7 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
     </div>
   );
 }
+
 
 
 
