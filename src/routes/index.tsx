@@ -408,20 +408,11 @@ function Index() {
             </a>
           </div>
 
-          <Masonry
-            breakpointCols={{
-              default: 5,
-              1280: 4,
-              1024: 3,
-              640: 2,
-            }}
-            className="flex -ml-2 sm:-ml-3 w-auto"
-            columnClassName="pl-2 sm:pl-3 bg-clip-padding"
-          >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
-          </Masonry>
+          </div>
 
 
 
