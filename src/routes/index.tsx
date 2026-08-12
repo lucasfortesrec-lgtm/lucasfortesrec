@@ -414,8 +414,8 @@ function Index() {
               1024: 3,
               640: 2,
             }}
-            className="flex -ml-4 sm:-ml-5 w-auto"
-            columnClassName="pl-4 sm:pl-5 bg-clip-padding"
+            className="flex -ml-2 sm:-ml-3 w-auto"
+            columnClassName="pl-2 sm:pl-3 bg-clip-padding"
           >
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
