@@ -69,12 +69,20 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
             </span>
           </div>
         </button>
+      ) : started ? (
+        <iframe
+          src={`https://www.instagram.com/p/${id}/embed/captioned`}
+          title={`Publicação ${id} no Instagram de Lucas Fortes`}
+          loading="lazy"
+          scrolling="no"
+          style={{ height: "calc(100% + 240px)", marginTop: "-54px" }}
+          className="absolute top-0 left-0 w-full block border-0 bg-black"
+        />
       ) : (
-        <a
-          href={`https://www.instagram.com/p/${id}/`}
-          target="_blank"
-          rel="noreferrer"
-          className="group absolute inset-0 w-full h-full block"
+        <button
+          type="button"
+          onClick={() => setStarted(true)}
+          className="group absolute inset-0 w-full h-full cursor-pointer"
           aria-label={`Ver publicação ${id} no Instagram`}
         >
           <img
@@ -84,8 +92,9 @@ export function InstagramCard({ id, ratio, index }: InstagramCardProps) {
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors" />
-        </a>
+        </button>
       )}
+
     </div>
   );
 }
