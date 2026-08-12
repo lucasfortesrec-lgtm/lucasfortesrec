@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Play, X, Images } from "lucide-react";
+import { Play, X, Images, Instagram } from "lucide-react";
 
 interface InstagramCardProps {
   id: string;
