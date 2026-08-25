@@ -104,6 +104,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children:
           "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'AW-18407727498');",
       },
+      {
+        children:
+          "function gtag_report_conversion(url){var callback=function(){if(typeof(url)!='undefined'){window.location=url;}};gtag('event','conversion',{'send_to':'AW-18407727498/G-vvCMDzvuccEIrDvslE','transaction_id':'','event_callback':callback});return false;}",
+      },
+
     ],
   }),
   shellComponent: RootShell,

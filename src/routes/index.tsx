@@ -48,6 +48,15 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
 
+// Dispara a conversão do Google Ads ao clicar em contatos de WhatsApp
+function reportWhatsappConversion() {
+  const fn = (window as unknown as {
+    gtag_report_conversion?: (url?: string) => boolean;
+  }).gtag_report_conversion;
+  if (typeof fn === "function") fn();
+}
+
+
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DbvTSCuRvho", ratio: 0.5625 },   // 9:16 portrait video
@@ -457,6 +466,7 @@ function Index() {
           <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
             <a
               href={WHATSAPP_URL}
+              onClick={reportWhatsappConversion}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform shadow-[var(--shadow-elegant)]"
@@ -531,6 +541,7 @@ function Index() {
             </a>
             <a
               href={WHATSAPP_URL}
+              onClick={reportWhatsappConversion}
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
@@ -552,6 +563,7 @@ function Index() {
       {/* Floating WhatsApp */}
       <a
         href={WHATSAPP_URL}
+        onClick={reportWhatsappConversion}
         target="_blank"
         rel="noreferrer"
         aria-label="Falar no WhatsApp"
