@@ -87,6 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Direção, câmera e cor cinematográfica para marcas, profissionais liberais e eventos premium em Santa Catarina. Filmes que fazem o negócio ser lembrado." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e2fffcbe-b572-4fa5-8723-4193a0033d1f/id-preview-e82c6fca--fba67ec7-faec-4e37-ad4c-5b6b899c2c68.lovable.app-1785619804489.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e2fffcbe-b572-4fa5-8723-4193a0033d1f/id-preview-e82c6fca--fba67ec7-faec-4e37-ad4c-5b6b899c2c68.lovable.app-1785619804489.png" },
+      { name: "google-site-verification", content: "bVZKzcS_y2-saaaE0Yph9PkhDZg2addIsKij8Td06bA" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
