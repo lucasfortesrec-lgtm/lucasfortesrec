@@ -466,6 +466,7 @@ function Index() {
           <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
             <a
               href={WHATSAPP_URL}
+              onClick={reportWhatsappConversion}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-3 rounded-full bg-brand text-brand-foreground px-9 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] hover:-translate-y-0.5 transition-transform shadow-[var(--shadow-elegant)]"
@@ -540,6 +541,7 @@ function Index() {
             </a>
             <a
               href={WHATSAPP_URL}
+              onClick={reportWhatsappConversion}
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
@@ -561,6 +563,7 @@ function Index() {
       {/* Floating WhatsApp */}
       <a
         href={WHATSAPP_URL}
+        onClick={reportWhatsappConversion}
         target="_blank"
         rel="noreferrer"
         aria-label="Falar no WhatsApp"
