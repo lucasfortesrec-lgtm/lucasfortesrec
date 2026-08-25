@@ -48,6 +48,15 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL = "https://wa.me/5548998294750";
 const INSTAGRAM_URL = "https://instagram.com/lucasfortes.rec";
 
+// Dispara a conversão do Google Ads ao clicar em contatos de WhatsApp
+function reportWhatsappConversion() {
+  const fn = (window as unknown as {
+    gtag_report_conversion?: (url?: string) => boolean;
+  }).gtag_report_conversion;
+  if (typeof fn === "function") fn();
+}
+
+
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DbvTSCuRvho", ratio: 0.5625 },   // 9:16 portrait video
