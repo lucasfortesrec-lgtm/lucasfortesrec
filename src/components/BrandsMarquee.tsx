@@ -6,6 +6,8 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const userPausedRef = useRef(false);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dragRef = useRef<{ active: boolean; startX: number; startScroll: number }>({
     active: false,
