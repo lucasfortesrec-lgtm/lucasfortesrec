@@ -309,7 +309,7 @@ function Index() {
                       alt={`Logo ${brand.name}`}
                       loading="lazy"
                       onContextMenu={(e) => e.preventDefault()}
-                      className="max-h-10 md:max-h-12 max-w-[70%] w-auto object-contain opacity-70 transition duration-300 hover:opacity-100"
+                      className={`${brand.scale ?? "max-h-10 md:max-h-12 max-w-[70%]"} w-auto object-contain opacity-70 transition duration-300 hover:opacity-100`}
 
                     />
                   </div>
