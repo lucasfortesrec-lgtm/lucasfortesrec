@@ -14,6 +14,19 @@ import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
+import brandGwm from "@/assets/image-2.png.asset.json";
+import brandVolvo from "@/assets/image-3.png.asset.json";
+import brandXp from "@/assets/image-4.png.asset.json";
+import brandRdo from "@/assets/image-5.png.asset.json";
+import brandEuQueroCarros from "@/assets/image-6.png.asset.json";
+
+const BRANDS: { name: string; src: string }[] = [
+  { name: "GWM", src: brandGwm.url },
+  { name: "Volvo", src: brandVolvo.url },
+  { name: "XP", src: brandXp.url },
+  { name: "RDO", src: brandRdo.url },
+  { name: "Eu Quero Carros", src: brandEuQueroCarros.url },
+];
 
 
 const BTS = [
