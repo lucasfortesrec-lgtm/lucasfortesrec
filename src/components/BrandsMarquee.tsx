@@ -9,10 +9,10 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const [userPaused, setUserPaused] = useState(false);
   const userPausedRef = useRef(false);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const dragRef = useRef<{ active: boolean; startX: number; startScroll: number }>({
+  const dragRef = useRef<{ active: boolean; pointerId: number; lastX: number }>({
     active: false,
-    startX: 0,
-    startScroll: 0,
+    pointerId: -1,
+    lastX: 0,
   });
 
   useEffect(() => {
@@ -57,32 +57,41 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     };
   }, []);
 
-  const pauseForTouchMomentum = () => {
-    pausedRef.current = true;
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      pausedRef.current = false;
-    }, 220);
+  const normalizeScrollPosition = (el: HTMLDivElement) => {
+    const width = trackRef.current?.offsetWidth ?? 0;
+    if (width <= 0) return;
+    while (el.scrollLeft >= width * 2) el.scrollLeft -= width;
+    while (el.scrollLeft < width) el.scrollLeft += width;
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
-    // Touch/pen use native momentum scrolling — only mouse gets manual drag
-    if (!el || e.pointerType !== "mouse") return;
-    dragRef.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft };
+    if (!el) return;
+    pausedRef.current = true;
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    dragRef.current = { active: true, pointerId: e.pointerId, lastX: e.clientX };
     el.setPointerCapture(e.pointerId);
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
-    if (!el || !dragRef.current.active || e.pointerType !== "mouse") return;
-    el.scrollLeft = dragRef.current.startScroll - (e.clientX - dragRef.current.startX);
+    if (!el || !dragRef.current.active || dragRef.current.pointerId !== e.pointerId) return;
+    const delta = e.clientX - dragRef.current.lastX;
+    dragRef.current.lastX = e.clientX;
+    el.scrollLeft -= delta;
+    normalizeScrollPosition(el);
   };
 
   const endDrag = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
-    dragRef.current.active = false;
+    if (dragRef.current.pointerId !== e.pointerId) return;
+    dragRef.current = { active: false, pointerId: -1, lastX: 0 };
+    if (el) normalizeScrollPosition(el);
     if (el?.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      pausedRef.current = false;
+    }, 500);
   };
 
   return (
@@ -95,10 +104,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        onTouchStart={pauseForTouchMomentum}
-        onTouchMove={pauseForTouchMomentum}
-        onTouchEnd={pauseForTouchMomentum}
-        className="flex overflow-x-auto overscroll-x-contain touch-pan-x cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex max-w-full overflow-x-hidden overscroll-x-none touch-pan-y cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {[0, 1, 2].map((dup) => (
           <div
