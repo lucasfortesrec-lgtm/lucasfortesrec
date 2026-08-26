@@ -57,14 +57,6 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     };
   }, []);
 
-  const pauseForTouchMomentum = () => {
-    pausedRef.current = true;
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      pausedRef.current = false;
-    }, 220);
-  };
-
   const normalizeScrollPosition = (el: HTMLDivElement) => {
     const width = trackRef.current?.offsetWidth ?? 0;
     if (width <= 0) return;
