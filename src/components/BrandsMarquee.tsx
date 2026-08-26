@@ -125,6 +125,21 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
           </div>
         ))}
       </div>
+
+      <div className="mt-6 hidden justify-center md:flex">
+        <button
+          type="button"
+          onClick={() => {
+            const next = !userPausedRef.current;
+            userPausedRef.current = next;
+            setUserPaused(next);
+          }}
+          aria-pressed={userPaused}
+          className="rounded-full border border-border px-5 py-2 text-[11px] uppercase tracking-[0.25em] text-bone/60 transition duration-300 hover:text-bone hover:border-bone/40"
+        >
+          {userPaused ? "Retomar" : "Pausar"}
+        </button>
+      </div>
     </div>
   );
 }
