@@ -4,37 +4,64 @@ export type Brand = { name: string; src: string; scale?: string };
 
 export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const dragRef = useRef<{ active: boolean; startX: number; startScroll: number }>({
     active: false,
     startX: 0,
     startScroll: 0,
   });
 
-  // Auto-scroll loop
   useEffect(() => {
     const el = scrollerRef.current;
-    if (!el) return;
+    const track = trackRef.current;
+    if (!el || !track) return;
     let raf = 0;
     let last = performance.now();
     const speed = 28; // px per second
 
+    const centerOnMiddleCopy = () => {
+      const width = track.offsetWidth;
+      if (width > 0) el.scrollLeft = width;
+    };
+
+    centerOnMiddleCopy();
+    const resizeObserver = new ResizeObserver(centerOnMiddleCopy);
+    resizeObserver.observe(track);
+
     const tick = (now: number) => {
       const dt = (now - last) / 1000;
       last = now;
+      const width = track.offsetWidth;
+
+      // Keep the viewport inside the middle copy. The neighboring copies are
+      // identical, so this coordinate correction is visually imperceptible.
+      if (width > 0) {
+        while (el.scrollLeft >= width * 2) el.scrollLeft -= width;
+        while (el.scrollLeft < width) el.scrollLeft += width;
+      }
+
       if (!pausedRef.current && !dragRef.current.active) {
         el.scrollLeft += speed * dt;
-      }
-      const half = el.scrollWidth / 2;
-      if (half > 0) {
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-        else if (el.scrollLeft < 0) el.scrollLeft += half;
       }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      resizeObserver.disconnect();
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
   }, []);
+
+  const pauseForTouchMomentum = () => {
+    pausedRef.current = true;
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      pausedRef.current = false;
+    }, 220);
+  };
 
   const onPointerDown = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
@@ -68,13 +95,18 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         onPointerCancel={endDrag}
         onMouseEnter={() => (pausedRef.current = true)}
         onMouseLeave={() => (pausedRef.current = false)}
-        onTouchStart={() => (pausedRef.current = true)}
-        onTouchEnd={() => (pausedRef.current = false)}
+        onTouchStart={pauseForTouchMomentum}
+        onTouchMove={pauseForTouchMomentum}
+        onTouchEnd={pauseForTouchMomentum}
         className="flex overflow-x-auto overscroll-x-contain touch-pan-x cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
-
-        {[0, 1].map((dup) => (
-          <div key={dup} className="flex shrink-0" aria-hidden={dup === 1}>
+        {[0, 1, 2].map((dup) => (
+          <div
+            key={dup}
+            ref={dup === 0 ? trackRef : undefined}
+            className="flex shrink-0"
+            aria-hidden={dup !== 1}
+          >
             {brands.map((brand) => (
               <div
                 key={`${dup}-${brand.name}`}
