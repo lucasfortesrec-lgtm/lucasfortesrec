@@ -17,7 +17,6 @@ import bts4 from "@/assets/bts-4.jpg.asset.json";
 const BRANDS: { name: string; src: string }[] = [
   { name: "GWM", src: "/brands/gwm.png" },
   { name: "Volvo", src: "/brands/volvo.png" },
-  { name: "XP", src: "/brands/xp.png" },
   { name: "RDO", src: "/brands/rdo.png" },
   { name: "Eu Quero Carros", src: "/brands/euquerocarros.png" },
 ];
