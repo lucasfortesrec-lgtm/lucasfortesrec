@@ -14,6 +14,19 @@ import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
+import brandGwm from "@/assets/image-2.png.asset.json";
+import brandVolvo from "@/assets/image-3.png.asset.json";
+import brandXp from "@/assets/image-4.png.asset.json";
+import brandRdo from "@/assets/image-5.png.asset.json";
+import brandEuQueroCarros from "@/assets/image-6.png.asset.json";
+
+const BRANDS: { name: string; src: string }[] = [
+  { name: "GWM", src: brandGwm.url },
+  { name: "Volvo", src: brandVolvo.url },
+  { name: "XP", src: brandXp.url },
+  { name: "RDO", src: brandRdo.url },
+  { name: "Eu Quero Carros", src: brandEuQueroCarros.url },
+];
 
 
 const BTS = [
@@ -277,7 +290,30 @@ function Index() {
         </div>
       </section>
 
+      {/* Marcas atendidas */}
+      <section id="marcas" className="py-20 md:py-24 px-5 md:px-10 border-t border-border">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+            Marcas atendidas
+          </div>
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-10 items-center">
+            {BRANDS.map((brand) => (
+              <div key={brand.name} className="flex items-center justify-center">
+                <img
+                  src={brand.src}
+                  alt={`Logo ${brand.name}`}
+                  loading="lazy"
+                  onContextMenu={(e) => e.preventDefault()}
+                  className="max-h-12 md:max-h-14 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Sobre */}
+
       <section id="sobre" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1100px] mx-auto">
           <div className="flex items-baseline gap-4">
