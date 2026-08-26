@@ -38,14 +38,15 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
 
   const onPointerDown = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
-    if (!el) return;
+    // Touch/pen use native momentum scrolling — only mouse gets manual drag
+    if (!el || e.pointerType !== "mouse") return;
     dragRef.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft };
     el.setPointerCapture(e.pointerId);
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
-    if (!el || !dragRef.current.active) return;
+    if (!el || !dragRef.current.active || e.pointerType !== "mouse") return;
     el.scrollLeft = dragRef.current.startScroll - (e.clientX - dragRef.current.startX);
   };
 
@@ -69,8 +70,9 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         onMouseLeave={() => (pausedRef.current = false)}
         onTouchStart={() => (pausedRef.current = true)}
         onTouchEnd={() => (pausedRef.current = false)}
-        className="flex overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex overflow-x-auto overscroll-x-contain touch-pan-x cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
+
         {[0, 1].map((dup) => (
           <div key={dup} className="flex shrink-0" aria-hidden={dup === 1}>
             {brands.map((brand) => (
