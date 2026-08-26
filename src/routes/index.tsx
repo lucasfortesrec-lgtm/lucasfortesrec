@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { VimeoPlayer } from "@/components/VimeoPlayer";
 import { InstagramCard } from "@/components/InstagramCard";
+import BrandsMarquee from "@/components/BrandsMarquee";
 import lucasSet from "@/assets/lucas-set.jpg.asset.json";
 import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
@@ -293,31 +294,7 @@ function Index() {
           </div>
         </div>
 
-        <div className="relative mt-10">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 md:w-32 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 md:w-32 bg-gradient-to-l from-background to-transparent" />
-          <div className="flex w-max animate-marquee" style={{ animationDuration: "55s" }}>
-            {[0, 1].map((dup) => (
-              <div key={dup} className="flex shrink-0" aria-hidden={dup === 1}>
-                {BRANDS.map((brand) => (
-                  <div
-                    key={`${dup}-${brand.name}`}
-                    className="mx-3 flex h-24 w-44 md:h-28 md:w-56 shrink-0 items-center justify-center rounded-[16px] border border-border bg-bone/[0.04] px-6"
-                  >
-                    <img
-                      src={brand.src}
-                      alt={`Logo ${brand.name}`}
-                      loading="lazy"
-                      onContextMenu={(e) => e.preventDefault()}
-                      className={`${brand.scale ?? "max-h-10 md:max-h-12 max-w-[70%]"} w-auto object-contain opacity-70 transition duration-300 hover:opacity-100`}
-
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <BrandsMarquee brands={BRANDS} />
       </section>
 
 

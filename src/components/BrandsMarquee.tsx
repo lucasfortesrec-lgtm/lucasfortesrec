@@ -1,0 +1,96 @@
+import { useEffect, useRef } from "react";
+
+export type Brand = { name: string; src: string; scale?: string };
+
+export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const dragRef = useRef<{ active: boolean; startX: number; startScroll: number }>({
+    active: false,
+    startX: 0,
+    startScroll: 0,
+  });
+
+  // Auto-scroll loop
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = performance.now();
+    const speed = 28; // px per second
+
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (!pausedRef.current && !dragRef.current.active) {
+        el.scrollLeft += speed * dt;
+      }
+      const half = el.scrollWidth / 2;
+      if (half > 0) {
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
+        else if (el.scrollLeft < 0) el.scrollLeft += half;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    dragRef.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft };
+    el.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    const el = scrollerRef.current;
+    if (!el || !dragRef.current.active) return;
+    el.scrollLeft = dragRef.current.startScroll - (e.clientX - dragRef.current.startX);
+  };
+
+  const endDrag = (e: React.PointerEvent) => {
+    const el = scrollerRef.current;
+    dragRef.current.active = false;
+    if (el?.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+  };
+
+  return (
+    <div className="relative mt-10">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 md:w-32 bg-gradient-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 md:w-32 bg-gradient-to-l from-background to-transparent" />
+      <div
+        ref={scrollerRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onMouseEnter={() => (pausedRef.current = true)}
+        onMouseLeave={() => (pausedRef.current = false)}
+        onTouchStart={() => (pausedRef.current = true)}
+        onTouchEnd={() => (pausedRef.current = false)}
+        className="flex overflow-x-auto overscroll-x-contain cursor-grab active:cursor-grabbing select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {[0, 1].map((dup) => (
+          <div key={dup} className="flex shrink-0" aria-hidden={dup === 1}>
+            {brands.map((brand) => (
+              <div
+                key={`${dup}-${brand.name}`}
+                className="mx-3 flex h-24 w-44 md:h-28 md:w-56 shrink-0 items-center justify-center rounded-[16px] border border-border bg-bone/[0.04] px-6"
+              >
+                <img
+                  src={brand.src}
+                  alt={`Logo ${brand.name}`}
+                  loading="lazy"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
+                  className={`${brand.scale ?? "max-h-10 md:max-h-12 max-w-[70%]"} w-auto object-contain opacity-70 transition duration-300 hover:opacity-100`}
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
