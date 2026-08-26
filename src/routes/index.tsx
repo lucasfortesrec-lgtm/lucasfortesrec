@@ -20,13 +20,14 @@ import brandXp from "@/assets/image-4.png.asset.json";
 import brandRdo from "@/assets/image-5.png.asset.json";
 import brandEuQueroCarros from "@/assets/image-6.png.asset.json";
 
-const BRANDS: { name: string; src: string }[] = [
+const BRANDS: { name: string; src: string; invert?: boolean }[] = [
   { name: "GWM", src: brandGwm.url },
-  { name: "Volvo", src: brandVolvo.url },
+  { name: "Volvo", src: brandVolvo.url, invert: true },
   { name: "XP", src: brandXp.url },
-  { name: "RDO", src: brandRdo.url },
+  { name: "RDO", src: brandRdo.url, invert: true },
   { name: "Eu Quero Carros", src: brandEuQueroCarros.url },
 ];
+
 
 
 const BTS = [
