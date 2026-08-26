@@ -44,7 +44,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         while (el.scrollLeft < width) el.scrollLeft += width;
       }
 
-      if (!pausedRef.current && !dragRef.current.active) {
+      if (!pausedRef.current && !userPausedRef.current && !dragRef.current.active) {
         el.scrollLeft += speed * dt;
       }
       raf = requestAnimationFrame(tick);
