@@ -14,12 +14,12 @@ import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
-const BRANDS: { name: string; src: string }[] = [
+const BRANDS: { name: string; src: string; scale?: string }[] = [
   { name: "GWM", src: "/brands/gwm.png" },
   { name: "Volvo", src: "/brands/volvo.png" },
   { name: "RDO", src: "/brands/rdo.png" },
   { name: "Eu Quero Carros", src: "/brands/euquerocarros.png" },
-  { name: "Sandro Consórcios", src: "/brands/sandro.png" },
+  { name: "Sandro Consórcios", src: "/brands/sandro.png", scale: "max-h-12 md:max-h-14 max-w-[85%]" },
 ];
 
 
