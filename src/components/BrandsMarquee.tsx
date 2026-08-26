@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type Brand = { name: string; src: string; scale?: string };
 
@@ -6,6 +6,8 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const userPausedRef = useRef(false);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dragRef = useRef<{ active: boolean; startX: number; startScroll: number }>({
     active: false,
@@ -42,7 +44,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         while (el.scrollLeft < width) el.scrollLeft += width;
       }
 
-      if (!pausedRef.current && !dragRef.current.active) {
+      if (!pausedRef.current && !userPausedRef.current && !dragRef.current.active) {
         el.scrollLeft += speed * dt;
       }
       raf = requestAnimationFrame(tick);
@@ -93,8 +95,6 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        onMouseEnter={() => (pausedRef.current = true)}
-        onMouseLeave={() => (pausedRef.current = false)}
         onTouchStart={pauseForTouchMomentum}
         onTouchMove={pauseForTouchMomentum}
         onTouchEnd={pauseForTouchMomentum}
@@ -124,6 +124,21 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
             ))}
           </div>
         ))}
+      </div>
+
+      <div className="mt-6 hidden justify-center md:flex">
+        <button
+          type="button"
+          onClick={() => {
+            const next = !userPausedRef.current;
+            userPausedRef.current = next;
+            setUserPaused(next);
+          }}
+          aria-pressed={userPaused}
+          className="rounded-full border border-border px-5 py-2 text-[11px] uppercase tracking-[0.25em] text-bone/60 transition duration-300 hover:text-bone hover:border-bone/40"
+        >
+          {userPaused ? "Retomar" : "Pausar"}
+        </button>
       </div>
     </div>
   );
