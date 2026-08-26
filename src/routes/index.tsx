@@ -19,6 +19,7 @@ const BRANDS: { name: string; src: string }[] = [
   { name: "Volvo", src: "/brands/volvo.png" },
   { name: "RDO", src: "/brands/rdo.png" },
   { name: "Eu Quero Carros", src: "/brands/euquerocarros.png" },
+  { name: "Sandro Consórcios", src: "/brands/sandro.png" },
 ];
 
 
