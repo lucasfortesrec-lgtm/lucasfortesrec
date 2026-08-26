@@ -315,9 +315,10 @@ function Index() {
                       alt={`Logo ${brand.name}`}
                       loading="lazy"
                       onContextMenu={(e) => e.preventDefault()}
-                      className={`max-h-10 md:max-h-12 w-auto object-contain opacity-80 grayscale mix-blend-screen transition duration-300 hover:opacity-100 ${
-                        brand.invert ? "invert" : ""
+                      className={`max-h-12 md:max-h-14 w-auto object-contain opacity-90 mix-blend-screen transition duration-300 hover:opacity-100 ${
+                        brand.invert ? "brightness-0 invert" : "brightness-125"
                       }`}
+
                     />
                   </div>
                 ))}
