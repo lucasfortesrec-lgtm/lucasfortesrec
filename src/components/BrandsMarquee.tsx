@@ -95,8 +95,6 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
-        onMouseEnter={() => (pausedRef.current = true)}
-        onMouseLeave={() => (pausedRef.current = false)}
         onTouchStart={pauseForTouchMomentum}
         onTouchMove={pauseForTouchMomentum}
         onTouchEnd={pauseForTouchMomentum}
