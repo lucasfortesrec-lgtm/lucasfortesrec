@@ -5,10 +5,8 @@ export type Brand = { name: string; src: string; scale?: string };
 export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false);
   const [userPaused, setUserPaused] = useState(false);
   const userPausedRef = useRef(false);
-  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dragRef = useRef<{ active: boolean; pointerId: number; lastX: number }>({
     active: false,
     pointerId: -1,
@@ -44,7 +42,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         while (el.scrollLeft < width) el.scrollLeft += width;
       }
 
-      if (!pausedRef.current && !userPausedRef.current && !dragRef.current.active) {
+      if (!userPausedRef.current) {
         el.scrollLeft += speed * dt;
       }
       raf = requestAnimationFrame(tick);
@@ -53,7 +51,6 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     return () => {
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
-      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
     };
   }, []);
 
@@ -67,8 +64,6 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const onPointerDown = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
     if (!el) return;
-    pausedRef.current = true;
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
     dragRef.current = { active: true, pointerId: e.pointerId, lastX: e.clientX };
     el.setPointerCapture(e.pointerId);
   };
@@ -88,10 +83,6 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     dragRef.current = { active: false, pointerId: -1, lastX: 0 };
     if (el) normalizeScrollPosition(el);
     if (el?.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      pausedRef.current = false;
-    }, 500);
   };
 
   return (
