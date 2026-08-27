@@ -21,6 +21,7 @@ const BRANDS: { name: string; src: string; scale?: string }[] = [
   { name: "RDO", src: "/brands/rdo.png" },
   { name: "Eu Quero Carros", src: "/brands/euquerocarros.png" },
   { name: "Sandro Consórcios", src: "/brands/sandro.png", scale: "max-h-12 md:max-h-14 max-w-[85%]" },
+  { name: "Serginho Multimarcas", src: "/brands/serginho.png", scale: "max-h-12 md:max-h-14 max-w-[85%]" },
 ];
 
 
