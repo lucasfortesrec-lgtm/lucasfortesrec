@@ -223,8 +223,9 @@ function Index() {
               <h1 className="mt-8 font-display font-extrabold uppercase leading-[0.86] tracking-[-0.045em] text-[clamp(2.9rem,10vw,8.5rem)]">
                 <span className="block text-[0.62em] leading-[0.95]">TRANSFORMANDO</span>
                 <span className="block">
-                  <span className="inline-block">IDEIAS EM</span>{" "}
-                  <span className="inline-block font-serif-editorial lowercase text-brand normal-case tracking-[-0.02em]">
+                  <span className="inline-block">IDEIAS</span>{" "}
+                  <span className="inline-block text-[0.62em]">EM</span>{" "}
+                  <span className="inline-block font-serif-editorial lowercase text-brand normal-case tracking-[-0.02em] text-[1.2em]">
                     filmes
                   </span>
                 </span>
