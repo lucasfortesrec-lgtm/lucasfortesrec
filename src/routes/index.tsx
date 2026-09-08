@@ -70,7 +70,7 @@ function reportWhatsappConversion() {
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DbvTSCuRvho", ratio: 0.5625 },   // 9:16 portrait video
-  { id: "DayhVSiRCbR", ratio: 0.5625 },   // 9:16 portrait video
+  
   { id: "DalZ9tIEWOH", ratio: 0.7503 },   // 3:4 carousel
   { id: "DbKGDD-tjsi", ratio: 0.8003 },   // 4:5 photo
   { id: "DbVuBimRBFY", ratio: 0.5625 },   // 9:16 portrait video
