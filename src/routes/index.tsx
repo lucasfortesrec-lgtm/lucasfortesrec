@@ -477,10 +477,9 @@ function Index() {
       <section id="contato" className="relative py-28 md:py-40 px-5 md:px-10 border-t border-border overflow-hidden">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 size-[32rem] rounded-full bg-brand/10 blur-3xl" />
         <div className="relative max-w-[1100px] mx-auto text-center">
-          <div className="inline-flex items-center gap-4">
-            <span className="font-serif-editorial text-brand text-xl">05</span>
-            <span className="text-[11px] uppercase tracking-[0.32em] text-muted-foreground">Contato</span>
-          </div>
+          <span className="block text-[11px] uppercase tracking-[0.32em] text-muted-foreground [text-indent:0.32em]">
+            Contato
+          </span>
 
           <h2 className="mt-8 font-display text-4xl md:text-7xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em] text-balance">
             Conte a ideia,
