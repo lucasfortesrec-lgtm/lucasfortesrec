@@ -186,7 +186,7 @@ function Index() {
             />
           </a>
 
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-x-7 lg:gap-x-9">
+          <nav className="flex min-w-0 flex-1 flex-wrap items-center justify-end gap-x-5 gap-y-2 md:gap-x-7 lg:gap-x-9">
             {nav.map((n) => (
               <a
                 key={n.href}
