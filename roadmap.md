@@ -1,0 +1,3 @@
+- [x] Apply the supplied logo to the header and footer, preserving proportions and contrast.
+- [x] Derive the browser favicon from the supplied logo.
+- [ ] Verify the logo placements and package security update.
