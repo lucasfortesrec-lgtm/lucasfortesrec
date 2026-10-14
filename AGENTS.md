@@ -1,0 +1,1 @@
+Brand images in the header and footer use the same imported CDN asset pointer; the favicon is a separate proportionally downscaled raster in public so browser icons remain lightweight.

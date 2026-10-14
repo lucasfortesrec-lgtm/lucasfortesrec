@@ -15,6 +15,7 @@ import bts1 from "@/assets/bts-1.jpg.asset.json";
 import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
+import brandLogo from "@/assets/lucas-fortes-logo.png.asset.json";
 const BRANDS: { name: string; src: string; scale?: string }[] = [
   { name: "GWM", src: "/brands/gwm.png" },
   { name: "Volvo", src: "/brands/volvo.png" },
@@ -175,17 +176,17 @@ function Index() {
         }`}
       >
         <div className="max-w-[1500px] mx-auto px-5 md:px-10 min-h-[72px] py-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-          <a href="#top" className="flex items-baseline gap-2 shrink-0">
-            <span className="font-display text-[15px] md:text-[17px] font-extrabold tracking-[-0.02em] uppercase">
-              Lucas Fortes<span className="text-brand">.</span>
-              <span className="text-brand">rec</span>
-            </span>
-            <span className="hidden sm:inline text-[9px] uppercase tracking-[0.4em] text-muted-foreground">
-              Filmmaker
-            </span>
+          <a href="#top" aria-label="Lucas Fortes REC — início" className="shrink-0 rounded-lg bg-foreground p-2">
+            <img
+              src={brandLogo.url}
+              alt="Lucas Fortes REC — Filmmaker"
+              width={527}
+              height={616}
+              className="h-14 md:h-16 w-auto object-contain"
+            />
           </a>
 
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-x-7 lg:gap-x-9">
+          <nav className="flex min-w-0 flex-1 flex-wrap items-center justify-end gap-x-5 gap-y-2 md:gap-x-7 lg:gap-x-9">
             {nav.map((n) => (
               <a
                 key={n.href}
@@ -528,10 +529,16 @@ function Index() {
       <footer className="border-t border-border px-5 md:px-10 py-12">
         <div className="max-w-[1500px] mx-auto grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div className="min-w-0">
-            <div className="font-display text-base font-extrabold uppercase tracking-[-0.02em]">
-              Lucas Fortes<span className="text-foreground">.</span>
-              <span className="text-brand">rec</span>
-            </div>
+            <a href="#top" aria-label="Lucas Fortes REC — início" className="inline-flex rounded-lg bg-foreground p-3">
+              <img
+                src={brandLogo.url}
+                alt="Lucas Fortes REC — Filmmaker"
+                width={527}
+                height={616}
+                loading="lazy"
+                className="h-36 w-auto object-contain"
+              />
+            </a>
             <div className="mt-2 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
               Rua Campolino Alves, 300 · Sala 414 · Capoeiras
             </div>
