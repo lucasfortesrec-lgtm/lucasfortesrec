@@ -9,3 +9,7 @@
 - [x] Verify the cleaned presentation, playback, modal dismissal and focus on desktop/mobile without publishing; build OK, one control at a time, delayed SDK click and failure fallback checked.
 - [x] Hide controls throughout active playback and request no YouTube captions through available API options.
 - [x] Test real YouTube playback/audio, hover/focus with zero icons, pause/resume, empty captions track, vertical playback intent, modal dismissal/focus on desktop/mobile; leave publication to the user. Actual Vimeo playback remains blocked as noted above.
+- [x] Replace Instagram masonry with one continuous horizontal carousel preserving all 20 cards and their order.
+- [x] Coordinate media selection, exclusive playback, manual navigation, visibility and reduced-motion pauses.
+- [x] Verify desktop/mobile arrows, mouse drag and actual touch swipe, auto movement, selection/close, new/old photo slides, unique cards, no page overflow and build without publishing.
+- [ ] Verify real new/old Instagram video playback: test Chromium reports no H.264 support (MEDIA_ERR_SRC_NOT_SUPPORTED); selection retention, explicit close and simulated end lifecycle passed, original MP4 assets untouched.
