@@ -85,6 +85,7 @@ function goToReelVideo() {
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 // Cards prioritários (escolhidos pelo cliente), por data real decrescente
 const INSTAGRAM_PRIORITY: { id: string; ratio: number }[] = [
+  { id: "Dde6cY7xOm8", ratio: 0.5625 },   // 19/09 reel Corvette C8
   { id: "DeRjT-4RDkO", ratio: 0.5625 },   // 09/10 reel Proscale DJs
   { id: "DczktCENS1A", ratio: 0.5625 },   // 02/09 reel Normal é chato
   { id: "DbvTSCuRvho", ratio: 0.5625 },   // 07/08 reel Eu Quero Carros
