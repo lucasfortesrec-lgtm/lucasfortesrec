@@ -158,17 +158,6 @@ const services = [
   },
 ];
 
-const principles = [
-  "Direção",
-  "Roteiro",
-  "Câmera",
-  "Luz",
-  "Movimento",
-  "Cor",
-  "Ritmo",
-  "Entrega",
-];
-
 
 function Index() {
   const [scrolled, setScrolled] = useState(false);
@@ -324,7 +313,7 @@ function Index() {
 
       {/* Sobre */}
 
-      <section id="sobre" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
+      <section id="sobre" className="pt-24 pb-12 md:pt-32 md:pb-16 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1100px] mx-auto">
           <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
             O Filmmaker
@@ -392,21 +381,6 @@ function Index() {
                   className="w-full aspect-[3/4] object-cover grayscale hover:grayscale-0 hover:scale-[1.03] transition-all duration-700"
                 />
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Etapas do processo — lista estática */}
-
-        <div className="max-w-[1500px] mx-auto mt-20 border-t border-border pt-8">
-          <div className="flex flex-wrap gap-x-10 gap-y-3">
-            {principles.map((c) => (
-              <span
-                key={c}
-                className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground"
-              >
-                {c}
-              </span>
             ))}
           </div>
         </div>
