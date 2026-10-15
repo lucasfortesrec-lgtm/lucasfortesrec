@@ -68,6 +68,18 @@ function reportWhatsappConversion() {
   if (typeof fn === "function") fn();
 }
 
+// Leva o visitante ao vídeo horizontal, centralizado na tela
+function goToReelVideo() {
+  const target = document.getElementById("reel-video");
+  if (!target) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  target.scrollIntoView({
+    behavior: reduceMotion ? "auto" : "smooth",
+    block: "center",
+  });
+}
+
+
 
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
