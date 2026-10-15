@@ -13,4 +13,4 @@
 - [x] Coordinate media selection, exclusive playback, manual navigation, visibility and reduced-motion pauses.
 - [x] Verify desktop/mobile arrows, mouse drag and actual touch swipe, auto movement, selection/close, new/old photo slides, unique cards, no page overflow and build without publishing.
 - [ ] Verify real new/old Instagram video playback: test Chromium reports no H.264 support (MEDIA_ERR_SRC_NOT_SUPPORTED); selection retention, explicit close and simulated end lifecycle passed, original MP4 assets untouched.
-- [ ] Enlarge Instagram cards and return header INÍCIO to the real top; verify desktop/mobile dimensions, preserved order, overflow, navigation and build without publishing.
+- [x] Enlarge Instagram cards (550px desktop, up to 430px mobile capped at 65svh) and return header INÍCIO to the real top; verified 1280/390/375px, 20 unique ordered cards, no page overflow, moving carousel/arrows, scrollY=0, reduced-motion immediate top, both reel links still centered and build OK; not published.
