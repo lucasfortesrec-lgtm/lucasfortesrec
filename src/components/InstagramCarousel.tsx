@@ -22,7 +22,10 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
   const [motionRevision, setMotionRevision] = useState(0);
   const regionRef = useRef<HTMLDivElement>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const directionRef = useRef<"forward" | "backward">("forward");
+  const gestureRef = useRef<{ x: number; y: number } | null>(null);
   const autoScroll = useRef(AutoScroll({
+    direction: "forward",
     speed: 0.65, playOnInit: false, stopOnInteraction: true,
     stopOnMouseEnter: false, stopOnFocusIn: false, startDelay: 0,
   }));
@@ -50,7 +53,7 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
 
   const deferResume = useCallback(() => {
     clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => setNavigating(false), 1400);
+    resumeTimer.current = setTimeout(() => setNavigating(false), 600);
   }, []);
 
   useEffect(() => {
@@ -74,6 +77,21 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
   useEffect(() => {
     if (!api) return;
     const syncMotion = () => {
+      if (!navigating && autoScroll.current.options.direction !== directionRef.current) {
+        // Official plugin options + reInit; restore the fractional drag-free position
+        // because Embla normally reInit-snaps to the selected slide.
+        const engine = api.internalEngine();
+        const position = engine.location.get();
+        autoScroll.current.options.direction = directionRef.current;
+        api.reInit(undefined, [autoScroll.current]);
+        const next = api.internalEngine();
+        next.location.set(position);
+        next.previousLocation.set(position);
+        next.offsetLocation.set(position);
+        next.target.set(position);
+        next.translate.to(position);
+        next.slideLooper.loop();
+      }
       if (!selectedId && !userPaused && (!reducedMotion || explicitMotion) && visible && documentVisible && !navigating) {
         autoScroll.current.play(0);
       } else {
@@ -111,6 +129,7 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
   const navigate = (direction: number) => {
     if (!api) return;
     autoScroll.current.stop();
+    directionRef.current = direction < 0 ? "backward" : "forward";
     setNavigating(true);
     if (direction < 0) api.scrollPrev(reducedMotion);
     else api.scrollNext(reducedMotion);
@@ -135,7 +154,24 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
           <ChevronRight />
         </Button>
       </div>
-      <div ref={viewportRef} className="instagram-carousel-viewport overflow-hidden cursor-grab active:cursor-grabbing">
+      <div ref={viewportRef}
+        onPointerDownCapture={(event) => {
+          if (event.target instanceof Element && event.target.closest("video, [data-media-close]")) return;
+          gestureRef.current = { x: event.clientX, y: event.clientY };
+        }}
+        onPointerMoveCapture={(event) => {
+          const previous = gestureRef.current;
+          if (!previous) return;
+          const dx = event.clientX - previous.x;
+          const dy = event.clientY - previous.y;
+          if (Math.abs(dx) > 2 && Math.abs(dx) > Math.abs(dy)) {
+            directionRef.current = dx > 0 ? "backward" : "forward";
+            gestureRef.current = { x: event.clientX, y: event.clientY };
+          }
+        }}
+        onPointerUpCapture={() => { gestureRef.current = null; }}
+        onPointerCancelCapture={() => { gestureRef.current = null; }}
+        className="instagram-carousel-viewport overflow-hidden cursor-grab active:cursor-grabbing">
         <div className="instagram-carousel-track flex items-stretch gap-2 md:gap-3">
           {posts.map(({ id, ratio }, index) => (
             <div key={id} data-instagram-id={id} role="group" aria-roledescription="slide" aria-label={`${index + 1} de ${posts.length}`} style={{ "--media-ratio": ratio } as CSSProperties} className="instagram-carousel-slide relative min-w-0 shrink-0">

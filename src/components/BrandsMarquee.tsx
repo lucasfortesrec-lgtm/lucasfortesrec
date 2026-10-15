@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export type Brand = { name: string; src: string; scale?: string };
 
@@ -7,10 +8,14 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [userPaused, setUserPaused] = useState(false);
   const userPausedRef = useRef(false);
-  const dragRef = useRef<{ active: boolean; pointerId: number; lastX: number }>({
+  const directionRef = useRef(1);
+  const velocityRef = useRef(0);
+  const motionAllowedRef = useRef(false);
+  const dragRef = useRef<{ active: boolean; pointerId: number; lastX: number; lastTime: number }>({
     active: false,
     pointerId: -1,
     lastX: 0,
+    lastTime: 0,
   });
 
   useEffect(() => {
@@ -19,7 +24,18 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     if (!el || !track) return;
     let raf = 0;
     let last = performance.now();
+    let position = el.scrollLeft;
     const speed = 28; // px per second
+    let visible = false;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateAllowed = () => { motionAllowedRef.current = visible && !document.hidden && !query.matches; };
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visible = entry?.isIntersecting ?? false;
+      updateAllowed();
+    });
+    visibilityObserver.observe(el);
+    query.addEventListener("change", updateAllowed);
+    document.addEventListener("visibilitychange", updateAllowed);
 
     const centerOnMiddleCopy = () => {
       const width = track.offsetWidth;
@@ -31,7 +47,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     resizeObserver.observe(track);
 
     const tick = (now: number) => {
-      const dt = (now - last) / 1000;
+      const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       const width = track.offsetWidth;
 
@@ -42,8 +58,12 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
         while (el.scrollLeft < width) el.scrollLeft += width;
       }
 
-      if (!userPausedRef.current) {
-        el.scrollLeft += speed * dt;
+      if (!userPausedRef.current && !dragRef.current.active && motionAllowedRef.current) {
+        // Retain subpixel travel: scrollLeft rounds small per-frame increments.
+        if (Math.abs(el.scrollLeft - position) > 1) position = el.scrollLeft;
+        position += (speed * directionRef.current + velocityRef.current) * dt;
+        el.scrollLeft = position;
+        velocityRef.current *= Math.exp(-6 * dt);
       }
       raf = requestAnimationFrame(tick);
     };
@@ -51,6 +71,9 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     return () => {
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
+      visibilityObserver.disconnect();
+      query.removeEventListener("change", updateAllowed);
+      document.removeEventListener("visibilitychange", updateAllowed);
     };
   }, []);
 
@@ -64,7 +87,8 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const onPointerDown = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
     if (!el) return;
-    dragRef.current = { active: true, pointerId: e.pointerId, lastX: e.clientX };
+    velocityRef.current = 0;
+    dragRef.current = { active: true, pointerId: e.pointerId, lastX: e.clientX, lastTime: performance.now() };
     el.setPointerCapture(e.pointerId);
   };
 
@@ -72,7 +96,13 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     const el = scrollerRef.current;
     if (!el || !dragRef.current.active || dragRef.current.pointerId !== e.pointerId) return;
     const delta = e.clientX - dragRef.current.lastX;
+    const now = performance.now();
+    if (Math.abs(delta) > 1) {
+      directionRef.current = delta > 0 ? -1 : 1;
+      velocityRef.current = Math.max(-1400, Math.min(1400, -delta / Math.max(0.008, (now - dragRef.current.lastTime) / 1000)));
+    }
     dragRef.current.lastX = e.clientX;
+    dragRef.current.lastTime = now;
     el.scrollLeft -= delta;
     normalizeScrollPosition(el);
   };
@@ -80,7 +110,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
   const endDrag = (e: React.PointerEvent) => {
     const el = scrollerRef.current;
     if (dragRef.current.pointerId !== e.pointerId) return;
-    dragRef.current = { active: false, pointerId: -1, lastX: 0 };
+    dragRef.current = { active: false, pointerId: -1, lastX: 0, lastTime: 0 };
     if (el) normalizeScrollPosition(el);
     if (el?.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
   };
@@ -124,7 +154,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
       </div>
 
       <div className="mt-6 hidden justify-center md:flex">
-        <button
+        <Button variant="outline"
           type="button"
           onClick={() => {
             const next = !userPausedRef.current;
@@ -135,7 +165,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
           className="rounded-full border border-border px-5 py-2 text-[11px] uppercase tracking-[0.25em] text-bone/60 transition duration-300 hover:text-bone hover:border-bone/40"
         >
           {userPaused ? "Retomar" : "Pausar"}
-        </button>
+        </Button>
       </div>
     </div>
   );
