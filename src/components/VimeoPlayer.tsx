@@ -36,21 +36,36 @@ interface VimeoPlayerProps {
 }
 
 export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProps) {
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const hostRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<VimeoPlayerInstance | undefined>(undefined);
   const [isPaused, setIsPaused] = useState(true);
-  const [isReady, setIsReady] = useState(false);
+  const readyRef = useRef(false);
   const requestRef = useRef<ReturnType<typeof claimPlayback> | null>(null);
 
   const videoId = videoUrl.replace("https://player.vimeo.com/video/", "").split("?")[0];
   const src = `https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0&controls=0&quality=auto&transparent=0&playsinline=1&autopause=0&muted=1`;
 
   useEffect(() => {
-    const iframe = iframeRef.current;
-    if (!iframe || playerRef.current) return;
+    const host = hostRef.current;
+    if (!host) return;
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.title = title || "Vimeo video player";
+    iframe.className = "h-full w-full pointer-events-none";
+    iframe.allow = "autoplay; fullscreen; picture-in-picture";
+    iframe.allowFullscreen = true;
+    host.appendChild(iframe);
 
     let disposed = false;
-    let unregister: (() => void) | undefined;
+    const unregister = registerPlayback(`vimeo-${videoId}`, {
+      stop: () => {
+        requestRef.current = null;
+        if (!disposed) setIsPaused(true);
+        const player = playerRef.current;
+        if (!player || !readyRef.current) return;
+        return Promise.all([player.setMuted(true).catch(() => {}), player.pause().catch(() => {})]);
+      },
+    });
     const init = () => {
       const Vimeo = window.Vimeo;
       if (!Vimeo || disposed || playerRef.current) return;
@@ -64,15 +79,8 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
 
       void player.ready().then(() => {
         if (disposed) return;
-        // An unready iframe cannot play and must not block other films on SDK requests.
-        unregister = registerPlayback(`vimeo-${videoId}`, {
-          stop: () => {
-            requestRef.current = null;
-            setIsPaused(true);
-            return Promise.all([player.setMuted(true).catch(() => {}), player.pause().catch(() => {})]);
-          },
-        });
-        setIsReady(true);
+        readyRef.current = true;
+        if (requestRef.current?.current()) void player.play().catch(() => setIsPaused(true));
         player.setQuality("auto").catch(() => {});
       }).catch(() => {});
 
@@ -98,12 +106,13 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       };
 
       player.on("play", () => {
+        if (disposed) return;
         setIsPaused(false);
         forceAudio();
       });
       player.on("playing", forceAudio);
-      player.on("pause", () => { setIsPaused(true); });
-      player.on("ended", () => setIsPaused(true));
+      player.on("pause", () => { if (!disposed) setIsPaused(true); });
+      player.on("ended", () => { if (!disposed) setIsPaused(true); });
     };
 
     if (window.Vimeo) {
@@ -119,23 +128,25 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     return () => {
       disposed = true;
       requestRef.current = null;
-      unregister?.();
+      unregister();
       playerRef.current?.setMuted(true).catch(() => {});
       playerRef.current?.pause().catch(() => {});
-      // unload preserves React's iframe during StrictMode's effect cleanup/replay.
-      playerRef.current?.unload().catch(() => {});
+      playerRef.current?.destroy().catch(() => {});
+      readyRef.current = false;
+      host.replaceChildren();
       playerRef.current = undefined;
     };
   }, [videoId]);
 
   const togglePlay = () => {
     const player = playerRef.current;
-    if (!player || !isReady) return;
+
 
     if (isPaused) {
       const request = claimPlayback(`vimeo-${videoId}`);
       requestRef.current = request;
       setIsPaused(false);
+      if (!player || !readyRef.current) return;
       player
         .play()
         .then(() => {
@@ -148,26 +159,18 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     } else {
       requestRef.current = null;
       setIsPaused(true);
-      player.setMuted(true).catch(() => {});
-      player.pause().catch(() => {});
+      player?.setMuted(true).catch(() => {});
+      player?.pause().catch(() => {});
     }
   };
 
   return (
     <div className={`relative group ${className}`} onContextMenu={(e) => e.preventDefault()}>
-      <iframe
-        ref={iframeRef}
-        src={src}
-        title={title || "Vimeo video player"}
-        className="h-full w-full pointer-events-none"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-      />
+      <div ref={hostRef} className="h-full w-full" />
 
       {/* Full-surface tap/click target: toggles play/pause anywhere on the video */}
       <Button
         variant="ghost"
-        disabled={!isReady}
         type="button"
         onClick={togglePlay}
         className="absolute inset-0 h-full w-full z-10 grid place-items-center touch-manipulation hover:bg-transparent"
@@ -189,7 +192,6 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       {/* Minimal play/pause control */}
       <Button
         variant="ghost"
-        disabled={!isReady}
         type="button"
         onClick={togglePlay}
         className="absolute bottom-4 right-4 z-20 grid place-items-center size-9 rounded-full bg-background/80 backdrop-blur-md border border-border text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-background"
