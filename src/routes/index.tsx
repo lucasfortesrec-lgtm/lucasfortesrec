@@ -250,12 +250,9 @@ function Index() {
                 </div>
               </div>
 
-              <div className="mt-10 flex items-baseline gap-4">
-                <span className="font-serif-editorial text-brand text-xl">01</span>
-                <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase tracking-[-0.045em]">
-                  O REELS
-                </h2>
-              </div>
+              <h2 className="mt-10 font-display text-4xl md:text-6xl font-extrabold uppercase tracking-[-0.045em]">
+                O REELS
+              </h2>
             </div>
 
             {/* right column — vertical reel */}
@@ -303,12 +300,9 @@ function Index() {
 
       <section id="sobre" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1100px] mx-auto">
-          <div className="flex items-baseline gap-4">
-            <span className="font-serif-editorial text-brand text-xl">02</span>
-            <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
-              O Filmmaker
-            </h2>
-          </div>
+          <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
+            O Filmmaker
+          </h2>
           <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
             Direção <span className="text-signal">·</span> Lucas Fortes
           </div>
@@ -359,7 +353,6 @@ function Index() {
             <h3 className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
               Bastidores <span className="text-signal">·</span> Making of
             </h3>
-            <span className="font-serif-editorial text-brand text-sm">02.1</span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {BTS.map((b) => (
