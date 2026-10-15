@@ -3,6 +3,8 @@ export type YouTubePlayer = {
   pauseVideo(): void;
   mute(): void;
   unMute(): void;
+  getOptions?(): string[];
+  setOption?(module: string, option: string, value: unknown): void;
   destroy(): void;
 };
 
@@ -16,6 +18,7 @@ type YouTubeAPI = {
       onReady(event: { target: YouTubePlayer }): void;
       onStateChange(event: { data: number }): void;
       onError(event: { data: number }): void;
+      onApiChange(event: { target: YouTubePlayer }): void;
     };
   }) => YouTubePlayer;
 };

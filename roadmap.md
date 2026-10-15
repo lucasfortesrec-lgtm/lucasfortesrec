@@ -7,3 +7,5 @@
 - [ ] Verify actual Vimeo playback in the modal and vertical player: blocked by Vimeo connection verification in the test browser; coordination intent and YouTube pause were verified.
 - [x] Clean up the YouTube presentation with a real poster before playback, supported annotation settings, and one custom control at a time; preserve branding and modal coordination.
 - [x] Verify the cleaned presentation, playback, modal dismissal and focus on desktop/mobile without publishing; build OK, one control at a time, delayed SDK click and failure fallback checked.
+- [x] Hide controls throughout active playback and request no YouTube captions through available API options.
+- [x] Test real YouTube playback/audio, hover/focus with zero icons, pause/resume, empty captions track, vertical playback intent, modal dismissal/focus on desktop/mobile; leave publication to the user. Actual Vimeo playback remains blocked as noted above.
