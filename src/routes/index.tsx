@@ -84,6 +84,11 @@ function goToReelVideo() {
 
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
+  { id: "DeRjT-4RDkO", ratio: 0.5625 },   // 9:16 reel (09/10)
+  { id: "DdolGMGRkZm", ratio: 0.5625 },   // 9:16 reel (23/09)
+  { id: "Dde6cY7xOm8", ratio: 0.5625 },   // 9:16 reel (19/09)
+  { id: "DczktCENS1A", ratio: 0.5625 },   // 9:16 reel (02/09)
+  { id: "DbgyZJJkWfX", ratio: 0.75 },     // 3:4 carousel (01/08)
   { id: "DbvTSCuRvho", ratio: 0.5625 },   // 9:16 portrait video
   
   { id: "DalZ9tIEWOH", ratio: 0.7503 },   // 3:4 carousel
