@@ -101,7 +101,6 @@ const INSTAGRAM_PRIORITY: { id: string; ratio: number }[] = [
 // Demais cards, por data real decrescente
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
   { id: "DdolGMGRkZm", ratio: 0.5625 },   // 23/09 reel
-  { id: "Dde6cY7xOm8", ratio: 0.5625 },   // 19/09 reel
   { id: "DbgyZJJkWfX", ratio: 0.75 },     // 01/08 carrossel
   { id: "DbO1tXPxxTV", ratio: 0.5625 },   // 25/07 vídeo
   { id: "Da_T_j9kRE7", ratio: 0.7505 },   // 19/07 carrossel
