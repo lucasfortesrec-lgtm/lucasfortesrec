@@ -61,16 +61,17 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
         volume: 1,
       });
       playerRef.current = player;
-      unregister = registerPlayback(`vimeo-${videoId}`, {
-        stop: () => {
-          requestRef.current = null;
-          setIsPaused(true);
-          return Promise.all([player.setMuted(true).catch(() => {}), player.pause().catch(() => {})]);
-        },
-      });
 
       void player.ready().then(() => {
         if (disposed) return;
+        // An unready iframe cannot play and must not block other films on SDK requests.
+        unregister = registerPlayback(`vimeo-${videoId}`, {
+          stop: () => {
+            requestRef.current = null;
+            setIsPaused(true);
+            return Promise.all([player.setMuted(true).catch(() => {}), player.pause().catch(() => {})]);
+          },
+        });
         setIsReady(true);
         player.setQuality("auto").catch(() => {});
       }).catch(() => {});
