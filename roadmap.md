@@ -9,3 +9,6 @@
 - [x] Verify the cleaned presentation, playback, modal dismissal and focus on desktop/mobile without publishing; build OK, one control at a time, delayed SDK click and failure fallback checked.
 - [x] Hide controls throughout active playback and request no YouTube captions through available API options.
 - [x] Test real YouTube playback/audio, hover/focus with zero icons, pause/resume, empty captions track, vertical playback intent, modal dismissal/focus on desktop/mobile; leave publication to the user. Actual Vimeo playback remains blocked as noted above.
+- [ ] Replace Instagram masonry with one continuous horizontal carousel preserving all 20 cards and their order.
+- [ ] Coordinate media selection, exclusive playback, manual navigation, visibility and reduced-motion pauses.
+- [ ] Verify desktop/mobile arrows, drag/swipe, movement, selection, photo slides, playback, unique cards, overflow and build without publishing.
