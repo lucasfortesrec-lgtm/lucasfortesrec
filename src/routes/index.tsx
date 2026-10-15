@@ -83,28 +83,32 @@ function goToReelVideo() {
 
 
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
+// Cards prioritários (escolhidos pelo cliente), por data real decrescente
+const INSTAGRAM_PRIORITY: { id: string; ratio: number }[] = [
+  { id: "DeRjT-4RDkO", ratio: 0.5625 },   // 09/10 reel Proscale DJs
+  { id: "DczktCENS1A", ratio: 0.5625 },   // 02/09 reel Normal é chato
+  { id: "DbvTSCuRvho", ratio: 0.5625 },   // 07/08 reel Eu Quero Carros
+  { id: "DbVuBimRBFY", ratio: 0.5625 },   // 28/07 vídeo Harley-Davidson
+  { id: "DbKGDD-tjsi", ratio: 0.8003 },   // 23/07 carrossel alambique
+  { id: "DbKEQRotrcx", ratio: 0.8 },      // 23/07 carrossel Tank
+  { id: "DalZ9tIEWOH", ratio: 0.7503 },   // 09/07 carrossel evento Volvo
+  { id: "DZzywvax8qD", ratio: 0.5625 },   // 20/06 reel gastronomia
+  { id: "DYTWBuzNIxx", ratio: 1.7778 },   // 13/05 vídeo horizontal torneira
+  { id: "DYTOutBtDXL", ratio: 0.8 },      // 13/05 carrossel fachada Volvo
+];
+
+// Demais cards, por data real decrescente
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
-  { id: "DeRjT-4RDkO", ratio: 0.5625 },   // 9:16 reel (09/10)
-  { id: "DdolGMGRkZm", ratio: 0.5625 },   // 9:16 reel (23/09)
-  { id: "Dde6cY7xOm8", ratio: 0.5625 },   // 9:16 reel (19/09)
-  { id: "DczktCENS1A", ratio: 0.5625 },   // 9:16 reel (02/09)
-  { id: "DbgyZJJkWfX", ratio: 0.75 },     // 3:4 carousel (01/08)
-  { id: "DbvTSCuRvho", ratio: 0.5625 },   // 9:16 portrait video
-  
-  { id: "DalZ9tIEWOH", ratio: 0.7503 },   // 3:4 carousel
-  { id: "DbKGDD-tjsi", ratio: 0.8003 },   // 4:5 photo
-  { id: "DbVuBimRBFY", ratio: 0.5625 },   // 9:16 portrait video
-  { id: "DbO1tXPxxTV", ratio: 0.5625 },   // 9:16 portrait video
-  { id: "DbKEQRotrcx", ratio: 0.8 },      // 4:5 portrait carousel
-  { id: "Da_T_j9kRE7", ratio: 0.7505 },  // ~3:4 portrait carousel
-  { id: "DZzywvax8qD", ratio: 0.5625 },   // 9:16 portrait video
-  { id: "DYTWBuzNIxx", ratio: 1.7778 },   // 16:9 landscape video
-  { id: "DYTQVZ2jSsA", ratio: 1.0682 },  // ~1:1 square/landscape video
-  { id: "DYTOutBtDXL", ratio: 0.8 },      // 4:5 portrait carousel
-  { id: "DYTOZb-NBe2", ratio: 0.8 },      // 4:5 portrait carousel
-  { id: "DYTMmXZNZVI", ratio: 0.8 },      // 4:5 portrait carousel
-  { id: "DYTMkB_tMRC", ratio: 0.8 },      // 4:5 portrait carousel
-  { id: "DYTMhg1tWxP", ratio: 0.8 },      // 4:5 portrait carousel
+  { id: "DdolGMGRkZm", ratio: 0.5625 },   // 23/09 reel
+  { id: "Dde6cY7xOm8", ratio: 0.5625 },   // 19/09 reel
+  { id: "DbgyZJJkWfX", ratio: 0.75 },     // 01/08 carrossel
+  { id: "DbO1tXPxxTV", ratio: 0.5625 },   // 25/07 vídeo
+  { id: "Da_T_j9kRE7", ratio: 0.7505 },   // 19/07 carrossel
+  { id: "DYTQVZ2jSsA", ratio: 1.0682 },   // 13/05 vídeo
+  { id: "DYTOZb-NBe2", ratio: 0.8 },
+  { id: "DYTMmXZNZVI", ratio: 0.8 },
+  { id: "DYTMkB_tMRC", ratio: 0.8 },
+  { id: "DYTMhg1tWxP", ratio: 0.8 },
 ];
 
 
@@ -441,8 +445,13 @@ function Index() {
           </div>
 
           <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2">
-            {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
+            {INSTAGRAM_PRIORITY.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
+            ))}
+          </div>
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2 mt-1 sm:mt-1.5 lg:mt-2">
+            {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
+              <InstagramCard key={id} id={id} ratio={ratio} index={INSTAGRAM_PRIORITY.length + i} />
             ))}
           </div>
 
