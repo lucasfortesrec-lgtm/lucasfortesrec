@@ -1,49 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Play, X } from 'lucide-react';
 import { Dialog, DialogPortal, DialogOverlay, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
 import { Content } from '@radix-ui/react-dialog';
 import { Button } from '@/components/ui/button';
 import { VimeoPlayer } from '@/components/VimeoPlayer';
-import { claimPlayback, registerPlayback, stopAllPlayback } from '@/lib/playback-coordinator';
-import film from '@/assets/aftermovie-proscale-club-x-slash.mp4.asset.json';
-import webFilm from '@/assets/aftermovie-proscale-club-x-slash.webm.asset.json';
-import poster from '@/assets/aftermovie-proscale-poster.jpg.asset.json';
+import { stopAllPlayback } from '@/lib/playback-coordinator';
+import { YouTubePlayer } from '@/components/YouTubePlayer';
 import oldPoster from '@/assets/automotivo-vimeo-1216120956.jpg.asset.json';
 
 export function Showreel() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const thumbnailRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
-  const [error, setError] = useState(false);
-  const [paused, setPaused] = useState(true);
-  const requestRef = useRef<ReturnType<typeof claimPlayback> | null>(null);
-  const desiredMuted = useRef(false);
-
-  useEffect(() => registerPlayback('showreel-main', {
-    stop: () => {
-      requestRef.current = null;
-      videoRef.current?.pause();
-    },
-  }), []);
-
-  const coordinatePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    setError(false);
-    desiredMuted.current = video.muted;
-    video.muted = true;
-    const request = claimPlayback('showreel-main', video);
-    requestRef.current = request;
-    setPaused(false);
-    void request.settled.then(() => {
-      if (request.current() && requestRef.current === request && !video.paused) {
-        video.muted = desiredMuted.current;
-      } else {
-        video.pause();
-      }
-    });
-  };
-
   const changeOpen = (next: boolean) => {
     // Cancel every pending play/unmute before mounting or unmounting the old film.
     void stopAllPlayback();
@@ -52,39 +19,7 @@ export function Showreel() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <div className="relative aspect-video overflow-hidden rounded-[20px] border border-border bg-background shadow-[var(--shadow-card)]">
-        <video
-          ref={videoRef}
-          poster={poster.url}
-          aria-label="Aftermovie Proscale Club X Slash"
-          className="h-full w-full object-contain"
-          controls
-          playsInline
-          preload="metadata"
-          controlsList="nodownload"
-          onPlay={coordinatePlay}
-          onPlaying={() => { if (!requestRef.current?.current()) videoRef.current?.pause(); }}
-          onPause={() => {
-            requestRef.current = null;
-            setPaused(true);
-            if (videoRef.current) videoRef.current.muted = desiredMuted.current;
-          }}
-          onEnded={() => setPaused(true)}
-          onError={() => setError(true)}
-          onContextMenu={event => event.preventDefault()}
-        >
-          <source src={film.url} type="video/mp4; codecs=&quot;avc1.640028, mp4a.40.2&quot;" />
-          <source src={webFilm.url} type="video/webm" />
-        </video>
-        {paused && !error && (
-          <Button variant="ghost" size="icon" aria-label="Reproduzir Aftermovie Proscale Club X Slash"
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-16 rounded-full bg-bone/90 text-background hover:bg-bone"
-            onClick={() => { void videoRef.current?.play().catch(() => setError(true)); }}>
-            <Play className="fill-current" />
-          </Button>
-        )}
-        {error && <p role="alert" className="absolute inset-x-0 top-4 text-center text-sm text-foreground bg-background/90 py-3">Não foi possível carregar o vídeo. Tente novamente.</p>}
-      </div>
+      <YouTubePlayer />
 
       <Dialog open={open} onOpenChange={changeOpen}>
         <Button ref={thumbnailRef} variant="ghost" onClick={() => changeOpen(true)} aria-haspopup="dialog"
