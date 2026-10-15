@@ -449,7 +449,7 @@ function Index() {
               <InstagramCard key={id} id={id} ratio={ratio} index={i} />
             ))}
           </div>
-          <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2 mt-1 sm:mt-1.5 lg:mt-2">
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2">
             {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
               <InstagramCard key={id} id={id} ratio={ratio} index={INSTAGRAM_PRIORITY.length + i} />
             ))}
