@@ -122,7 +122,8 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
       unregister?.();
       playerRef.current?.setMuted(true).catch(() => {});
       playerRef.current?.pause().catch(() => {});
-      playerRef.current?.destroy().catch(() => {});
+      // unload preserves React's iframe during StrictMode's effect cleanup/replay.
+      playerRef.current?.unload().catch(() => {});
       playerRef.current = undefined;
     };
   }, [videoId]);
