@@ -109,11 +109,11 @@ export function VimeoPlayer({ videoUrl, title, className = "" }: VimeoPlayerProp
     if (window.Vimeo) {
       init();
     } else {
-      const script = document.createElement("script");
-      script.src = "https://player.vimeo.com/api/player.js";
-      script.async = true;
-      script.onload = init;
-      document.body.appendChild(script);
+      void import('@vimeo/player').then(({ default: Player }) => {
+        if (disposed) return;
+        window.Vimeo = { Player: Player as unknown as VimeoConstructor };
+        init();
+      });
     }
 
     return () => {
