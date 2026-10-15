@@ -59,7 +59,7 @@ export function YouTubePlayer() {
               setPaused(false); setWaiting(false);
               void request.settled.then(() => {
                 if (!disposed && request.current() && requestRef.current === request) player?.unMute();
-                else { player?.mute(); player?.pauseVideo(); }
+                else if (!requestRef.current?.current()) { player?.mute(); player?.pauseVideo(); }
               });
             } else if (event.data === 0 || event.data === 2) {
               setPaused(true); setWaiting(false);
