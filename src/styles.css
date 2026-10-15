@@ -159,15 +159,15 @@
 }
 
 .instagram-carousel-viewport {
-  --card-height: 340px;
+  --card-height: min(430px, 65svh);
   touch-action: pan-y pinch-zoom;
 }
 .instagram-carousel-slide {
   height: var(--card-height);
-  width: clamp(160px, calc(var(--card-height) * var(--media-ratio)), min(620px, 86vw));
+  width: clamp(160px, calc(var(--card-height) * var(--media-ratio)), min(800px, 86vw));
 }
 @media (min-width: 768px) {
-  .instagram-carousel-viewport { --card-height: 430px; }
+  .instagram-carousel-viewport { --card-height: 550px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .instagram-carousel-viewport * { transition: none; }

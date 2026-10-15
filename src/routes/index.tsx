@@ -69,6 +69,11 @@ function reportWhatsappConversion() {
   if (typeof fn === "function") fn();
 }
 
+function goToTop() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "instant" : "smooth" });
+}
+
 // Leva o visitante ao vídeo horizontal, centralizado na tela
 function goToReelVideo() {
   const target = document.getElementById("reel-video");
@@ -120,7 +125,7 @@ const EMAIL = "lucasfortesrec@gmail.com";
 const PHONE_DISPLAY = "48 9 9829 4750";
 
 const nav = [
-  { label: "INÍCIO", href: "#showreel", index: "01" },
+  { label: "INÍCIO", href: "#top", index: "01" },
   { label: "Sobre", href: "#sobre", index: "02" },
   { label: "Ofício", href: "#servicos", index: "03" },
   { label: "Instagram", href: "#instagram", index: "04" },
@@ -206,7 +211,7 @@ function Index() {
               <a
                 key={n.href}
                 href={n.href}
-                onClick={n.href === "#showreel" ? (e) => { e.preventDefault(); goToReelVideo(); } : undefined}
+                onClick={n.href === "#top" ? (e) => { e.preventDefault(); goToTop(); } : undefined}
                  className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] md:tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 {n.label}
