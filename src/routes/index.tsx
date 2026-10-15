@@ -207,7 +207,8 @@ function Index() {
               <a
                 key={n.href}
                 href={n.href}
-                className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] md:tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
+                onClick={n.href === "#showreel" ? (e) => { e.preventDefault(); goToReelVideo(); } : undefined}
+                 className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] md:tracking-[0.22em] text-muted-foreground hover:text-foreground transition-colors"
               >
                 {n.label}
               </a>
@@ -254,12 +255,16 @@ function Index() {
               </p>
 
               <div className="mt-11 flex flex-wrap items-center gap-5">
-                <div className="group inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground">
+                <button
+                  type="button"
+                  onClick={goToReelVideo}
+                  className="group inline-flex cursor-pointer items-center gap-3 rounded-full text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/50 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                >
                   <span className="grid place-items-center size-11 rounded-full border border-border group-hover:border-signal group-hover:text-signal transition-colors">
                     <Play className="size-3.5 fill-current" />
-                  </span>
+                   </span>
                   Assistir reels
-                </div>
+                </button>
               </div>
 
               <h2 className="mt-10 font-display text-4xl md:text-6xl font-extrabold uppercase tracking-[-0.045em]">
