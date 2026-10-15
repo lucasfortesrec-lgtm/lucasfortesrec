@@ -11,6 +11,7 @@ interface InstagramCardProps {
   horizontal?: boolean;
   selected?: boolean;
   onSelectionChange?: (id: string, selected: boolean) => void;
+  onResumeCarousel?: () => void;
 }
 
 /** Posts whose video is hosted locally — these play inline, nothing else on the card. */
@@ -48,7 +49,7 @@ const CAROUSELS = new Set([
   "DalZ9tIEWOH",
 ]);
 
-export function InstagramCard({ id, ratio, horizontal = false, selected = false, onSelectionChange }: InstagramCardProps) {
+export function InstagramCard({ id, ratio, horizontal = false, selected = false, onSelectionChange, onResumeCarousel }: InstagramCardProps) {
   const [started, setStarted] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -75,6 +76,7 @@ export function InstagramCard({ id, ratio, horizontal = false, selected = false,
       playbackRequest.current = null;
       videoRef.current?.pause();
       setStarted(false);
+      setModalOpen(false);
     }
   }, [selected]);
 
@@ -242,6 +244,11 @@ export function InstagramCard({ id, ratio, horizontal = false, selected = false,
           >
             <X className="size-5" />
           </Button>
+          {onResumeCarousel && (
+            <Button variant="ghost" size="icon" onClick={onResumeCarousel} aria-label="Retomar carrossel" title="Retomar carrossel" className="absolute top-4 left-4 rounded-full bg-background/10 text-media-foreground hover:bg-background/20">
+              <Play />
+            </Button>
+          )}
 
           <div
             className="relative flex flex-col items-center gap-4 max-w-3xl w-full max-h-[90vh]"
