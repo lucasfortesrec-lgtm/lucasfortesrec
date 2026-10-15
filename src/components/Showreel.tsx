@@ -19,7 +19,10 @@ export function Showreel() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <YouTubePlayer />
+      <div id="reel-video">
+        <YouTubePlayer />
+      </div>
+
 
       <Dialog open={open} onOpenChange={changeOpen}>
         <Button ref={thumbnailRef} variant="ghost" onClick={() => changeOpen(true)} aria-haspopup="dialog"

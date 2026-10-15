@@ -68,6 +68,18 @@ function reportWhatsappConversion() {
   if (typeof fn === "function") fn();
 }
 
+// Leva o visitante ao vídeo horizontal, centralizado na tela
+function goToReelVideo() {
+  const target = document.getElementById("reel-video");
+  if (!target) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  target.scrollIntoView({
+    behavior: reduceMotion ? "auto" : "smooth",
+    block: "center",
+  });
+}
+
+
 
 // ratio = largura/altura da mídia real de cada post (medido no arquivo)
 const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
@@ -251,8 +263,16 @@ function Index() {
               </div>
 
               <h2 className="mt-10 font-display text-4xl md:text-6xl font-extrabold uppercase tracking-[-0.045em]">
-                O REELS
+                <button
+                  type="button"
+                  onClick={goToReelVideo}
+                  aria-label="Assistir ao vídeo principal"
+                  className="w-full cursor-pointer rounded-[4px] text-left text-foreground transition-colors hover:text-signal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/50 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                >
+                  O REELS
+                </button>
               </h2>
+
             </div>
 
             {/* right column — vertical reel */}
