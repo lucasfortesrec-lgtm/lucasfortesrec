@@ -391,12 +391,9 @@ function Index() {
       <section id="servicos" className="py-24 md:py-32 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1500px] mx-auto">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-            <div className="flex items-baseline gap-4">
-              <span className="font-serif-editorial text-brand text-xl">03</span>
-              <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
-                O Ofício
-              </h2>
-            </div>
+            <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
+              O Ofício
+            </h2>
             <p className="max-w-sm text-sm text-muted-foreground">
               Seis frentes, um mesmo padrão de direção. Escolha o formato — a exigência é sempre a mesma.
             </p>
