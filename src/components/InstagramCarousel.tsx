@@ -70,11 +70,16 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
 
   useEffect(() => {
     if (!api) return;
-    if (!selectedId && !userPaused && !reducedMotion && visible && documentVisible && !navigating) {
-      autoScroll.current.play(0);
-    } else {
-      autoScroll.current.stop();
-    }
+    const syncMotion = () => {
+      if (!selectedId && !userPaused && !reducedMotion && visible && documentVisible && !navigating) {
+        autoScroll.current.play(0);
+      } else {
+        autoScroll.current.stop();
+      }
+    };
+    syncMotion();
+    api.on("reInit", syncMotion);
+    return () => { api.off("reInit", syncMotion); };
   }, [api, selectedId, userPaused, reducedMotion, visible, documentVisible, navigating]);
 
   const navigate = (direction: number) => {
@@ -104,9 +109,7 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
           <ChevronRight />
         </Button>
       </div>
-      <div ref={viewportRef} className="instagram-carousel-viewport overflow-hidden cursor-grab active:cursor-grabbing" onClickCapture={event => {
-        if (api && !api.clickAllowed()) { event.preventDefault(); event.stopPropagation(); }
-      }}>
+      <div ref={viewportRef} className="instagram-carousel-viewport overflow-hidden cursor-grab active:cursor-grabbing">
         <div className="instagram-carousel-track flex items-stretch gap-2 md:gap-3">
           {posts.map(({ id, ratio }, index) => (
             <div key={id} data-instagram-id={id} role="group" aria-roledescription="slide" aria-label={`${index + 1} de ${posts.length}`} style={{ "--media-ratio": ratio } as CSSProperties} className="instagram-carousel-slide relative min-w-0 shrink-0">
