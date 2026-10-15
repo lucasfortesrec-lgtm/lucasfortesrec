@@ -24,6 +24,7 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
     if (!el || !track) return;
     let raf = 0;
     let last = performance.now();
+    let position = el.scrollLeft;
     const speed = 28; // px per second
     let visible = false;
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -58,7 +59,10 @@ export default function BrandsMarquee({ brands }: { brands: Brand[] }) {
       }
 
       if (!userPausedRef.current && !dragRef.current.active && motionAllowedRef.current) {
-        el.scrollLeft += (speed * directionRef.current + velocityRef.current) * dt;
+        // Retain subpixel travel: scrollLeft rounds small per-frame increments.
+        if (Math.abs(el.scrollLeft - position) > 1) position = el.scrollLeft;
+        position += (speed * directionRef.current + velocityRef.current) * dt;
+        el.scrollLeft = position;
         velocityRef.current *= Math.exp(-6 * dt);
       }
       raf = requestAnimationFrame(tick);
