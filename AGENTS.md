@@ -1,1 +1,2 @@
 Brand images in the header and footer use the same imported CDN asset pointer; the favicon is a separate proportionally downscaled raster in public so browser icons remain lightweight.
+Showreel owns the horizontal HTML5 film and automotive dialog; all Vimeo players and the main film use the shared playback coordinator to invalidate pending playback and silence other media before enabling audio.

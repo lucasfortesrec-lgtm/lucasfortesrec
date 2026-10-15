@@ -8,6 +8,7 @@ import {
   Phone,
 } from "lucide-react";
 import { VimeoPlayer } from "@/components/VimeoPlayer";
+import { Showreel } from "@/components/Showreel";
 import { InstagramCard } from "@/components/InstagramCard";
 import BrandsMarquee from "@/components/BrandsMarquee";
 import lucasSet from "@/assets/lucas-set.jpg.asset.json";
@@ -95,7 +96,6 @@ const INSTAGRAM_POSTS: { id: string; ratio: number }[] = [
 
 const EMAIL = "lucasfortesrec@gmail.com";
 const PHONE_DISPLAY = "48 9 9829 4750";
-const SHOWREEL = "https://player.vimeo.com/video/1216120956";
 
 const nav = [
   { label: "INÍCIO", href: "#showreel", index: "01" },
@@ -283,13 +283,7 @@ function Index() {
       <section id="showreel" className="py-16 md:py-20 px-5 md:px-10">
         <div className="max-w-[1500px] mx-auto">
 
-          <div className="max-w-5xl mx-auto relative aspect-video overflow-hidden rounded-[20px] border border-border bg-black shadow-[var(--shadow-card)]">
-            <VimeoPlayer
-              videoUrl={SHOWREEL}
-              title="Showreel Lucas Fortes"
-              className="h-full w-full"
-            />
-          </div>
+          <Showreel />
         </div>
       </section>
 
