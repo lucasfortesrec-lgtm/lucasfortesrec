@@ -9,6 +9,10 @@ interface InstagramCardProps {
 
 /** Posts whose video is hosted locally — these play inline, nothing else on the card. */
 const LOCAL_VIDEOS = new Set([
+  "DeRjT-4RDkO",
+  "DdolGMGRkZm",
+  "Dde6cY7xOm8",
+  "DczktCENS1A",
   "DbVuBimRBFY",
   "DbO1tXPxxTV",
   "DZzywvax8qD",
@@ -22,10 +26,12 @@ const LOCAL_VIDEOS = new Set([
 const LOCAL_CAROUSELS: Record<string, number> = {
   Da_T_j9kRE7: 18,
   DalZ9tIEWOH: 11,
+  DbgyZJJkWfX: 2,
 };
 
 /** Posts we know are Instagram carousels — shown as a photo set without white footer. */
 const CAROUSELS = new Set([
+  "DbgyZJJkWfX",
   "Da_T_j9kRE7",
   "DbKEQRotrcx",
   "DYTOutBtDXL",
