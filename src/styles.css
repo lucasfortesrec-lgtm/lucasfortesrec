@@ -39,6 +39,8 @@
 
   --color-signal: var(--signal);
   --color-bone: var(--bone);
+  --color-media: var(--media);
+  --color-media-foreground: var(--media-foreground);
 
   --font-display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
@@ -86,6 +88,8 @@
   --border: oklch(0.93 0.02 85 / 0.1);
   --input: oklch(0.93 0.02 85 / 0.14);
   --ring: oklch(0.51 0.22 22);
+  --media: oklch(0 0 0);
+  --media-foreground: oklch(1 0 0);
 }
 
 
@@ -152,4 +156,19 @@
 }
 @utility animate-scan {
   animation: scan-line 8s linear infinite;
+}
+
+.instagram-carousel-viewport {
+  --card-height: 340px;
+  touch-action: pan-y pinch-zoom;
+}
+.instagram-carousel-slide {
+  height: var(--card-height);
+  width: clamp(160px, calc(var(--card-height) * var(--media-ratio)), min(620px, 86vw));
+}
+@media (min-width: 768px) {
+  .instagram-carousel-viewport { --card-height: 430px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .instagram-carousel-viewport * { transition: none; }
 }

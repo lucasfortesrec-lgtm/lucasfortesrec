@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { VimeoPlayer } from "@/components/VimeoPlayer";
 import { Showreel } from "@/components/Showreel";
-import { InstagramCard } from "@/components/InstagramCard";
+import { InstagramCarousel } from "@/components/InstagramCarousel";
 import BrandsMarquee from "@/components/BrandsMarquee";
 import lucasSet from "@/assets/lucas-set.jpg.asset.json";
 import bts1 from "@/assets/bts-1.jpg.asset.json";
@@ -444,16 +444,7 @@ function Index() {
             </a>
           </div>
 
-          <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2">
-            {INSTAGRAM_PRIORITY.map(({ id, ratio }, i) => (
-              <InstagramCard key={id} id={id} ratio={ratio} index={i} />
-            ))}
-          </div>
-          <div className="columns-2 sm:columns-3 lg:columns-4 gap-1 sm:gap-1.5 lg:gap-2">
-            {INSTAGRAM_POSTS.map(({ id, ratio }, i) => (
-              <InstagramCard key={id} id={id} ratio={ratio} index={INSTAGRAM_PRIORITY.length + i} />
-            ))}
-          </div>
+          <InstagramCarousel posts={[...INSTAGRAM_PRIORITY, ...INSTAGRAM_POSTS]} />
 
 
 
