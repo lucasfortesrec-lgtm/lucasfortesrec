@@ -4,6 +4,7 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { InstagramCard } from "@/components/InstagramCard";
+import { stopAllPlayback } from "@/lib/playback-coordinator";
 
 interface InstagramCarouselProps {
   posts: { id: string; ratio: number }[];
@@ -17,6 +18,8 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
   const [documentVisible, setDocumentVisible] = useState(true);
   const [navigating, setNavigating] = useState(false);
   const [moving, setMoving] = useState(false);
+  const [explicitMotion, setExplicitMotion] = useState(false);
+  const [motionRevision, setMotionRevision] = useState(0);
   const regionRef = useRef<HTMLDivElement>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const autoScroll = useRef(AutoScroll({
@@ -71,16 +74,39 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
   useEffect(() => {
     if (!api) return;
     const syncMotion = () => {
-      if (!selectedId && !userPaused && !reducedMotion && visible && documentVisible && !navigating) {
+      if (!selectedId && !userPaused && (!reducedMotion || explicitMotion) && visible && documentVisible && !navigating) {
         autoScroll.current.play(0);
       } else {
         autoScroll.current.stop();
       }
+      setMoving(autoScroll.current.isPlaying());
     };
     syncMotion();
     api.on("reInit", syncMotion);
     return () => { api.off("reInit", syncMotion); };
-  }, [api, selectedId, userPaused, reducedMotion, visible, documentVisible, navigating]);
+  }, [api, selectedId, userPaused, reducedMotion, explicitMotion, visible, documentVisible, navigating, motionRevision]);
+
+  const resume = useCallback(() => {
+    clearTimeout(resumeTimer.current);
+    void stopAllPlayback();
+    setSelectedId(null);
+    setUserPaused(false);
+    setNavigating(false);
+    setExplicitMotion(true);
+    // Reconcile even if a plugin interaction stopped motion without changing React state.
+    setMotionRevision(value => value + 1);
+  }, []);
+
+  const toggleMotion = () => {
+    if (autoScroll.current.isPlaying()) {
+      clearTimeout(resumeTimer.current);
+      autoScroll.current.stop();
+      setUserPaused(true);
+      setNavigating(false);
+    } else {
+      resume();
+    }
+  };
 
   const navigate = (direction: number) => {
     if (!api) return;
@@ -102,8 +128,8 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
         <Button variant="outline" size="icon" className="rounded-full text-muted-foreground hover:text-foreground" onClick={() => navigate(-1)} aria-label="Cards anteriores" title="Cards anteriores">
           <ChevronLeft />
         </Button>
-        <Button variant="outline" size="icon" className="rounded-full text-muted-foreground hover:text-foreground" onClick={() => setUserPaused(value => !value)} aria-label={userPaused ? "Retomar carrossel" : "Pausar carrossel"} title={userPaused ? "Retomar carrossel" : "Pausar carrossel"} aria-pressed={userPaused}>
-          {userPaused ? <Play /> : <Pause />}
+        <Button variant="outline" size="icon" className="rounded-full text-muted-foreground hover:text-foreground" onClick={toggleMotion} aria-label={moving ? "Pausar carrossel" : "Retomar carrossel"} title={moving ? "Pausar carrossel" : "Retomar carrossel"} aria-pressed={moving}>
+          {moving ? <Pause /> : <Play />}
         </Button>
         <Button variant="outline" size="icon" className="rounded-full text-muted-foreground hover:text-foreground" onClick={() => navigate(1)} aria-label="Próximos cards" title="Próximos cards">
           <ChevronRight />
@@ -113,7 +139,7 @@ export function InstagramCarousel({ posts }: InstagramCarouselProps) {
         <div className="instagram-carousel-track flex items-stretch gap-2 md:gap-3">
           {posts.map(({ id, ratio }, index) => (
             <div key={id} data-instagram-id={id} role="group" aria-roledescription="slide" aria-label={`${index + 1} de ${posts.length}`} style={{ "--media-ratio": ratio } as CSSProperties} className="instagram-carousel-slide relative min-w-0 shrink-0">
-              <InstagramCard id={id} ratio={ratio} index={index} selected={selectedId === id} onSelectionChange={selectMedia} horizontal />
+              <InstagramCard id={id} ratio={ratio} index={index} selected={selectedId === id} onSelectionChange={selectMedia} onResumeCarousel={resume} horizontal />
             </div>
           ))}
         </div>
