@@ -6,4 +6,4 @@
 - [x] Verify build, real YouTube audio/playback, delayed SDK intent, fallback, desktop/mobile modal dismissal and focus; do not publish.
 - [ ] Verify actual Vimeo playback in the modal and vertical player: blocked by Vimeo connection verification in the test browser; coordination intent and YouTube pause were verified.
 - [x] Clean up the YouTube presentation with a real poster before playback, supported annotation settings, and one custom control at a time; preserve branding and modal coordination.
-- [ ] Verify the cleaned presentation, playback, modal dismissal and focus on desktop/mobile without publishing.
+- [x] Verify the cleaned presentation, playback, modal dismissal and focus on desktop/mobile without publishing; build OK, one control at a time, delayed SDK click and failure fallback checked.
