@@ -1,6 +1,6 @@
 - [x] Apply the supplied logo to the header and footer, preserving proportions and contrast.
 - [x] Derive the browser favicon from the supplied logo.
 - [x] Verify the logo placements and package security update.
-- [ ] Replace only the horizontal showreel with the permanent uploaded MP4 and real poster.
+- [ ] Replace only the horizontal showreel with YouTube M9TM0VV6VuY; do not use or process the uploaded MP4.
 - [ ] Add the old automotive film in an accessible compact-thumbnail modal with exclusive playback.
 - [ ] Verify build and desktop/mobile playback and dismissal; do not publish.
