@@ -419,9 +419,6 @@ function Index() {
             <h2 className="font-display text-4xl md:text-7xl font-extrabold uppercase tracking-[-0.045em]">
               O Ofício
             </h2>
-            <p className="max-w-sm text-sm text-muted-foreground">
-              Seis frentes, um mesmo padrão de direção. Escolha o formato — a exigência é sempre a mesma.
-            </p>
           </div>
 
           <div className="border-t border-border">
