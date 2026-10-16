@@ -351,7 +351,7 @@ function Index() {
                 className={cn(
                   "rounded-full border border-border px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground transition-colors duration-200 motion-reduce:transition-none",
                   i % 2 === 0
-                    ? "hover:border-brand hover:bg-brand/10 hover:text-brand"
+                    ? "hover:border-brand hover:bg-brand/10 hover:text-brand-bright"
                     : "hover:border-signal hover:bg-signal/10 hover:text-signal",
                 )}
               >
