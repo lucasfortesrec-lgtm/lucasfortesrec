@@ -30,6 +30,7 @@
   --color-gold-foreground: var(--gold-foreground);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-brand-bright: var(--brand-bright);
 
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -81,6 +82,8 @@
 
   --brand: oklch(0.51 0.22 22);
   --brand-foreground: oklch(0.98 0.01 85);
+  /* Red pill label: same brand hue, lightened so it clears 4.5:1 on the tinted hover background. */
+  --brand-bright: color-mix(in oklab, var(--brand) 78%, white);
 
   --destructive: oklch(0.6 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
