@@ -17,6 +17,7 @@ import bts2 from "@/assets/bts-2.jpg.asset.json";
 import bts3 from "@/assets/bts-3.jpg.asset.json";
 import bts4 from "@/assets/bts-4.jpg.asset.json";
 import brandLogo from "@/assets/lucas-fortes-logo-light.png.asset.json";
+import { cn } from "@/lib/utils";
 const BRANDS: { name: string; src: string; scale?: string }[] = [
   { name: "GWM", src: "/brands/gwm.png" },
   { name: "Volvo", src: "/brands/volvo.png" },
@@ -330,16 +331,29 @@ function Index() {
       <section id="sobre" className="pt-24 pb-12 md:pt-32 md:pb-16 px-5 md:px-10 border-t border-border">
         <div className="max-w-[1100px] mx-auto">
           <h2 className="font-display text-4xl md:text-6xl font-extrabold uppercase leading-[0.9] tracking-[-0.045em]">
-            O Filmmaker
+            <span className="transition-colors duration-200 hover:text-brand motion-reduce:transition-none">
+              O Filmmaker
+            </span>
           </h2>
           <div className="mt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-            Direção <span className="text-signal">·</span> Lucas Fortes
+            <span className="group inline-block transition-colors duration-200 hover:text-signal motion-reduce:transition-none">
+              Direção{" "}
+              <span className="text-signal transition-colors duration-200 group-hover:text-brand motion-reduce:transition-none">
+                ·
+              </span>{" "}
+              Lucas Fortes
+            </span>
           </div>
           <div className="mt-10 flex flex-wrap gap-2.5">
-            {["Roteiro", "Direção", "Câmera", "Color", "Som", "Entrega"].map((b) => (
+            {["Roteiro", "Direção", "Câmera", "Color", "Som", "Entrega"].map((b, i) => (
               <span
                 key={b}
-                className="rounded-full border border-border px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground"
+                className={cn(
+                  "rounded-full border border-border px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground transition-colors duration-200 motion-reduce:transition-none",
+                  i % 2 === 0
+                    ? "hover:border-brand hover:bg-brand/10 hover:text-brand"
+                    : "hover:border-signal hover:bg-signal/10 hover:text-signal",
+                )}
               >
                 {b}
               </span>
