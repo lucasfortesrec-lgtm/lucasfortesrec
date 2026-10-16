@@ -1,4 +1,5 @@
 - [x] Apply the supplied logo to the header and footer, preserving proportions and contrast.
+- [ ] Hide the deployment-injected Lovable badge through official publishing settings: hide_badge=true was rejected because an editor role on Pro or higher is required; post-attempt status remains false. Public desktop/mobile still show the badge, local preview does not; WhatsApp remains visible and unchanged. Owner must apply the official setting with eligible permissions before publication. Permanent preference and publication-check rule recorded; no promotional credits found in public source or metadata.
 - [x] Derive the browser favicon from the supplied logo.
 - [x] Verify the logo placements and package security update.
 - [x] Replace only the horizontal showreel with YouTube M9TM0VV6VuY; do not use or process the uploaded MP4.
