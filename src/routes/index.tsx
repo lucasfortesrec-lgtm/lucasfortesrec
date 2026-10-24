@@ -240,7 +240,7 @@ function Index() {
                   <span className="absolute inset-0 rounded-full bg-brand/70 animate-ping" />
                   <span className="relative size-1.5 rounded-full bg-brand" />
                 </span>
-                Est. 2020 — Filmes sob medida
+                Est. 2020 FILMES SOB MEDIDA
               </div>
 
               <h1 className="mt-8 font-display font-extrabold uppercase leading-[0.86] tracking-[-0.045em] text-[clamp(2.9rem,10vw,8.5rem)]">
